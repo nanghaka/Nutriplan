@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class HealthTips extends ActionBarActivity {
     ImageButton next,previous;
     TextView words;
-    int count;
+    int counter;
    String array[]={
         "words",
         "hello",
@@ -31,12 +31,23 @@ public class HealthTips extends ActionBarActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(count<3){
-                    count++;
-                    words.setText(array[count]);
-                }else {
-                    count=0;
+
+                counter++;
+                int k=array.length;
+                if( counter<k && counter>=0)
+                    words.setText(array[counter]);
+
+                else {
+                    counter=0;
+                    words.setText(array[counter]);
                 }
+
+//                if(counter<=2){
+//                    counter++;
+//                    words.setText(array[counter]);
+//                }else {
+//                    counter=0;
+//                }
 
             }
         });
@@ -44,18 +55,37 @@ public class HealthTips extends ActionBarActivity {
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(count<0){
-                    count=0;
-                }else {
-                    count--;
-                }
+
+                counter--;
+                int n=array.length;
+                if(counter<n && counter>=0)
+                    words.setText(array[counter]);
+
+                else
+                    counter=0;
 
 
-                words.setText(array[count]);
             }
+//                if(count<=0){
+//                    count=0;
+//                }else {
+//                    count--;
+//                }
+
+
+              //  words.setText(array[count]);
+           // }
         });
 
+//        public void updatetext() {
+//            qholder = questionBank[counter].getQuestion();
+//            tquestion.setText(qholder);
+//
+//        }
+
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
