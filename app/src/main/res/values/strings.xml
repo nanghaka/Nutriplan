@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Nutriplan</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Hello world! and this is a nutrition app</string>
     <string name="action_settings">Settings</string>
     <string name="dailyplan">Daily Plan</string>
     <string name="calc">NutriCalc</string>

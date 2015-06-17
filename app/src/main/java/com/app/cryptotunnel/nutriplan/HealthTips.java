@@ -4,14 +4,57 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 
 public class HealthTips extends ActionBarActivity {
+    ImageButton next,previous;
+    TextView words;
+    int count;
+   String array[]={
+        "words",
+        "hello",
+           "this activity is working very nicely hehhehe"
+
+   };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_tips);
+        next=(ImageButton)findViewById(R.id.next);
+        previous=(ImageButton) findViewById(R.id.previous);
+        words= (TextView) findViewById(R.id.words);
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(count<3){
+                    count++;
+                    words.setText(array[count]);
+                }else {
+                    count=0;
+                }
+
+            }
+        });
+
+        previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(count<0){
+                    count=0;
+                }else {
+                    count--;
+                }
+
+
+                words.setText(array[count]);
+            }
+        });
+
     }
 
     @Override
