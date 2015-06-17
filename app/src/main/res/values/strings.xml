@@ -14,4 +14,5 @@
     <string name="title_activity_health_tips">" Health Tips"</string>
     <string name="title_activity_meal_dairy">" Meal Diary"</string>
     <string name="title_activity_nutri_calculator">Nutri Calculator</string>
+    <string name="share">share</string>
 </resources>

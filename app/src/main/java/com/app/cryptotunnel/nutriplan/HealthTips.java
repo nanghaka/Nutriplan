@@ -1,7 +1,10 @@
 package com.app.cryptotunnel.nutriplan;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +15,9 @@ import android.widget.TextView;
 
 
 public class HealthTips extends ActionBarActivity {
+
+
+    private static final String APP_SHARE_HASHTAG = "#Nutriplan app";
     ImageButton next,previous;
     TextView words;
     ImageView food;
@@ -38,6 +44,7 @@ public class HealthTips extends ActionBarActivity {
     int m=image.length;
     int n=array.length;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +53,7 @@ public class HealthTips extends ActionBarActivity {
         previous=(ImageButton) findViewById(R.id.previous);
         words= (TextView) findViewById(R.id.words);
         food= (ImageView) findViewById(R.id.food);
+
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,12 +102,34 @@ public class HealthTips extends ActionBarActivity {
         });
     }
 
+    private Intent createShareTips() {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT,
+                array[counter] + APP_SHARE_HASHTAG);
+        return shareIntent;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_health_tips, menu);
-        return true;
+
+
+        MenuItem menuItem = menu.findItem(R.id.share);
+        ShareActionProvider mShareActionProvider =
+                (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
+
+        // Attach an intent to this ShareActionProvider.  You can update this at any time,
+        // like when the user selects a new piece of data they might like to share.
+        if (mShareActionProvider != null) {
+            mShareActionProvider.setShareIntent(createShareTips());
+        } else {
+            Log.d("shareIntent", "Share Action Provider is null?");
+        }
+    return true;
     }
 
     @Override
