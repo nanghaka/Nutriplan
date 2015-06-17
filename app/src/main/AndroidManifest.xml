@@ -16,6 +16,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DailyPlan"
+            android:label="@string/title_activity_daily_plan" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.app.cryptotunnel.nutriplan.MainActivity" />
+        </activity>
+        <activity
+            android:name=".HealthTips"
+            android:label="@string/title_activity_health_tips"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.app.cryptotunnel.nutriplan.MainActivity" />
+        </activity>
+        <activity
+            android:name=".MealDairy"
+            android:label="@string/title_activity_meal_dairy"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.app.cryptotunnel.nutriplan.MainActivity" />
+        </activity>
+        <activity
+            android:name=".NutriCalculator"
+            android:label="@string/title_activity_nutri_calculator"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.app.cryptotunnel.nutriplan.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
