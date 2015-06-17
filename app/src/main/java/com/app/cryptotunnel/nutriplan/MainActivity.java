@@ -72,10 +72,41 @@ public class MainActivity extends ActionBarActivity {
                 // ListView Clicked item value
                 String  itemValue    = (String) listView.getItemAtPosition(position);
 
+                switch (itemPosition){
+                    case 0:
+                        Toast.makeText(getApplicationContext(),
+                                "clicked daily plan" + itemValue, Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 1:
+                        Toast.makeText(getApplicationContext(),
+                                "clicked nutri calculator", Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 2:
+                        Toast.makeText(getApplicationContext(),
+                                "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 3:
+                        Toast.makeText(getApplicationContext(),
+                                "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 4:
+                        Toast.makeText(getApplicationContext(),
+                                "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
+                                .show();
+                        break;
+
+
+
+                }
+
                 // Show Alert
-                Toast.makeText(getApplicationContext(),
-                        "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
-                        .show();
+//                Toast.makeText(getApplicationContext(),
+//                        "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
+//                        .show();
 
             }
 
