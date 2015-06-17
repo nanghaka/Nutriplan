@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
@@ -19,13 +18,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     private ArrayAdapter<String> listAdapter;
 
-    String[] nutriArray = {
-            "Daily plan",
-            "Nutri Calculator",
-            "Health tips",
-            "Meal diary",
-            "About"
-    };
+//    String[] nutriArray = {
+//            "Daily plan",
+//            "Nutri Calculator",
+//            "Health tips",
+//            "Meal diary",
+//            "About"
+//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +35,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         mnutricalc = (Button) findViewById(R.id.calc);
         mhealthtips = (Button) findViewById(R.id.tips);
         mmealdiary = (Button) findViewById(R.id.diary);
-        mabout = (Button) findViewById(R.id.about);
+       // mabout = (Button) findViewById(R.id.about);
 
         mdailyplan.setOnClickListener(this);
         mnutricalc.setOnClickListener(this);
         mhealthtips.setOnClickListener(this);
         mmealdiary.setOnClickListener(this);
-        mabout.setOnClickListener(this);
+      //  mabout.setOnClickListener(this);
 
 
     }
@@ -62,9 +61,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             case R.id.diary:
                 startActivity(new Intent(MainActivity.this,MealDairy.class));
                 break;
-            case R.id.about:
-                Toast.makeText(getApplicationContext(),"In progress",Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.about:
+//                Toast.makeText(getApplicationContext(),"In progress",Toast.LENGTH_SHORT).show();
+//                break;
 
 
         }
