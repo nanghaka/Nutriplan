@@ -14,9 +14,9 @@ public class HealthTips extends ActionBarActivity {
     TextView words;
     int counter;
    String array[]={
-        "words",
-        "hello",
-           "this activity is working very nicely hehhehe"
+        "Avoid skipping meals",
+        "Drink plenty of water",
+           "Eat plenty of vegetables to increase your immunity and increase your life span cozz and ndonfadfao"
 
    };
 
