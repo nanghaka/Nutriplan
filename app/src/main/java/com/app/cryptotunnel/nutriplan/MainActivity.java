@@ -1,16 +1,23 @@
 package com.app.cryptotunnel.nutriplan;
 
-import android.app.ListActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends ActionBarActivity {
+
+    private ListView mainListView ;
+    ListView listView ;
+
+
+    private ArrayAdapter<String> listAdapter ;
 
     String[] nutriArray={
             "Daily plan",
@@ -23,14 +30,70 @@ public class MainActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list_view_android_example);
+
+        // Get ListView object from xml
+        listView = (ListView) findViewById(R.id.list);
+
+        // Defined Array values to show in ListView
+        String[] values = new String[] { "Android List View",
+                "Adapter implementation",
+                "Simple List View In Android",
+                "Create List View Android",
+                "Android Example",
+                "List View Source Code",
+                "List View Array Adapter",
+                "Android Example List View"
+        };
+
+        // Define a new Adapter
+        // First parameter - Context
+        // Second parameter - Layout for the row
+        // Third parameter - ID of the TextView to which the data is written
+        // Forth - the Array of data
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, nutriArray);
+
+
+        // Assign adapter to ListView
+        listView.setAdapter(adapter);
+
+        // ListView Item Click Listener
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                // ListView Clicked item index
+                int itemPosition     = position;
+
+                // ListView Clicked item value
+                String  itemValue    = (String) listView.getItemAtPosition(position);
+
+                // Show Alert
+                Toast.makeText(getApplicationContext(),
+                        "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
+                        .show();
+
+            }
+
+        });
+    }
 
 
 
-        setListAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, nutriArray));
 
-//         List<String> weekForecast =new ArrayList<String>(Arrays.asList(nutriArray));
+/*
+//        setListAdapter(new ArrayAdapter<String>(this,
+//                android.R.layout.simple_list_item_1, nutriArray));
+        mainListView = (ListView) findViewById( R.id.list_item );
+
+         List<String> nutriList =new ArrayList<String>(Arrays.asList(nutriArray));
+        listAdapter = new ArrayAdapter<String>(this, R.layout.list_item_nutrition, nutriList);
+
+        mainListView.setAdapter( listAdapter );
 //        ArrayAdapter<String> mForecastAdapter = new ArrayAdapter<String>(
 //                this,
 //                R.layout.list_item,
@@ -42,13 +105,13 @@ public class MainActivity extends ListActivity {
 
     }
 
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        Toast.makeText(this,
-                "You have selected" + nutriArray[position],
-                Toast.LENGTH_SHORT).show();
-    }
+//    @Override
+//    protected void onListItemClick(ListView l, View v, int position, long id) {
+//        super.onListItemClick(l, v, position, id);
+//        Toast.makeText(this,
+//                "You have selected" + nutriArray[position],
+//                Toast.LENGTH_SHORT).show();
+//    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
