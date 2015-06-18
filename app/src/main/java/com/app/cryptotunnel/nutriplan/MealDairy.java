@@ -1,17 +1,38 @@
 package com.app.cryptotunnel.nutriplan;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+
+import com.app.cryptotunnel.nutriplan.data.NoteItem;
+import com.app.cryptotunnel.nutriplan.data.NotesDataSource;
+
+import java.util.List;
 
 
-public class MealDairy extends ActionBarActivity {
+public class MealDairy extends ListActivity {
+    private NotesDataSource datasource;
+    List<NoteItem> notesList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_dairy);
+
+        datasource = new NotesDataSource(this);
+
+        refreshDisplay();
+
+    }
+    private void refreshDisplay() {
+        notesList = datasource.findAll();
+        ArrayAdapter<NoteItem> adapter =
+                new ArrayAdapter<NoteItem>(this, R.layout.activity_list_layout, notesList);
+        setListAdapter(adapter);
+
     }
 
     @Override
