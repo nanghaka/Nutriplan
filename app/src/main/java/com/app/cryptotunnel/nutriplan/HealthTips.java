@@ -22,7 +22,7 @@ public class HealthTips extends ActionBarActivity {
     TextView words;
     ImageView food;
     int qholder,r1,r2;
-    int counter=0,icount;
+    int counter,icount;
 
    int array[]={
         R.string.share0,
@@ -82,6 +82,17 @@ public class HealthTips extends ActionBarActivity {
     };
     final int m=image.length;
     final int n=array.length;
+
+    String test[]={
+            "this",
+            "works",
+            "very",
+            "well"
+
+    };
+
+
+    //ArrayList<array> hand = new ArrayList<Card>();
 
 
     @Override
@@ -157,7 +168,7 @@ public class HealthTips extends ActionBarActivity {
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT,
-               send + APP_SHARE_HASHTAG);
+               words.getText() + APP_SHARE_HASHTAG);
         return shareIntent;
 
     }
