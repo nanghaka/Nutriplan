@@ -21,28 +21,67 @@ public class HealthTips extends ActionBarActivity {
     ImageButton next,previous;
     TextView words;
     ImageView food;
-    int counter,icount;
+    int qholder,r1,r2;
+    int counter=0,icount;
 
-   String array[]={
-        "Avoid skipping meals",
-        "Drink plenty of water",
-           "Eat plenty of vegetables to increase your immunity ",
-           "Dont drink sugar calories",
-           "Avoid processed junk food",
-           "Dont over cook or burn your meat"
+   int array[]={
+        R.string.share0,
+           R.string.share1,
+           R.string.share2,
+           R.string.share3,
+           R.string.share4,
+           R.string.share5,
+           R.string.share6,
+           R.string.share7,
+           R.string.share8,
+           R.string.share9,
+           R.string.share10,
+           R.string.share11,
+           R.string.share12,
+           R.string.share13,
+           R.string.share14,
+           R.string.share15,
+           R.string.share16,
+           R.string.share17,
+           R.string.share18,
+           R.string.share19,
+           R.string.share20,
+           R.string.share21,
+           R.string.share23,
+           R.string.share22,
+           R.string.share24,
+           R.string.share25,
+           R.string.share26,
+           R.string.share27,
+           R.string.share28,
+           R.string.share29,
+           R.string.share30
 
    };
     int image[]={
             R.drawable.food1,
-            R.drawable.back6,
             R.drawable.food3,
-            R.drawable.food4
-//            "R.drawable.food5",
-//            "R.drawable.food6"
-
+            R.drawable.food4,
+            R.drawable.food5,
+            R.drawable.food6,
+            R.drawable.food7,
+            R.drawable.food8,
+            R.drawable.food9,
+            R.drawable.food10,
+            R.drawable.food11,
+            R.drawable.food13,
+            R.drawable.food14,
+            R.drawable.food15,
+            R.drawable.food18,
+            R.drawable.food20,
+            R.drawable.food21,
+            R.drawable.food22,
+            R.drawable.food23,
+            R.drawable.food24,
+            R.drawable.food25
     };
-    int m=image.length;
-    int n=array.length;
+    final int m=image.length;
+    final int n=array.length;
 
 
     @Override
@@ -55,17 +94,22 @@ public class HealthTips extends ActionBarActivity {
         food= (ImageView) findViewById(R.id.food);
 
 
+       updatetext();
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 counter++;
                 icount++;
+
+
                 try {
-                    if( counter<n && counter>=0) words.setText(array[counter]);
+                    if( counter<n && counter>=0) {
+                        updatetext();
+                    }
                     else {
                         counter = 0;
-                        words.setText(array[counter]);
+                        updatetext();
                     }
 
                     if( icount<m && counter>=0) food.setImageResource(image[icount]);
@@ -83,14 +127,19 @@ public class HealthTips extends ActionBarActivity {
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 counter--;
                 icount--;
+
+
                 try {
-                    if(counter<n && counter>=0) words.setText(array[counter]);
+                    if(counter<n && counter>=0){
+                        updatetext();
+                    }
                     else counter=0;
 
-                    if(icount<=m && icount>=0) food.setImageResource(image[icount]);
+                    if(icount<=m && icount>=0) {
+                        food.setImageResource(image[icount]);
+                    }
                     else icount=m;
 
                 }catch (ArrayIndexOutOfBoundsException e){
@@ -103,12 +152,18 @@ public class HealthTips extends ActionBarActivity {
     }
 
     private Intent createShareTips() {
+        String send =String.valueOf(array[counter]);
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT,
-                array[counter] + APP_SHARE_HASHTAG);
+               send + APP_SHARE_HASHTAG);
         return shareIntent;
+
+    }
+
+    public void updatetext() {
+        words.setText(array[counter]);
     }
 
 
