@@ -7,12 +7,12 @@
     <string name="calc">NutriCalc</string>
     <string name="tips">Health Tips</string>
     <string name="dairy">Meal Diary</string>
-    <string name="diary">Meal Diary</string>
+    <string name="diary">Nutri Diary</string>
     <string name="about">About</string>
     <string name="title_activity_daily_plan">Daily Plan</string>
     <string name="title_activity_nutri_calc">Nutri Calc</string>
     <string name="title_activity_health_tips">" Health Tips"</string>
-    <string name="title_activity_meal_dairy">" Meal Diary"</string>
+    <string name="title_activity_meal_dairy">" Nutri Diary"</string>
     <string name="title_activity_nutri_calculator">Nutri Calculator</string>
     <string name="share">share</string>
 </resources>
