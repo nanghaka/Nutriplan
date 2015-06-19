@@ -47,5 +47,9 @@
     <string name="share30">Lemons smoothen skin.</string>
     <string name="share31">Mushrooms control blood pressure.</string>
     <string name="share">share</string>
+    <string name="wt">Enter weigth (kg)</string>
+    <string name="ht">Enter height(cm)</string>
+    <string name="age">Enter age</string>
+    <string name="calculator">calculate</string>
 
 </resources>

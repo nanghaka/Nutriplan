@@ -1,7 +1,5 @@
 package com.app.cryptotunnel.nutriplan;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,43 +7,67 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.NumberPicker;
+import android.widget.EditText;
 import android.widget.TextView;
+
 
 public class Calories extends Fragment {
 
-    TextView textView;
-    Button button;
-    NumberPicker np;
-    TextView tv1, tv2;
+//    NumberPicker np;
+//    TextView tv1, tv2;
+    EditText weight,height,age;
+    Button calculate;
+    double w,h,a,caloriesm,caloriesf;
+    TextView show;
 
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    @Override
+
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.first_layout, container, false);
 
-        np = (NumberPicker) rootView.findViewById(R.id.numberPicker1);
-        tv1 = (TextView) rootView.findViewById(R.id.textView2);
-        tv2 = (TextView) rootView.findViewById(R.id.textView3);
 
-        np.setMinValue(0);
-        np.setMaxValue(10);
-        np.setWrapSelectorWheel(false);
+        weight= (EditText) rootView.findViewById(R.id.editText);
+        height= (EditText) rootView.findViewById(R.id.editText2);
+        age= (EditText) rootView.findViewById(R.id.editText3);
+        calculate=(Button) rootView.findViewById(R.id.calculate);
+        show=(TextView) rootView.findViewById(R.id.show);
 
-        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-
+        calculate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                // TODO Auto-generated method stub
+            public void onClick(View v) {
+                w=Double.parseDouble(String.valueOf(weight.getText()));
+                h=Double.parseDouble(String.valueOf(height.getText()));
+                a=Double.parseDouble(String.valueOf(age.getText()));
+                caloriesm=((10*w)+(6.25*h)-(5*a)+5);
+                caloriesf=((10*w)+(6.25*h)-(5*a)-161);
 
-                String Old = "Old Value : ";
-                String New = "New Value : ";
-
-                tv1.setText(Old.concat(String.valueOf(oldVal)));
-                tv2.setText(New.concat(String.valueOf(newVal)));
+               show.setText(String.valueOf(caloriesm));
             }
         });
+
+
+
+//        np = (NumberPicker) rootView.findViewById(R.id.numberPicker1);
+//        tv1 = (TextView) rootView.findViewById(R.id.textView2);
+//        tv2 = (TextView) rootView.findViewById(R.id.textView3);
+//
+//        np.setMinValue(0);
+//        np.setMaxValue(10);
+//        np.setWrapSelectorWheel(false);
+//
+//        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+//
+//            @Override
+//            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+//                // TODO Auto-generated method stub
+//
+//                String Old = "Old Value : ";
+//                String New = "New Value : ";
+//
+//                tv1.setText(Old.concat(String.valueOf(oldVal)));
+//                tv2.setText(New.concat(String.valueOf(newVal)));
+//            }
+//        });
 
 
 //        textView = (TextView) rootView.findViewById(R.id.words);
