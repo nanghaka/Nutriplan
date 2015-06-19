@@ -142,11 +142,12 @@ public class HealthTips extends ActionBarActivity {
                 icount--;
 
 
+
                 try {
-                    if(counter<n && counter>=0){
+                    if(counter<=n && counter>=0){
                         updatetext();
                     }
-                    else counter=0;
+                    else counter=n;
 
                     if(icount<=m && icount>=0) {
                         food.setImageResource(image[icount]);
