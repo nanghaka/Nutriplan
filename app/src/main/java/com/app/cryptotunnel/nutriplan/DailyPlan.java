@@ -65,9 +65,12 @@ public class DailyPlan extends ActionBarActivity {
             al.add(log);
         }
 
-        nutriArray =new String[]{
-          al.get(0),al.get(1),al.get(2),al.get(3)
-        };
+        nutriArray = new String[al.size()];
+        nutriArray = al.toArray(nutriArray);
+
+//        nutriArray =new String[]{
+//          al.get(0),al.get(1),al.get(2),al.get(3)
+//        };
 
 
 
