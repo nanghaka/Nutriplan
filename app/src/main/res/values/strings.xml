@@ -51,5 +51,6 @@
     <string name="ht">Enter height(cm)</string>
     <string name="age">Enter age</string>
     <string name="calculator">calculate</string>
+    <string name="action_create">Create</string>
 
 </resources>
