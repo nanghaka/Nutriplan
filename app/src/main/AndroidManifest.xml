@@ -47,6 +47,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.app.cryptotunnel.nutriplan.MainActivity" />
         </activity>
+        <activity
+            android:name=".NoteEditorActivity"
+            android:label="@string/title_activity_note_editor"
+            android:parentActivityName=".MealDairy" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.app.cryptotunnel.nutriplan.MealDairy" />
+        </activity>
     </application>
 
 </manifest>

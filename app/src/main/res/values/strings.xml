@@ -52,5 +52,6 @@
     <string name="age">Enter age</string>
     <string name="calculator">calculate</string>
     <string name="action_create">Create</string>
+    <string name="title_activity_note_editor">NoteEditorActivity</string>
 
 </resources>
