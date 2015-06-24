@@ -17,6 +17,9 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 			return new Calories();
 		case 1:
 			return new Proteins();
+        case 2:
+            return new BMI();
+
 
 
 		default:
@@ -26,7 +29,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public int getCount() {
-		return 2;
+		return 3;
 	}
 
 }

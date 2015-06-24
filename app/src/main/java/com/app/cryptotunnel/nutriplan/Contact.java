@@ -26,6 +26,9 @@ public class Contact {
         this._name = name;
         this._phone_number = _phone_number;
     }
+    public Contact(int id){
+        this._id = id;
+    }
     // getting ID
     public int getID(){
         return this._id;

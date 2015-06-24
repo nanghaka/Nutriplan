@@ -45,7 +45,7 @@ public class NutriCalculator extends ActionBarActivity  implements ActionBar.Tab
 
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        String[] tabs = { "Calories", "Proteins"
+        String[] tabs = { "Calories", "Proteins","BMI"
                 };
 
         for (String tab_name : tabs) {

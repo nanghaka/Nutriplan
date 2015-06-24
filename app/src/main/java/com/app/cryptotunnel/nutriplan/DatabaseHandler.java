@@ -128,6 +128,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_CONTACTS, KEY_ID + " = ?",
                 new String[] { String.valueOf(contact.getID()) });
+     //   db.delete(TABLE_CONTACTS, KEY_ID + " = ?");
         db.close();
     }
 

@@ -21,6 +21,7 @@ public class NoteEditorActivity extends ActionBarActivity {
     Button save,cancel;
 
     DatabaseHandler db = new DatabaseHandler(this);
+    Contact contact = new Contact();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,8 @@ public class NoteEditorActivity extends ActionBarActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                db.deleteContact(new Contact(20));
+              //  onBackPressed();
             }
         });
 

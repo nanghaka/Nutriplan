@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:singleLine="true"
+    android:background="@color/light_orange"
     android:textSize="20sp"
     android:ellipsize="end"
     android:padding="5dp"

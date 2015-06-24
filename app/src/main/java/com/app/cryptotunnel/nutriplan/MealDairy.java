@@ -22,6 +22,8 @@ public class MealDairy extends ActionBarActivity {
     private ListView mainListView;
     ListView listView;
     ArrayList<String> al = new ArrayList<String>();
+    DatabaseHandler db = new DatabaseHandler(this);
+    Contact contact = new Contact();
 
 
     private ArrayAdapter<String> listAdapter;
@@ -41,8 +43,6 @@ public class MealDairy extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view_android_example);
 
-        DatabaseHandler db = new DatabaseHandler(this);
-
         // Get ListView object from xml
         listView = (ListView) findViewById(R.id.list);
 
@@ -57,7 +57,7 @@ public class MealDairy extends ActionBarActivity {
                 "Android Example List View"
         };
 
-        List<Contact> contacts = db.getAllContacts();
+        final List<Contact> contacts = db.getAllContacts();
 
         for (Contact cn : contacts) {
             String log = "Id: " + cn.getID() + " ,Name: " + cn.getName() + " ,Phone: " + cn.getPhoneNumber();
@@ -100,28 +100,42 @@ public class MealDairy extends ActionBarActivity {
                 // ListView Clicked item value
                 String itemValue = (String) listView.getItemAtPosition(position);
 
+
+
                 switch (itemPosition) {
                     case 0:
+                       // if (contact.getID() == position) db.deleteContact(new Contact(itemPosition));
+                        db.deleteContact(new Contact(0));
                         Toast.makeText(getApplicationContext(),
                                 "clicked daily plan" + itemValue, Toast.LENGTH_LONG)
                                 .show();
                         break;
                     case 1:
+                      //  if (contact.getID() == position)
+                            db.deleteContact(new Contact(1));
+                       // db.deleteContact(new Contact(itemPosition));
                         Toast.makeText(getApplicationContext(),
                                 "clicked nutri calculator", Toast.LENGTH_LONG)
                                 .show();
                         break;
                     case 2:
+                        //if (contact.getID() == position) db.deleteContact(new Contact(itemPosition));
+                        //db.deleteContact(new Contact(contact.getID()));
+
+                         db.deleteContact(new Contact(2));
                         Toast.makeText(getApplicationContext(),
                                 "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
                                 .show();
                         break;
                     case 3:
+                        //db.deleteContact(new Contact(itemPosition));
+                        db.deleteContact(new Contact(3));
                         Toast.makeText(getApplicationContext(),
                                 "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
                                 .show();
                         break;
                     case 4:
+                        db.deleteContact(new Contact(4));
                         Toast.makeText(getApplicationContext(),
                                 "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
                                 .show();
