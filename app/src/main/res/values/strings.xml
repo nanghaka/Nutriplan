@@ -53,5 +53,7 @@
     <string name="calculator">calculate</string>
     <string name="action_create">Create</string>
     <string name="title_activity_note_editor">NoteEditorActivity</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

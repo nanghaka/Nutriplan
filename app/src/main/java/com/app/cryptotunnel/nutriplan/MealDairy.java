@@ -1,5 +1,6 @@
 package com.app.cryptotunnel.nutriplan;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -155,6 +156,9 @@ public class MealDairy extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+        else if (id == R.id.action_create){
+            startActivity(new Intent(this,NoteEditorActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
