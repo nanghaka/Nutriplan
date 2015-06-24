@@ -1,5 +1,6 @@
 package com.app.cryptotunnel.nutriplan;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -10,7 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.app.cryptotunnel.nutriplan.data.NoteItem;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class NoteEditorActivity extends ActionBarActivity {
@@ -18,7 +21,6 @@ public class NoteEditorActivity extends ActionBarActivity {
     Button save,cancel;
 
     DatabaseHandler db = new DatabaseHandler(this);
-    NoteItem NI = new NoteItem();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class NoteEditorActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Log.d("Insert: ", "Inserting ..");
-                db.addContact(new Contact(noteText.getText().toString(), "56465"));
+                db.addContact(new Contact(noteText.getText().toString(), getTime()));
                 Toast.makeText(getApplicationContext(),"Note has been saved", Toast.LENGTH_SHORT).show();
             }
         });
@@ -47,22 +49,17 @@ public class NoteEditorActivity extends ActionBarActivity {
 
 
     }
-//    @SuppressLint("SimpleDateFormat")
-//    public static NoteItem getNew() {
-//
-//        Locale locale = new Locale("en_US");
-//        Locale.setDefault(locale);
-//
-//        String pattern = "yyyy-MM-dd HH:mm:ss Z";
-//        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-//        String key = formatter.format(new Date());
-//
-//        NoteItem note = new NoteItem();
-//        note.setKey(key);
-//        note.setText("");
-//        return note;
-//
-//    }
+    @SuppressLint("SimpleDateFormat")
+    public static String getTime() {
+
+        Locale locale = new Locale("en_US");
+        Locale.setDefault(locale);
+
+        String pattern = "yyyy-MM-dd HH:mm:ss Z";
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+        String key = formatter.format(new Date());
+        return key;
+    }
 
 
     @Override
