@@ -123,10 +123,10 @@ public class HealthTips extends ActionBarActivity {
                         updatetext();
                     }
 
-                    if( icount<m && counter>=0) food.setImageResource(image[icount]);
+                    if( icount<m && counter>=0) updateImage();
                     else {
                         icount = 0;
-                        food.setImageResource(image[icount]);
+                        updateImage();
                     }
                 }catch (ArrayIndexOutOfBoundsException e){
                     e.printStackTrace();
@@ -150,7 +150,7 @@ public class HealthTips extends ActionBarActivity {
                     else counter=n;
 
                     if(icount<=m && icount>=0) {
-                        food.setImageResource(image[icount]);
+                        updateImage();
                     }
                     else icount=m;
 
@@ -177,6 +177,7 @@ public class HealthTips extends ActionBarActivity {
     public void updatetext() {
         words.setText(array[counter]);
     }
+    public void updateImage() {food.setImageResource(image[icount]);}
 
 
     @Override
