@@ -13,6 +13,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 
 public class HealthTips extends ActionBarActivity {
 
@@ -22,7 +24,8 @@ public class HealthTips extends ActionBarActivity {
     TextView words;
     ImageView food;
     int qholder,r1,r2;
-    int counter,icount;
+    static int counter,icount;
+    List<int[]> wordList ;
 
    int array[]={
         R.string.share0,
@@ -58,6 +61,8 @@ public class HealthTips extends ActionBarActivity {
            R.string.share30
 
    };
+
+    String sendText;
     int image[]={
             R.drawable.food1,
             R.drawable.food3,
@@ -164,12 +169,13 @@ public class HealthTips extends ActionBarActivity {
     }
 
     private Intent createShareTips() {
-        String send =String.valueOf(array[counter]);
+       // wordList = Arrays.asList(array);
+        sendText =getString(array[counter]);
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT,
-               words.getText() + APP_SHARE_HASHTAG);
+                sendText  + APP_SHARE_HASHTAG);
         return shareIntent;
 
     }

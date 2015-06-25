@@ -6,11 +6,61 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/weightc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:text="@string/wt"
+        android:textColor="@color/grey_700"
+        android:layout_alignBottom="@+id/weightedit"
+        android:layout_centerHorizontal="true" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/weightedit"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="142dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/weightc"
+        android:layout_toEndOf="@+id/weightc" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@id/calculate"
+        android:layout_alignParentBottom="true"
+        android:text="@string/calculate"/>
+
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/energyLevel"
+        android:layout_below="@+id/weightedit"
+        android:layout_marginTop="91dp">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/simple"
+            android:text="simple"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/moderate"
+            android:text="moderate"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/active"
+            android:text="very active"/>
+
+        </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show"
+        android:id="@+id/show"
         android:layout_centerVertical="true"
-        android:text="Second Layout" />
+        android:layout_alignLeft="@+id/weightedit"
+        android:layout_alignStart="@+id/weightedit" />
 
 </RelativeLayout>
