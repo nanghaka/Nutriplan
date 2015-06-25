@@ -9,14 +9,14 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:text="@string/wt"
-       android:layout_marginLeft="61dp"
-       android:layout_marginStart="61dp"
-       android:layout_marginTop="91dp"
+       android:layout_marginLeft="50dp"
+       android:layout_marginStart="50dp"
        android:id="@+id/weightc"
        android:textSize="20sp"
        android:layout_alignParentTop="true"
        android:layout_alignParentLeft="true"
-       android:layout_alignParentStart="true" />
+       android:layout_alignParentStart="true"
+       android:layout_marginTop="53dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,10 +51,9 @@
         android:text="@string/age"
         android:textSize="20sp"
         android:id="@+id/textView4"
-        android:layout_below="@+id/textView"
+        android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/weightc"
-        android:layout_alignStart="@+id/weightc"
-        android:layout_marginTop="98dp" />
+        android:layout_alignStart="@+id/weightc" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -80,4 +79,24 @@
         android:layout_above="@+id/calculate"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView" />
+
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/gender"
+        android:layout_below="@+id/textView4"
+        android:layout_alignRight="@+id/editText3"
+        android:layout_alignEnd="@+id/editText3">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/male"
+            android:text="@string/male"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/female"
+            android:text="@string/female"/>
+
+    </RadioGroup>
 </RelativeLayout>
