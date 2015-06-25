@@ -6,11 +6,64 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Third Layout" />
+        android:text="@string/wt"
+        android:layout_marginLeft="61dp"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="91dp"
+        android:id="@+id/weightc"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ht"
+        android:textSize="20sp"
+        android:layout_below="@+id/weightc"
+        android:layout_alignRight="@+id/weightc"
+        android:layout_alignEnd="@+id/weightc"
+        android:layout_marginTop="85dp"
+        android:id="@+id/textView" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/weightedit"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView" />
+
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/heightedit"
+        android:layout_alignBottom="@+id/weightc"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/weightc"
+        android:layout_toEndOf="@+id/weightc" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:text="@string/calculator"
+        android:layout_height="wrap_content"
+        android:id="@+id/calculate"
+        android:layout_alignParentBottom="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show"
+        android:id="@+id/show"
+        android:layout_above="@+id/calculate"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
 </RelativeLayout>
