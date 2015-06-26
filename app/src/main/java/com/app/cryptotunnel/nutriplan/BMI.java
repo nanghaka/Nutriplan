@@ -20,7 +20,7 @@ public class BMI extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.third_layout, container, false);
+		View rootView = inflater.inflate(R.layout.bmi, container, false);
 
         heightEdit= (EditText) rootView.findViewById(R.id.heightedit);
         weightEdit= (EditText) rootView.findViewById(R.id.weightedit);

@@ -15,7 +15,7 @@ public class WeeklyPlan extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.first_layout, container, false);
+		View rootView = inflater.inflate(R.layout.weelyplan, container, false);
 
 
        // textView = (TextView) rootView.findViewById(R.id.words);

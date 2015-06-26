@@ -22,7 +22,7 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.second_layout, container, false);
+		View rootView = inflater.inflate(R.layout.proteins, container, false);
 
         calculate = (Button) rootView.findViewById(R.id.calculate);
         weightEdit = (EditText) rootView.findViewById(R.id.weightedit);

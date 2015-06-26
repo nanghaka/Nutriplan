@@ -25,7 +25,7 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
 
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.first_layout, container, false);
+        View rootView = inflater.inflate(R.layout.calories, container, false);
 
 
         weight = (EditText) rootView.findViewById(R.id.editText);
