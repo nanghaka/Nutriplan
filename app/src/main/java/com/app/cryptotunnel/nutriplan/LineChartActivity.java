@@ -250,8 +250,8 @@ public class LineChartActivity extends ActionBarActivity {
                 Axis axisX = new Axis();
                 Axis axisY = new Axis().setHasLines(true);
                 if (hasAxesNames) {
-                    axisX.setName("Axis X");
-                    axisY.setName("Axis Y");
+                    axisX.setName("Time");
+                    axisY.setName("Weight");
                 }
                 data.setAxisXBottom(axisX);
                 data.setAxisYLeft(axisY);
