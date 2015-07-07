@@ -64,8 +64,8 @@
             android:label="@string/graph"
            >
             <meta-data
-                android:name=".WeightLoss"
-                android:value="com.app.cryptotunnel.nutriplan.WeightLoss" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.app.cryptotunnel.nutriplan.DailyPlan" />
 
         </activity>
     </application>

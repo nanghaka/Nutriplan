@@ -89,7 +89,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // Inserting Row
         db.insert(TABLE_WEIGHT_TRACKER, null, values);
-        Log.d("SQL", "inserting weight data"+values.toString());
+        Log.d("SQL****", "inserting weight data"+values.toString());
         db.close(); // Closing database connection
     }
 

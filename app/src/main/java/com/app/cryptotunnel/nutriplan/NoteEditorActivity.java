@@ -12,16 +12,22 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 
 public class NoteEditorActivity extends ActionBarActivity {
     EditText noteText;
     Button save,cancel;
+    String[] nutriArray;
 
     DatabaseHandler db = new DatabaseHandler(this);
     Contact contact = new Contact();
+    WeightTrackerContract wtc = new WeightTrackerContract();
+    ArrayList<String> al = new ArrayList<String>();
+    //DatabaseHandler db = new DatabaseHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +38,25 @@ public class NoteEditorActivity extends ActionBarActivity {
         save = (Button) findViewById(R.id.save);
         cancel = (Button) findViewById(R.id.cancel);
 
+        final List<WeightTrackerContract> contacts = db.getAllWeights();
+
+        for (WeightTrackerContract cn : contacts) {
+            String log = "Weights: :-)" + cn.get_weight();
+            // Writing Contacts to log
+            Log.d("Weights: ", log);
+            al.add(log);
+        }
+
+        nutriArray = new String[al.size()];
+        nutriArray = al.toArray(nutriArray);
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("Insert: ", "Inserting ..");
                 db.addContact(new Contact(noteText.getText().toString(), getTime()));
+//                String k= nutriArray[2];
+//                Log.d("SQL", "results"+k);
                 Toast.makeText(getApplicationContext(),"Note has been saved", Toast.LENGTH_SHORT).show();
             }
         });
@@ -44,7 +64,15 @@ public class NoteEditorActivity extends ActionBarActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db.deleteContact(new Contact(20));
+              //  db.deleteContact(new Contact(20));
+                Log.d("SQL Insert: ", "Inserting ..");
+                db.addWeight(new WeightTrackerContract("36"));
+                Log.d("SQL Insert: ", "Inserting 36");
+                db.addWeight(new WeightTrackerContract("56"));
+                Log.d("SQL Insert: ", "Inserting 56");
+
+                Toast.makeText(getBaseContext(), "Note has been saved", Toast.LENGTH_SHORT).show();
+
               //  onBackPressed();
             }
         });

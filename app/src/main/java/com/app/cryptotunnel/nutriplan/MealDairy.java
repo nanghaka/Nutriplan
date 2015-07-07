@@ -60,7 +60,8 @@ public class MealDairy extends ActionBarActivity {
         final List<Contact> contacts = db.getAllContacts();
 
         for (Contact cn : contacts) {
-            String log = "Id: " + cn.getID() + " ,Name: " + cn.getName() + " ,Phone: " + cn.getPhoneNumber();
+           // String log = "Id: " + cn.getID() + " ,Name: " + cn.getName() + " ,Phone: " + cn.getPhoneNumber();
+            String log = " Time: " + cn.getPhoneNumber()+"\n"+" Note: " + cn.getName();
             // Writing Contacts to log
             Log.d("Name: ", log);
             al.add(log);

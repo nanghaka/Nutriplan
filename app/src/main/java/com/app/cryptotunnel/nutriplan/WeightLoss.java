@@ -4,14 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class WeightLoss extends Fragment {
 	//LineChartView lineChartView;
 	Button graph;
+	Button history;
+
+	DatabaseHandler db = new DatabaseHandler(getActivity());
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
@@ -41,11 +46,25 @@ public class WeightLoss extends Fragment {
 ////		chart.setLineChartData(data);
 //		lineChartView.setLineChartData(data);
 
+		history = (Button) rootView.findViewById(R.id.history);
 		graph= (Button) rootView.findViewById(R.id.graph);
 		graph.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				startActivity(new Intent(getActivity(), LineChartActivity.class));
+			}
+		});
+
+		history.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Log.d("SQL Insert: ", "Inserting ..");
+				db.addWeight(new WeightTrackerContract("36"));
+				Log.d("SQL Insert: ", "Inserting 36");
+				db.addWeight(new WeightTrackerContract("56"));
+				Log.d("SQL Insert: ", "Inserting 56");
+
+				Toast.makeText(getActivity(), "Note has been saved", Toast.LENGTH_SHORT).show();
 			}
 		});
 
