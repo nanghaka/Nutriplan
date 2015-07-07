@@ -38,9 +38,9 @@ public class NoteEditorActivity extends ActionBarActivity {
         save = (Button) findViewById(R.id.save);
         cancel = (Button) findViewById(R.id.cancel);
 
-        final List<WeightTrackerContract> contacts = db.getAllWeights();
+        final List<WeightTrackerContract> wtc = db.getAllWeights();
 
-        for (WeightTrackerContract cn : contacts) {
+        for (WeightTrackerContract cn : wtc) {
             String log = "Weights: :-)" + cn.get_weight();
             // Writing Contacts to log
             Log.d("Weights: ", log);

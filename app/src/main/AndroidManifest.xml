@@ -61,12 +61,18 @@
         </activity>
         <activity
             android:name=".LineChartActivity"
-            android:label="@string/graph"
-           >
+            android:label="@string/graph" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.app.cryptotunnel.nutriplan.DailyPlan" />
-
+        </activity>
+        <activity
+            android:name=".History"
+            android:label="@string/title_activity_history"
+            android:parentActivityName=".DailyPlan" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.app.cryptotunnel.nutriplan.DailyPlan" />
         </activity>
     </application>
 
