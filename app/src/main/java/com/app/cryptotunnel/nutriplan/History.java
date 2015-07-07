@@ -13,6 +13,7 @@ import java.util.List;
 
 public class History extends AppCompatActivity {
 
+    String TAG = "History activity";
     private ListView mainListView;
     ListView listView;
     ArrayList<String> al = new ArrayList<String>();
@@ -44,9 +45,9 @@ public class History extends AppCompatActivity {
         final List<WeightTrackerContract> wtc = db.getAllWeights();
 
         for (WeightTrackerContract cn : wtc) {
-            String log = "Weights: " + cn.get_weight();
+            String log = " Time: " + cn.get_weight_time()+"\n"+"Weights: " + cn.get_weight();
             // Writing Contacts to log
-            Log.d("Weights: ", log);
+            Log.d(TAG, log);
             al.add(log);
         }
 

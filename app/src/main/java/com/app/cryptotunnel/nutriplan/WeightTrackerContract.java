@@ -8,6 +8,13 @@ public class WeightTrackerContract {
     //private variables
     int _id;
     String _weight;
+    String _weight_time;
+
+    public WeightTrackerContract(int _id, String _weight, String _weight_time) {
+        this._id = _id;
+        this._weight = _weight;
+        this._weight_time = _weight_time;
+    }
 
     public WeightTrackerContract() {
     }
@@ -19,6 +26,11 @@ public class WeightTrackerContract {
     public WeightTrackerContract(int _id, String _weight) {
         this._id = _id;
         this._weight = _weight;
+    }
+
+    public WeightTrackerContract(String _weight, String _weight_time) {
+        this._weight = _weight;
+        this._weight_time = _weight_time;
     }
 
     public int get_id() {
@@ -35,5 +47,13 @@ public class WeightTrackerContract {
 
     public void set_weight(String _weight) {
         this._weight = _weight;
+    }
+
+    public String get_weight_time() {
+        return _weight_time;
+    }
+
+    public void set_weight_time(String _weight_time) {
+        this._weight_time = _weight_time;
     }
 }

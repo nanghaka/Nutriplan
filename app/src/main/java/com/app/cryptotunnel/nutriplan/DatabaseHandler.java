@@ -33,6 +33,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //WEIGHT TRACKER COLUMN NAMES
     private static final String KEY_ID_WEIGHT = "id_weight";
     private static final String KEY_WEIGHT = "weight";
+    private static final String KEY_WEIGHT_TIME = "weighttime" ;
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -45,7 +46,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
                 + KEY_PH_NO + " TEXT" + ")";
         String CREATE_WEIGHT_TRACKER_TABLE = "CREATE TABLE " + TABLE_WEIGHT_TRACKER + "("
-                + KEY_ID_WEIGHT + " INTEGER PRIMARY KEY," + KEY_WEIGHT + " TEXT"+ ")";
+                + KEY_ID_WEIGHT + " INTEGER PRIMARY KEY," + KEY_WEIGHT + " TEXT,"+ KEY_WEIGHT_TIME + " TEXT" +")";
         db.execSQL(CREATE_CONTACTS_TABLE);
         db.execSQL(CREATE_WEIGHT_TRACKER_TABLE);
         Log.d("SQL", "tables created"+CREATE_CONTACTS_TABLE+"++##+++"+CREATE_WEIGHT_TRACKER_TABLE);
@@ -85,7 +86,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(KEY_WEIGHT, weightTrackerContract.get_weight()); // ADDING WEIGHT TO THE DATABASE
-        //values.put(KEY_PH_NO, weightTrackerContract.getPhoneNumber()); // Contact Phone
+        values.put(KEY_WEIGHT_TIME, weightTrackerContract.get_weight_time()); // ADDING CURRENT TIME
 
         // Inserting Row
         db.insert(TABLE_WEIGHT_TRACKER, null, values);
@@ -115,7 +116,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Log.d("SQL","getting single weight");
         Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID_WEIGHT,
-                        KEY_WEIGHT }, KEY_ID_WEIGHT + "=?",
+                        KEY_WEIGHT,KEY_WEIGHT_TIME }, KEY_ID_WEIGHT + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
@@ -169,6 +170,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 WeightTrackerContract wtc = new WeightTrackerContract();
                 wtc.set_id(Integer.parseInt(cursor.getString(0)));
                 wtc.set_weight(cursor.getString(1));
+                wtc.set_weight_time(cursor.getString(2));
                 WeightList.add(wtc);
 
 //                Contact contact = new Contact();

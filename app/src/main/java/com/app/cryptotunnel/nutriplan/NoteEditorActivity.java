@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 
 public class NoteEditorActivity extends ActionBarActivity {
@@ -66,12 +65,12 @@ public class NoteEditorActivity extends ActionBarActivity {
             public void onClick(View v) {
               //  db.deleteContact(new Contact(20));
                 Log.d("SQL Insert: ", "Inserting ..");
-                db.addWeight(new WeightTrackerContract("36"));
-                Log.d("SQL Insert: ", "Inserting 36");
-                db.addWeight(new WeightTrackerContract("56"));
-                Log.d("SQL Insert: ", "Inserting 56");
+                db.addWeight(new WeightTrackerContract("36",getTime()));
+                Log.d("SQL Insert: ", "Inserting 36"+getTime());
+                db.addWeight(new WeightTrackerContract("56",getTime()));
+                Log.d("SQL Insert: ", "Inserting 56"+getTime());
 
-                Toast.makeText(getBaseContext(), "Note has been saved", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Inserting...", Toast.LENGTH_SHORT).show();
 
               //  onBackPressed();
             }
@@ -82,10 +81,10 @@ public class NoteEditorActivity extends ActionBarActivity {
     @SuppressLint("SimpleDateFormat")
     public static String getTime() {
 
-        Locale locale = new Locale("en_US");
-        Locale.setDefault(locale);
+//        Locale locale = new Locale("en_US");
+//        Locale.setDefault(locale);
 
-        String pattern = "yyyy-MM-dd HH:mm:ss Z";
+        String pattern = "yyyy-MM-dd HH:mm:ss ";
         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
         String key = formatter.format(new Date());
         return key;
