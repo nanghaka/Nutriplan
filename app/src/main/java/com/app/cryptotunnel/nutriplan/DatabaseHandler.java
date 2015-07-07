@@ -48,6 +48,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_ID_WEIGHT + " INTEGER PRIMARY KEY," + KEY_WEIGHT + " TEXT"+ ")";
         db.execSQL(CREATE_CONTACTS_TABLE);
         db.execSQL(CREATE_WEIGHT_TRACKER_TABLE);
+        Log.d("SQL", "tables created"+CREATE_CONTACTS_TABLE+"++##+++"+CREATE_WEIGHT_TRACKER_TABLE);
     }
 
     // Upgrading database
@@ -95,6 +96,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Getting single contact
     Contact getContact(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
+        Log.d("SQL","getting single contact");
 
         Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID,
                         KEY_NAME, KEY_PH_NO }, KEY_ID + "=?",
@@ -111,7 +113,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // GETTING SINGLE WEIGHT
     WeightTrackerContract getWeight(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-
+        Log.d("SQL","getting single weight");
         Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID_WEIGHT,
                         KEY_WEIGHT }, KEY_ID_WEIGHT + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
@@ -168,6 +170,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 wtc.set_id(Integer.parseInt(cursor.getString(0)));
                 wtc.set_weight(cursor.getString(1));
                 WeightList.add(wtc);
+
 //                Contact contact = new Contact();
 //                contact.setID(Integer.parseInt(cursor.getString(0)));
 //                contact.setWe(cursor.getString(1));
@@ -176,7 +179,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 //contactList.add(contact);
             } while (cursor.moveToNext());
         }
-
+       Log.d("SQL","getting all weights");
         // return contact list
         return WeightList;
     }
@@ -207,6 +210,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Getting contacts Count
     public int getContactsCount() {
         String countQuery = "SELECT  * FROM " + TABLE_CONTACTS;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        cursor.close();
+
+        // return count
+        return cursor.getCount();
+    }
+
+    public int getWeightCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_WEIGHT_TRACKER;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         cursor.close();

@@ -1,6 +1,5 @@
 package com.app.cryptotunnel.nutriplan;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,7 +17,7 @@ public class WeeklyPlan extends Fragment {
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.weelyplan, container, false);
 
-		startActivity(new Intent(getActivity(),LineChartActivity.class));
+		//startActivity(new Intent(getActivity(),LineChartActivity.class));
 
 
        // textView = (TextView) rootView.findViewById(R.id.words);
