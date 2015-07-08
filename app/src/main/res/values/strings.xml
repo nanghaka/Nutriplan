@@ -61,5 +61,6 @@
     <string name="history">history</string>
     <string name="graph">graph</string>
     <string name="title_activity_history">History</string>
+    <string name="enter">Current Weight</string>
 
 </resources>
