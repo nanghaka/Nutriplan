@@ -3,6 +3,7 @@ package com.app.cryptotunnel.nutriplan;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -61,6 +62,10 @@ public class LineChartActivity extends ActionBarActivity {
         private boolean isCubic = false;
         private boolean hasLabelForSelected = false;
         private boolean pointsHaveDifferentColor;
+
+       // DatabaseHandler db = new DatabaseHandler(getActivity());
+        ArrayList<String> al = new ArrayList<String>();
+        String[] nutriArray;
 
         public PlaceholderFragment() {
         }
@@ -182,9 +187,29 @@ public class LineChartActivity extends ActionBarActivity {
         }
 
         private void generateValues() {
+
+            DatabaseHandler db = new DatabaseHandler(getActivity());
+
+
+            final List<WeightTrackerContract> wtc = db.getAllWeights();
+
+            for (WeightTrackerContract cn : wtc) {
+                String log = "Weights: :-)" + cn.get_weight();
+                // Writing Contacts to log
+                Log.d("Weights: ", log);
+                al.add(cn.get_weight());
+            }
+
+            nutriArray = new String[al.size()];
+            nutriArray = al.toArray(nutriArray);
+            float k;
             for (int i = 0; i < maxNumberOfLines; ++i) {
                 for (int j = 0; j < numberOfPoints; ++j) {
-                    randomNumbersTab[i][j] = (float) Math.random() * 100f;
+                 //   randomNumbersTab[i][j] = (float) Math.random() * 100f;
+                    Log.d("Loop", "Inside for loop");
+                     k=  Float.parseFloat(nutriArray[j]);
+                    Log.d("value K ", nutriArray[j]);
+                    randomNumbersTab[i][j] = k;
                 }
             }
         }

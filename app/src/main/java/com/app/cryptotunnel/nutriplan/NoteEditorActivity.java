@@ -14,7 +14,6 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 public class NoteEditorActivity extends ActionBarActivity {
@@ -36,15 +35,15 @@ public class NoteEditorActivity extends ActionBarActivity {
         noteText = (EditText) findViewById(R.id.noteText);
         save = (Button) findViewById(R.id.save);
         cancel = (Button) findViewById(R.id.cancel);
-
-        final List<WeightTrackerContract> wtc = db.getAllWeights();
-
-        for (WeightTrackerContract cn : wtc) {
-            String log = "Weights: :-)" + cn.get_weight();
-            // Writing Contacts to log
-            Log.d("Weights: ", log);
-            al.add(log);
-        }
+//
+//        final List<WeightTrackerContract> wtc = db.getAllWeights();
+//
+//        for (WeightTrackerContract cn : wtc) {
+//            String log = "Weights: :-)" + cn.get_weight();
+//            // Writing Contacts to log
+//            Log.d("Weights: ", log);
+//            al.add(log);
+//        }
 
         nutriArray = new String[al.size()];
         nutriArray = al.toArray(nutriArray);
