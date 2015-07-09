@@ -63,15 +63,15 @@ public class NoteEditorActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
               //  db.deleteContact(new Contact(20));
-                Log.d("SQL Insert: ", "Inserting ..");
-                db.addWeight(new WeightTrackerContract("36",getTime()));
-                Log.d("SQL Insert: ", "Inserting 36"+getTime());
-                db.addWeight(new WeightTrackerContract("56",getTime()));
-                Log.d("SQL Insert: ", "Inserting 56"+getTime());
+//                Log.d("SQL Insert: ", "Inserting ..");
+//                db.addWeight(new WeightTrackerContract("36",getTime()));
+//                Log.d("SQL Insert: ", "Inserting 36"+getTime());
+//                db.addWeight(new WeightTrackerContract("56",getTime()));
+//                Log.d("SQL Insert: ", "Inserting 56"+getTime());
+//
+//                Toast.makeText(getBaseContext(), "Inserting...", Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(getBaseContext(), "Inserting...", Toast.LENGTH_SHORT).show();
-
-              //  onBackPressed();
+                onBackPressed();
             }
         });
 
