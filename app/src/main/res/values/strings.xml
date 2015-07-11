@@ -62,5 +62,6 @@
     <string name="graph">graph</string>
     <string name="title_activity_history">History</string>
     <string name="enter">Current Weight</string>
+    <string name="title_activity_simple_scanner">SimpleScannerActivity</string>
 
 </resources>
