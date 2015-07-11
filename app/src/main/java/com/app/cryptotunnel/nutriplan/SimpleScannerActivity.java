@@ -1,7 +1,11 @@
 package com.app.cryptotunnel.nutriplan;
 
 import android.app.Activity;
+import android.content.Context;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 
 import com.google.zxing.Result;
@@ -34,6 +38,14 @@ public class SimpleScannerActivity extends Activity implements ZXingScannerView.
 
     @Override
     public void handleResult(Result rawResult) {
+
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        // Vibrate for 500 milliseconds
+        v.vibrate(400);
+
+        final ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
+        tg.startTone(ToneGenerator.TONE_PROP_BEEP);
+
         // Do something with the result here
         Log.v(TAG, rawResult.getText()); // Prints scan results
         Log.v(TAG, rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
