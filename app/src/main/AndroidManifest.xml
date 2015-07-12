@@ -73,6 +73,14 @@
             android:name=".SimpleScannerActivity"
             android:label="@string/title_activity_simple_scanner" >
         </activity>
+
+        <activity android:name=".scanner.ScannerActivity"
+
+
+            android:label="@string/scanner_activity">
+            <meta-data android:name="android.support.UI_OPTIONS"
+                android:value="splitActionBarWhenNarrow" />
+        </activity>
     </application>
 
 </manifest>

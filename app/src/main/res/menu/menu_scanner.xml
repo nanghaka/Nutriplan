@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.app.cryptotunnel.nutriplan.SimpleScannerActivity">
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_flash"
+        android:title="menu_flash"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu_auto_focus"
+        android:title="menu_auto_focus"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu_formats"
+        android:title="menu_formats"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu_camera_selector"
+        android:title="menu_camera_selector"
+        app:showAsAction="never"/>
+
+</menu>

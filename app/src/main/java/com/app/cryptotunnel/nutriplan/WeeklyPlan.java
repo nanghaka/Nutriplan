@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.app.cryptotunnel.nutriplan.scanner.ScannerActivity;
+
 public class WeeklyPlan extends Fragment {
 //
 //    TextView textView;
@@ -31,7 +33,8 @@ public class WeeklyPlan extends Fragment {
             @Override
             public void onClick(View v) {
                 //textView.setText("you have clicked");
-				startActivity(new Intent(getActivity(), SimpleScannerActivity.class));
+				//startActivity(new Intent(getActivity(), SimpleScannerActivity.class));
+                startActivity(new Intent(getActivity(), ScannerActivity.class));
             }
         });
 
