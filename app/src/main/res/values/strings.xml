@@ -65,7 +65,7 @@
     <string name="title_activity_simple_scanner">SimpleScannerActivity</string>
 
     <!--scanner strings-->
-    <string name="scanner_activity">ZXing Scanner - Full Activity</string>
+    <string name="scanner_activity">Scanner</string>
     <string name="scanner_fragment_activity">ZXing Scanner - Full Fragment Activity</string>
     <string name="simple_scanner_activity">ZXing Scanner - Simple Activity</string>
     <string name="simple_scanner_fragment_activity">ZXing Scanner - Simple Fragment Activity</string>
