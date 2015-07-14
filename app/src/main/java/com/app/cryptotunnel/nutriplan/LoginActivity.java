@@ -94,6 +94,8 @@ public class LoginActivity extends ActionBarActivity implements
                 // App code
                 Log.d(TAG,"success" );
                 Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                finish();
             }
 
             @Override
