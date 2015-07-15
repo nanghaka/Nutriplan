@@ -15,6 +15,7 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.ErrorDialogFragment;
 import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
@@ -36,6 +37,9 @@ public class LoginActivity extends ActionBarActivity implements
 
     /* Should we automatically resolve ConnectionResults when possible? */
     private boolean mShouldResolve = false;
+
+    // Unique tag for the error dialog fragment
+    private static final String DIALOG_ERROR = "dialog_error";
 
 
     CallbackManager callbackManager;
@@ -178,12 +182,13 @@ public class LoginActivity extends ActionBarActivity implements
                 // Could not resolve the connection result, show the user an
                 // error dialog.
                // showErrorDialog(connectionResult);
+                showErrorDialog(connectionResult.getErrorCode());
                 Log.d(TAG,"error" );
                 Toast.makeText(getApplicationContext(), "Login failure", Toast.LENGTH_SHORT).show();
             }
         } else {
             // Show the signed-out UI
-           // showSignedOutUI();
+            //showSignedOutUI();
             Log.d(TAG,"error" );
             Toast.makeText(getApplicationContext(), "Login failure", Toast.LENGTH_SHORT).show();
         }
@@ -210,5 +215,17 @@ public class LoginActivity extends ActionBarActivity implements
         }
 
        // showSignedOutUI();
+    }
+
+    /* Creates a dialog for an error message */
+    private void showErrorDialog(int errorCode) {
+        // Create a fragment for the error dialog
+        ErrorDialogFragment dialogFragment = new ErrorDialogFragment();
+        // Pass the error that should be displayed
+        Bundle args = new Bundle();
+        args.putInt(DIALOG_ERROR, errorCode);
+        dialogFragment.setArguments(args);
+       // dialogFragment.show(getSupportFragmentManager(), "errordialog");
+        dialogFragment.show(getFragmentManager(), "errordialog");
     }
 }
