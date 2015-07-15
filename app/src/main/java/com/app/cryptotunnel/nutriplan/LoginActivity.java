@@ -1,7 +1,9 @@
 package com.app.cryptotunnel.nutriplan;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -218,6 +220,7 @@ public class LoginActivity extends ActionBarActivity implements
     }
 
     /* Creates a dialog for an error message */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void showErrorDialog(int errorCode) {
         // Create a fragment for the error dialog
         ErrorDialogFragment dialogFragment = new ErrorDialogFragment();
@@ -225,7 +228,7 @@ public class LoginActivity extends ActionBarActivity implements
         Bundle args = new Bundle();
         args.putInt(DIALOG_ERROR, errorCode);
         dialogFragment.setArguments(args);
-       // dialogFragment.show(getSupportFragmentManager(), "errordialog");
+      //  dialogFragment.show(getSupportFragmentManager(), "errordialog");
         dialogFragment.show(getFragmentManager(), "errordialog");
     }
 }
