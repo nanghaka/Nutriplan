@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'Nutriplan'
+            keyPassword 'c0N<o7d4ir'
+            storeFile file('/home/codephillip/key store/nutriplankey.jks')
+            storePassword 'c0N<o7d4ir'
+        }
+    }
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
-
     defaultConfig {
         applicationId "com.app.cryptotunnel.nutriplan"
         minSdkVersion 10
@@ -15,6 +22,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
 }
