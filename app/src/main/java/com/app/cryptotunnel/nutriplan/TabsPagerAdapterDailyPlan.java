@@ -18,7 +18,7 @@ public class TabsPagerAdapterDailyPlan extends FragmentPagerAdapter {
 		case 1:
 			return new WeightLoss();
 		case 2:
-			return new CookingTimer();
+			return new Checker();
 
 		default:
 			return null;
