@@ -21,12 +21,16 @@
             android:id="@+id/dailyplan"
             android:layout_weight="2"
             android:text="@string/dailyplan"
+            android:background="@color/blue"
+            android:textColor="@color/white"
             android:drawableTop="@drawable/ic_schedule_white_36dp"
             android:layout_height="wrap_content" />
         <Button
             android:layout_width="wrap_content"
             android:id="@+id/calc"
             android:layout_weight="2"
+            android:background="@color/teal"
+            android:textColor="@color/white"
             android:text="@string/calc"
             android:drawableTop="@drawable/ic_keyboard_white_36dp"
             android:layout_height="wrap_content" />
@@ -45,12 +49,16 @@
             android:id="@+id/tips"
             android:layout_weight="2"
             android:text="@string/tips"
+            android:textColor="@color/white"
+            android:background="@color/lime"
             android:drawableTop="@drawable/ic_error_white_36dp"
             android:layout_height="wrap_content" />
         <Button
             android:layout_width="wrap_content"
             android:id="@+id/diary"
             android:layout_weight="2"
+            android:background="@color/red"
+            android:textColor="@color/white"
             android:text="@string/diary"
             android:drawableTop="@drawable/ic_content_paste_white_36dp"
             android:layout_height="wrap_content" />

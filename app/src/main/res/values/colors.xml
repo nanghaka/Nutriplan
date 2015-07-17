@@ -10,5 +10,9 @@
     <color name="orange">#ffffab6d</color>
     <color name="soccer_dark_green">#ff0ad100</color>
     <color name="blue">#8ea8d1</color>
+    <color name="red">#ef5350</color>
+    <color name="lime">#d4e157</color>
+    <color name="light_blue">#26c6da</color>
+    <color name="teal">#26a69a</color>
 
 </resources>
