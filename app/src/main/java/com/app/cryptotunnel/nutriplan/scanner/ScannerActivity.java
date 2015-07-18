@@ -1,14 +1,17 @@
 package com.app.cryptotunnel.nutriplan.scanner;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -150,8 +153,21 @@ public class ScannerActivity extends ActionBarActivity implements MessageDialogF
             final ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
             tg.startTone(ToneGenerator.TONE_PROP_BEEP);
 
+           switch (rawResult.getText()){
+               case "6161109720023":
+                  webCall("https://en.wikipedia.org/wiki/Apple");
+                   break;
+               case  "6161100604988":
+                   webCall("https://en.wikipedia.org/wiki/Orange_%28fruit%29");
+                   break;
+               case "6161106960811":
+                   webCall("https://en.wikipedia.org/wiki/Mango");
+                   break;
+
+           }
+
         } catch (Exception e) {}
-        showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());
+       // showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());
     }
 
     public void showMessageDialog(String message) {
@@ -220,5 +236,11 @@ public class ScannerActivity extends ActionBarActivity implements MessageDialogF
         mScannerView.stopCamera();
         closeMessageDialog();
         closeFormatsDialog();
+    }
+
+    public void webCall(String webUrl){
+        Log.d("website", "started web browser dialog");
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webUrl));
+        startActivity(browserIntent);
     }
 }
