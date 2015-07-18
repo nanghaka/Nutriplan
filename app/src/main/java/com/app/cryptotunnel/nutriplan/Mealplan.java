@@ -1,6 +1,5 @@
 package com.app.cryptotunnel.nutriplan;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,10 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.app.cryptotunnel.nutriplan.scanner.ScannerActivity;
-
-public class WeeklyPlan extends Fragment {
+public class Mealplan extends Fragment {
 //
 //    TextView textView;
     Button button;
@@ -19,7 +17,7 @@ public class WeeklyPlan extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.weelyplan, container, false);
+		View rootView = inflater.inflate(R.layout.mealplan, container, false);
 
 
 
@@ -34,7 +32,8 @@ public class WeeklyPlan extends Fragment {
             public void onClick(View v) {
                 //textView.setText("you have clicked");
 				//startActivity(new Intent(getActivity(), SimpleScannerActivity.class));
-                startActivity(new Intent(getActivity(), ScannerActivity.class));
+               // startActivity(new Intent(getActivity(), ScannerActivity.class));
+                Toast.makeText(getActivity(), "In progress..", Toast.LENGTH_SHORT).show();
             }
         });
 

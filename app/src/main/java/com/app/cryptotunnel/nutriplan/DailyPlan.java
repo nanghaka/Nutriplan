@@ -44,7 +44,7 @@ public class DailyPlan extends ActionBarActivity implements ActionBar.TabListene
 
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        String[] tabs = { "Weely Plan", "Weight Loss","Cooking Timer"
+        String[] tabs = { "Meal Plan", "Weight Tracker","Checker"
         };
 
         for (String tab_name : tabs) {

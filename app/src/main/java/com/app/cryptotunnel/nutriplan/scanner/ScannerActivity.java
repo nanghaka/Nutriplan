@@ -1,9 +1,10 @@
 package com.app.cryptotunnel.nutriplan.scanner;
 
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
+import android.content.Context;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
@@ -91,10 +92,10 @@ public class ScannerActivity extends ActionBarActivity implements MessageDialogF
         MenuItemCompat.setShowAsAction(menuItem, MenuItem.SHOW_AS_ACTION_ALWAYS);
 
         menuItem = menu.add(Menu.NONE, R.id.menu_formats, 0, R.string.formats);
-        MenuItemCompat.setShowAsAction(menuItem, MenuItem.SHOW_AS_ACTION_ALWAYS);
+        MenuItemCompat.setShowAsAction(menuItem, MenuItem.SHOW_AS_ACTION_NEVER);
 
         menuItem = menu.add(Menu.NONE, R.id.menu_camera_selector, 0, R.string.select_camera);
-        MenuItemCompat.setShowAsAction(menuItem, MenuItem.SHOW_AS_ACTION_ALWAYS);
+        MenuItemCompat.setShowAsAction(menuItem, MenuItem.SHOW_AS_ACTION_NEVER);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -138,9 +139,17 @@ public class ScannerActivity extends ActionBarActivity implements MessageDialogF
     @Override
     public void handleResult(Result rawResult) {
         try {
-            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-            r.play();
+//            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+//            r.play();
+
+            Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            // Vibrate for 500 milliseconds
+            v.vibrate(400);
+
+            final ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
+            tg.startTone(ToneGenerator.TONE_PROP_BEEP);
+
         } catch (Exception e) {}
         showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());
     }

@@ -14,7 +14,7 @@ public class TabsPagerAdapterDailyPlan extends FragmentPagerAdapter {
 	public Fragment getItem(int position) {
 		switch (position) {
 		case 0:
-			return new WeeklyPlan();
+			return new Mealplan();
 		case 1:
 			return new WeightLoss();
 		case 2:
