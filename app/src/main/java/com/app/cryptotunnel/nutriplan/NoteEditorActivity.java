@@ -2,7 +2,7 @@ package com.app.cryptotunnel.nutriplan;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-public class NoteEditorActivity extends ActionBarActivity {
+public class NoteEditorActivity extends AppCompatActivity {
     EditText noteText;
     Button save,cancel;
     String[] nutriArray;

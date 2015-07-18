@@ -3,7 +3,7 @@ package com.app.cryptotunnel.nutriplan;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
 import android.view.Menu;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 import java.util.List;
 
 
-public class HealthTips extends ActionBarActivity {
+public class HealthTips extends AppCompatActivity {
 
 
     private static final String APP_SHARE_HASHTAG = "#Nutriplan app";

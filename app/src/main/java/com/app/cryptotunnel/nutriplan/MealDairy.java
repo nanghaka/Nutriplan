@@ -2,7 +2,7 @@ package com.app.cryptotunnel.nutriplan;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MealDairy extends ActionBarActivity {
+public class MealDairy extends AppCompatActivity {
 
 
     private ListView mainListView;

@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class DailyPlan extends ActionBarActivity implements ActionBar.TabListener {
+public class DailyPlan extends AppCompatActivity implements ActionBar.TabListener {
     private TabsPagerAdapterDailyPlan pageAdapter;
     private ViewPager pager;
     private ActionBar actionBar;

@@ -34,6 +34,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_ID_WEIGHT = "id_weight";
     private static final String KEY_WEIGHT = "weight";
     private static final String KEY_WEIGHT_TIME = "weighttime" ;
+    public Contact contact;
+    public WeightTrackerContract wtc;
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -49,7 +51,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_ID_WEIGHT + " INTEGER PRIMARY KEY," + KEY_WEIGHT + " TEXT,"+ KEY_WEIGHT_TIME + " TEXT" +")";
         db.execSQL(CREATE_CONTACTS_TABLE);
         db.execSQL(CREATE_WEIGHT_TRACKER_TABLE);
-        Log.d("SQL", "tables created"+CREATE_CONTACTS_TABLE+"++##+++"+CREATE_WEIGHT_TRACKER_TABLE);
+        Log.d("SQL", "tables created" + CREATE_CONTACTS_TABLE + "++##+++" + CREATE_WEIGHT_TRACKER_TABLE);
     }
 
     // Upgrading database
@@ -74,7 +76,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, contact.getName()); // Contact Name
         values.put(KEY_PH_NO, contact.getPhoneNumber()); // Contact Phone
-        Log.d("SQL", "inserting contact data"+values.toString());
+        Log.d("SQL", "inserting contact data" + values.toString());
 
         // Inserting Row
         db.insert(TABLE_CONTACTS, null, values);
@@ -90,23 +92,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // Inserting Row
         db.insert(TABLE_WEIGHT_TRACKER, null, values);
-        Log.d("SQL****", "inserting weight data"+values.toString());
+        Log.d("SQL****", "inserting weight data" + values.toString());
         db.close(); // Closing database connection
     }
 
     // Getting single contact
     Contact getContact(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Log.d("SQL","getting single contact");
+        Log.d("SQL", "getting single contact");
 
-        Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID,
-                        KEY_NAME, KEY_PH_NO }, KEY_ID + "=?",
-                new String[] { String.valueOf(id) }, null, null, null, null);
+        Cursor cursor = db.query(TABLE_CONTACTS, new String[]{KEY_ID,
+                        KEY_NAME, KEY_PH_NO}, KEY_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
-        Contact contact = new Contact(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), cursor.getString(2));
+        try {
+             contact = new Contact(Integer.parseInt(cursor.getString(0)),
+                    cursor.getString(1), cursor.getString(2));
+
+        }catch (NullPointerException e){
+            Log.d("Sql", "NullPointer Exception"+e);
+
+        }
+
         // return contact
         return contact;
     }
@@ -114,15 +123,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // GETTING SINGLE WEIGHT
     WeightTrackerContract getWeight(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Log.d("SQL","getting single weight");
+        Log.d("SQL", "getting single weight");
         Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID_WEIGHT,
                         KEY_WEIGHT,KEY_WEIGHT_TIME }, KEY_ID_WEIGHT + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
-        WeightTrackerContract wtc = new WeightTrackerContract(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1));
+        try {
+
+            wtc = new WeightTrackerContract(Integer.parseInt(cursor.getString(0)),
+                    cursor.getString(1));
+        }catch (NullPointerException e){
+            Log.d("Sql", "NullPointer Exception"+e);
+        }
+
         // return contact
         return wtc;
     }
