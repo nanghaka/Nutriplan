@@ -87,6 +87,9 @@
     <string name="key">437543463091342</string>
     <string name="clickthebutton">Click to start barcode</string>
     <string name="title_activity_splash">Splash</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="Lunch">Lunch</string>
+    <string name="Dinner">Dinner</string>
 
     <!--end of scanner strings-->
 
