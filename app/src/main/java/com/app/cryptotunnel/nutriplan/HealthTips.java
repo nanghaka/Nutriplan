@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,14 +27,15 @@ public class HealthTips extends AppCompatActivity {
 
     private static final String APP_SHARE_HASHTAG = "#Nutriplan app";
     ImageButton next,previous;
-    TextView words;
-    ImageView food;
+    private TextView words;
+    private ImageView food;
     int qholder,r1,r2;
-    static int counter,icount;
+    private static int counter;
+    private static int icount;
     List<int[]> wordList ;
-    OkHttpClient client = new OkHttpClient();
+    private final OkHttpClient client = new OkHttpClient();
 
-   int array[]={
+   private final int[] array={
         R.string.share0,
            R.string.share1,
            R.string.share2,
@@ -68,8 +70,9 @@ public class HealthTips extends AppCompatActivity {
 
    };
 
-    String sendText;
-    int image[]={
+    private String sendText;
+    Button fewags;
+    private final int[] image={
             R.drawable.food1,
             R.drawable.food3,
             R.drawable.food4,
@@ -91,8 +94,8 @@ public class HealthTips extends AppCompatActivity {
             R.drawable.food24,
             R.drawable.food25
     };
-    final int m=image.length;
-    final int n=array.length;
+    private final int m=image.length;
+    private final int n=array.length;
 
     String test[]={
             "this",
@@ -206,10 +209,10 @@ public class HealthTips extends AppCompatActivity {
 
     }
 
-    public void updatetext() {
+    private void updatetext() {
         words.setText(array[counter]);
     }
-    public void updateImage() {food.setImageResource(image[icount]);}
+    private void updateImage() {food.setImageResource(image[icount]);}
 
 
     @Override
@@ -258,18 +261,4 @@ public class HealthTips extends AppCompatActivity {
     }
 }
 
-class TestMain2 {
-    OkHttpClient client = new OkHttpClient();
-
-    // code request code here
-
-    String doGetRequest(String url) throws IOException {
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-
-        Response response = client.newCall(request).execute();
-        return response.body().string();
-    }
-}
 
