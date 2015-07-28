@@ -143,7 +143,7 @@ public class HealthTips extends AppCompatActivity {
 //                Log.d("URL RESULTS", getResponse);
 
                 RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
-                retrieveFeedTask.execute("http://192.168.43.243/lynda-php/jsontest2.php");
+                retrieveFeedTask.execute();
 
 
                 try {
@@ -274,11 +274,11 @@ class TestMain2 {
     }
 }
 
-class RetrieveFeedTask extends AsyncTask<String, Void, String> {
+class RetrieveFeedTask extends AsyncTask<Void, Void, String> {
 
     private Exception exception;
 
-    protected String doInBackground(String... urls) {
+    protected String doInBackground(Void... urls) {
         try {
             Request request = new Request.Builder()
                     .url("http://192.168.43.243/lynda-php/jsontest2.php")
@@ -294,6 +294,7 @@ class RetrieveFeedTask extends AsyncTask<String, Void, String> {
     }
 
     protected void onPostExecute(String feed) {
+        Log.d("JSON RESULT", feed);
         // TODO: check this.exception
         // TODO: do something with the feed
     }
