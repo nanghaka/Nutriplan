@@ -1,6 +1,7 @@
 package com.app.cryptotunnel.nutriplan;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +10,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,9 +17,6 @@ import android.widget.TextView;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-
-import java.io.IOException;
-import java.util.List;
 
 
 public class HealthTips extends AppCompatActivity {
@@ -29,10 +26,8 @@ public class HealthTips extends AppCompatActivity {
     ImageButton next,previous;
     private TextView words;
     private ImageView food;
-    int qholder,r1,r2;
     private static int counter;
     private static int icount;
-    List<int[]> wordList ;
     private final OkHttpClient client = new OkHttpClient();
 
    private final int[] array={
@@ -71,7 +66,6 @@ public class HealthTips extends AppCompatActivity {
    };
 
     private String sendText;
-    Button fewags;
     private final int[] image={
             R.drawable.food1,
             R.drawable.food3,
@@ -96,14 +90,6 @@ public class HealthTips extends AppCompatActivity {
     };
     private final int m=image.length;
     private final int n=array.length;
-
-    String test[]={
-            "this",
-            "works",
-            "very",
-            "well"
-
-    };
 
 
     //ArrayList<array> hand = new ArrayList<Card>();
@@ -250,15 +236,42 @@ public class HealthTips extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // code request code here
-    String doGetRequest(String url) throws IOException {
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
+//    // code request code here
+//    String doGetRequest(String url) throws IOException {
+//        Request request = new Request.Builder()
+//                .url(url)
+//                .build();
+//
+//        Response response = client.newCall(request).execute();
+//        return response.body().string();
+//    }
 
-        Response response = client.newCall(request).execute();
-        return response.body().string();
+    public class RetrieveFeedTask extends AsyncTask<Void, Void, String> {
+
+        protected String doInBackground(Void... urls) {
+            try {
+                Request request = new Request.Builder()
+                        .url("http://192.168.43.243/lynda-php/jsontest2.php")
+                        .build();
+                OkHttpClient client = new OkHttpClient();
+                Response response = client.newCall(request).execute();
+                return response.body().string();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.d("URL BUG", e.toString());
+                return null;
+            }
+        }
+
+        protected void onPostExecute(String feed) {
+            Log.d("JSON RESULT", feed);
+            // TODO: check this.exception
+            // TODO: do something with the feed
+        }
+
+
     }
+
 }
 
 
