@@ -1,6 +1,7 @@
 package com.app.cryptotunnel.nutriplan;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
 import java.util.List;
 
 
@@ -26,6 +32,7 @@ public class HealthTips extends AppCompatActivity {
     int qholder,r1,r2;
     static int counter,icount;
     List<int[]> wordList ;
+    OkHttpClient client = new OkHttpClient();
 
    int array[]={
         R.string.share0,
@@ -101,9 +108,14 @@ public class HealthTips extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_tips);
+
+//        if (android.os.Build.VERSION.SDK_INT > 9) {
+//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//            StrictMode.setThreadPolicy(policy);
+//        }
         next=(ImageButton)findViewById(R.id.next);
         previous=(ImageButton) findViewById(R.id.previous);
         words= (TextView) findViewById(R.id.words);
@@ -117,6 +129,21 @@ public class HealthTips extends AppCompatActivity {
 
                 counter++;
                 icount++;
+
+//                // issue the Get request
+//                TestMain2 example = new TestMain2();
+//                String getResponse = null;
+//                try {
+//                    getResponse = example.doGetRequest("http://localhost/lynda-php/jsontest2.php");
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    Log.d("URL BUG", e.toString());
+//                }
+//                System.out.println(getResponse);
+//                Log.d("URL RESULTS", getResponse);
+
+                RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
+                retrieveFeedTask.execute("http://192.168.43.243/lynda-php/jsontest2.php");
 
 
                 try {
@@ -175,7 +202,7 @@ public class HealthTips extends AppCompatActivity {
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT,
-                sendText  + APP_SHARE_HASHTAG);
+                sendText + APP_SHARE_HASHTAG);
         return shareIntent;
 
     }
@@ -220,4 +247,56 @@ public class HealthTips extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    // code request code here
+    String doGetRequest(String url) throws IOException {
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+}
+
+class TestMain2 {
+    OkHttpClient client = new OkHttpClient();
+
+    // code request code here
+
+    String doGetRequest(String url) throws IOException {
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+}
+
+class RetrieveFeedTask extends AsyncTask<String, Void, String> {
+
+    private Exception exception;
+
+    protected String doInBackground(String... urls) {
+        try {
+            Request request = new Request.Builder()
+                    .url("http://192.168.43.243/lynda-php/jsontest2.php")
+                    .build();
+            OkHttpClient client = new OkHttpClient();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("URL BUG", e.toString());
+            return null;
+        }
+    }
+
+    protected void onPostExecute(String feed) {
+        // TODO: check this.exception
+        // TODO: do something with the feed
+    }
+
+
 }
