@@ -32,13 +32,6 @@ public class HealthTips extends AppCompatActivity {
     private ImageView food;
     private static int counter;
     private static int icount;
-    private final OkHttpClient client = new OkHttpClient();
-    // contacts JSONArray
-    JSONArray contacts = null;
-
-//    private static final String TAG_ID = "id";
-//    private static final String TAG_DAY = "day";
-//    private static final String TAG_BREAKFAST = "breakfast";
 
     private final int[] array = {
             R.string.share0,
@@ -245,28 +238,19 @@ public class HealthTips extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    // code request code here
-//    String doGetRequest(String url) throws IOException {
-//        Request request = new Request.Builder()
-//                .url(url)
-//                .build();
-//
-//        Response response = client.newCall(request).execute();
-//        return response.body().string();
-//    }
 
     public class RetrieveFeedTask extends AsyncTask<Void, Void, String[]> {
 
         protected String[] doInBackground(Void... urls) {
             try {
                 Request request = new Request.Builder()
-                        .url("http://10.10.8.155/lynda-php/jsontest2.php")
+                        .url("http://10.42.0.1/lynda-php/jsontest2.php")
                         .build();
                 OkHttpClient client = new OkHttpClient();
                 Response response = client.newCall(request).execute();
-                Log.d("JSON STRING", response.body().string());
-                //return response.body().string();
+
                 String jsonData = response.body().string();
+                Log.d("JSON STRING_DATA", jsonData);
                 return getNutritionDataFromJson(jsonData);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -276,63 +260,7 @@ public class HealthTips extends AppCompatActivity {
         }
 
         protected void onPostExecute(String[] feed) {
-//            int i;
-//            for (i=0;i<3;i++){
-//                Log.d("JSON RESULT", feed[i]);
-//            }
 
-
-
-//            if (feed != null) {
-//                try {
-//                    JSONObject jsonObj = new JSONObject(feed);
-//
-//                    // Getting JSON Array node
-//                    contacts = jsonObj.getJSONArray("");
-//
-//                    // looping through All Contacts
-//                    for (int i = 0; i < contacts.length(); i++) {
-//                        JSONObject c = contacts.getJSONObject(i);
-//
-//                        String id = c.getString(TAG_ID);
-//                        String name = c.getString(TAG_DAY);
-//                        String breakfast=c.getString(TAG_BREAKFAST);
-//                        Log.d("FEED", id+ " "+name+ " "+breakfast);
-////                        String email = c.getString(TAG_EMAIL);
-////                        String address = c.getString(TAG_ADDRESS);
-////                        String gender = c.getString(TAG_GENDER);
-//
-////                        // Phone node is JSON Object
-////                        JSONObject phone = c.getJSONObject(TAG_PHONE);
-////                        String mobile = phone.getString(TAG_PHONE_MOBILE);
-////                        String home = phone.getString(TAG_PHONE_HOME);
-////                        String office = phone.getString(TAG_PHONE_OFFICE);
-//
-////                        // tmp hashmap for single contact
-////                        HashMap<String, String> contact = new HashMap<String, String>();
-////
-////                        // adding each child node to HashMap key => value
-////                        contact.put(TAG_ID, id);
-////                        contact.put(TAG_NAME, name);
-////                        contact.put(TAG_EMAIL, email);
-////                        contact.put(TAG_PHONE_MOBILE, mobile);
-//
-//                        // adding contact to contact list
-//                       // contactList.add(contact);
-//
-//
-//
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            } else {
-//                Log.e("ServiceHandler", "Couldn't get any data from the url");
-//            }
-//
-//            return null;
-//       }
-//    }
         }
     }
 
@@ -340,85 +268,35 @@ public class HealthTips extends AppCompatActivity {
             throws JSONException {
 
         // These are the names of the JSON objects that need to be extracted.
-//        final String OWM_LIST = "list";
-//        final String OWM_WEATHER = "weather";
-//        final String OWM_TEMPERATURE = "temp";
-//        final String OWM_MAX = "max";
-//        final String OWM_MIN = "min";
-//        final String OWM_DESCRIPTION = "main";
          final String TAG_ID = "id";
          final String TAG_DAY = "day";
          final String TAG_BREAKFAST = "breakfast";
          final String TAG_TITLE = "title";
 
         JSONObject forecastJson = new JSONObject(forecastJsonStr);
-        JSONArray nutriArray = forecastJson.getJSONArray(TAG_TITLE);
-        int jsonLength = nutriArray.length();
+        JSONArray nutriArray = forecastJson.getJSONArray(TAG_TITLE);//traverse down into the array
+        int jsonLength = nutriArray.length();//get lenght of the jsonArray
 
-        // OWM returns daily forecasts based upon the local time of the city that is being
-        // asked for, which means that we need to know the GMT offset to translate this data
-        // properly.
 
-        // Since this data is also sent in-order and the first day is always the
-        // current day, we're going to take advantage of that to get a nice
-        // normalized UTC date for all of our weather.
-//
-//        Time dayTime = new Time();
-//        dayTime.setToNow();
-//
-//        // we start at the day returned by local time. Otherwise this is a mess.
-//        int julianStartDay = Time.getJulianDay(System.currentTimeMillis(), dayTime.gmtoff);
-//
-//        // now we work exclusively in UTC
-//        dayTime = new Time();
-
-       // String[] resultStrs = new String[jsonLength];
-        String[] resultStrs = new String[2];
-        for(int i = 0; i < 2; i++) {
-//            // For now, using the format "Day, description, hi/low"
-//            String id;
-//            String day;
-//            String breakfast;
+        String[] resultStrs = new String[jsonLength];//make string array that will temporarily store the data
+        for(int i = 0; i < jsonLength; i++) {
 
             // Get the JSON object representing the day
-            JSONObject c = nutriArray.getJSONObject(i);
-
+            JSONObject c = nutriArray.getJSONObject(i);//point to a single row in the jsonArray
+            //extract individual items from the json object
             String id = c.getString(TAG_ID);
             String day = c.getString(TAG_DAY);
             String breakfast=c.getString(TAG_BREAKFAST);
 
             Log.d("FEEDBA", id+ " "+day + " "+breakfast);
 
-//            // The date/time is returned as a long.  We need to convert that
-//            // into something human-readable, since most people won't read "1400356800" as
-//            // "this saturday".
-//            long dateTime;
-//            // Cheating to convert this to UTC time, which is what we want anyhow
-//            dateTime = dayTime.setJulianDay(julianStartDay+i);
-//            day = getReadableDateString(dateTime);
-//
-//            // description is in a child array called "weather", which is 1 element long.
-//            JSONObject weatherObject = dayForecast.getJSONArray(OWM_WEATHER).getJSONObject(0);
-//            description = weatherObject.getString(OWM_DESCRIPTION);
-//
-//            // Temperatures are in a child object called "temp".  Try not to name variables
-//            // "temp" when working with temperature.  It confuses everybody.
-//            JSONObject temperatureObject = dayForecast.getJSONObject(OWM_TEMPERATURE);
-//            double high = temperatureObject.getDouble(OWM_MAX);
-//            double low = temperatureObject.getDouble(OWM_MIN);
-
-           // highAndLow = formatHighLows(high, low);
-//            resultStrs[i] = id + " - " + day + " - " + breakfast;
-//            Log.d("FEED", resultStrs[i]);
-            String resultSt = id+ " "+day + " "+breakfast;
-//            String[] resultStrs = new String[2];
-//            resultStrs[i]=resultSt;
+            resultStrs[i] = id + " - " + day + " - " + breakfast;
         }
 
-        for (String s : resultStrs) {
-            Log.v("GNDFJ", "Forecast entry: " + s);
+        for (String s : resultStrs) {//testing to see if all the data was stored into the array
+            Log.v("GNDFJ", "NutriData entry: " + s);
         }
-        return resultStrs;
+        return resultStrs;//return the array of data to the doInBackGround method
 
     }
 }
