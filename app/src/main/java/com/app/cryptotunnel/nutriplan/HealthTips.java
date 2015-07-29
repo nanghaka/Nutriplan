@@ -268,10 +268,12 @@ public class HealthTips extends AppCompatActivity {
             throws JSONException {
 
         // These are the names of the JSON objects that need to be extracted.
-         final String TAG_ID = "id";
-         final String TAG_DAY = "day";
-         final String TAG_BREAKFAST = "breakfast";
-         final String TAG_TITLE = "title";
+        final String TAG_ID = "id";
+        final String TAG_DAY = "day";
+        final String TAG_BREAKFAST = "breakfast";
+        final String TAG_TITLE = "title";
+        final String TAG_LUNCH = "lunch";
+        final String TAG_DINNER = "dinner";
 
         JSONObject forecastJson = new JSONObject(forecastJsonStr);
         JSONArray nutriArray = forecastJson.getJSONArray(TAG_TITLE);//traverse down into the array
@@ -286,11 +288,13 @@ public class HealthTips extends AppCompatActivity {
             //extract individual items from the json object
             String id = c.getString(TAG_ID);
             String day = c.getString(TAG_DAY);
-            String breakfast=c.getString(TAG_BREAKFAST);
+            String breakfast = c.getString(TAG_BREAKFAST);
+            String lunch = c.getString(TAG_LUNCH);
+            String dinner = c.getString(TAG_DINNER);
 
-            Log.d("FEEDBA", id+ " "+day + " "+breakfast);
+            Log.d("FEEDBA", id+ " "+day + " "+breakfast+ " "+lunch+ " "+dinner);
 
-            resultStrs[i] = id + " - " + day + " - " + breakfast;
+            resultStrs[i] = id + " - " + day + " - " + breakfast+ " - " + lunch+ " - " + dinner;
         }
 
         for (String s : resultStrs) {//testing to see if all the data was stored into the array
