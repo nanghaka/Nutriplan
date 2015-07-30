@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
@@ -47,6 +48,8 @@ public class LoginActivity extends AppCompatActivity implements
     CallbackManager callbackManager;
     final String TAG = "logging in";
 
+    Button DebugLoginButton;
+
 
     @Override
     protected void onStart() {
@@ -82,6 +85,9 @@ public class LoginActivity extends AppCompatActivity implements
 
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
+//        findViewById(R.id.login_button).setOnClickListener(this);
+        DebugLoginButton = (Button) findViewById(R.id.debuglogin);
+        DebugLoginButton.setOnClickListener(this);
 
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
 
@@ -157,9 +163,23 @@ public class LoginActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.sign_in_button) {
-            onSignInClicked();
+//        Object buttonId = v.getId();
+//        if (buttonId == R.id.sign_in_button) {
+//            onSignInClicked();
+//        }
+//        else if ()
+        switch (v.getId()){
+            case R.id.sign_in_button:
+                onSignInClicked();
+                break;
+
+            case R.id.debuglogin:
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                finish();
+                break;
+
         }
+
     }
 
     @Override

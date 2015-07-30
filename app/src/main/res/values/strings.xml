@@ -90,6 +90,7 @@
     <string name="breakfast">Breakfast</string>
     <string name="Lunch">Lunch</string>
     <string name="Dinner">Dinner</string>
+    <string name="login">Debug Login</string>
 
     <!--end of scanner strings-->
 
