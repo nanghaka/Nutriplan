@@ -32,8 +32,10 @@ public class HealthTips extends AppCompatActivity {
     private ImageView food;
     private static int counter;
     private static int icount;
+    String[] resultStrs;
 
-    private final int[] array = {
+
+    public int[] array = {
             R.string.share0,
             R.string.share1,
             R.string.share2,
@@ -92,7 +94,9 @@ public class HealthTips extends AppCompatActivity {
             R.drawable.food25
     };
     private final int m = image.length;
-    private final int n = array.length;
+    //private final int n = array.length;
+    private final int n = 5;
+
 
 
     //ArrayList<array> hand = new ArrayList<Card>();
@@ -113,7 +117,7 @@ public class HealthTips extends AppCompatActivity {
         food = (ImageView) findViewById(R.id.food);
 
 
-        updatetext();
+       // updatetext();
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,8 +137,8 @@ public class HealthTips extends AppCompatActivity {
 //                System.out.println(getResponse);
 //                Log.d("URL RESULTS", getResponse);
 
-                RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
-                retrieveFeedTask.execute();
+//                RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
+//                retrieveFeedTask.execute();
 
 
                 try {
@@ -163,20 +167,24 @@ public class HealthTips extends AppCompatActivity {
                 counter--;
                 icount--;
 
+                RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
+                retrieveFeedTask.execute();
 
-                try {
-                    if (counter <= n && counter >= 0) {
-                        updatetext();
-                    } else counter = n;
 
-                    if (icount <= m && icount >= 0) {
-                        updateImage();
-                    } else icount = m;
 
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    e.printStackTrace();
-                    Log.d("array", String.valueOf(e.toString()));
-                }
+//                try {
+//                    if (counter <= n && counter >= 0) {
+//                        updatetext();
+//                    } else counter = n;
+//
+//                    if (icount <= m && icount >= 0) {
+//                        updateImage();
+//                    } else icount = m;
+//
+//                } catch (ArrayIndexOutOfBoundsException e) {
+//                    e.printStackTrace();
+//                    Log.d("array", String.valueOf(e.toString()));
+//                }
 
             }
         });
@@ -195,7 +203,7 @@ public class HealthTips extends AppCompatActivity {
     }
 
     private void updatetext() {
-        words.setText(array[counter]);
+        words.setText(resultStrs[counter]);
     }
 
     private void updateImage() {
@@ -261,6 +269,11 @@ public class HealthTips extends AppCompatActivity {
 
         protected void onPostExecute(String[] feed) {
 
+            for (String output: feed){
+                Log.d("OPEO", output);
+            }
+            words.setText(feed[3]);
+
         }
     }
 
@@ -280,7 +293,7 @@ public class HealthTips extends AppCompatActivity {
         int jsonLength = nutriArray.length();//get lenght of the jsonArray
 
 
-        String[] resultStrs = new String[jsonLength];//make string array that will temporarily store the data
+        resultStrs = new String[jsonLength];//make string array that will temporarily store the data
         for(int i = 0; i < jsonLength; i++) {
 
             // Get the JSON object representing the day
