@@ -1,5 +1,6 @@
 package com.app.cryptotunnel.nutriplan;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,6 +34,8 @@ public class HealthTips extends AppCompatActivity {
     private static int counter;
     private static int icount;
     String[] resultStrs;
+    private ProgressDialog pDialog;
+    ImageButton d;
 
 
     public int[] array = {
@@ -270,15 +273,39 @@ public class HealthTips extends AppCompatActivity {
             }
         }
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Showing progress dialog
+            pDialog = new ProgressDialog(HealthTips.this);
+            pDialog.setMessage("Please wait...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
         protected void onPostExecute(String[] feed) {
 
             for (String output: feed){
                 Log.d("OPEO", output);
             }
             n = feed.length;
-           // words.setText(feed[3]);
+
             updatetext();
 
+            if (pDialog.isShowing()){
+                Thread timer = new Thread(){
+                    public void run(){
+                        try {
+                            sleep(2000);
+                        }catch (InterruptedException e){
+                            e.printStackTrace();
+                        }finally {
+                            pDialog.dismiss();
+                        }
+                    }
+                };
+                timer.start();
+            }
         }
     }
 
