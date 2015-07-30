@@ -95,7 +95,7 @@ public class HealthTips extends AppCompatActivity {
     };
     private final int m = image.length;
     //private final int n = array.length;
-    private final int n = 5;
+    private int n ;
 
 
 
@@ -106,6 +106,9 @@ public class HealthTips extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_tips);
+
+        RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
+        retrieveFeedTask.execute();
 
 //        if (android.os.Build.VERSION.SDK_INT > 9) {
 //            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -167,24 +170,24 @@ public class HealthTips extends AppCompatActivity {
                 counter--;
                 icount--;
 
-                RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
-                retrieveFeedTask.execute();
+//                RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
+//                retrieveFeedTask.execute();
 
 
 
-//                try {
-//                    if (counter <= n && counter >= 0) {
-//                        updatetext();
-//                    } else counter = n;
-//
-//                    if (icount <= m && icount >= 0) {
-//                        updateImage();
-//                    } else icount = m;
-//
-//                } catch (ArrayIndexOutOfBoundsException e) {
-//                    e.printStackTrace();
-//                    Log.d("array", String.valueOf(e.toString()));
-//                }
+                try {
+                    if (counter <= n && counter >= 0) {
+                        updatetext();
+                    } else counter = n;
+
+                    if (icount <= m && icount >= 0) {
+                        updateImage();
+                    } else icount = m;
+
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    e.printStackTrace();
+                    Log.d("array", String.valueOf(e.toString()));
+                }
 
             }
         });
@@ -272,7 +275,9 @@ public class HealthTips extends AppCompatActivity {
             for (String output: feed){
                 Log.d("OPEO", output);
             }
-            words.setText(feed[3]);
+            n = feed.length;
+           // words.setText(feed[3]);
+            updatetext();
 
         }
     }
