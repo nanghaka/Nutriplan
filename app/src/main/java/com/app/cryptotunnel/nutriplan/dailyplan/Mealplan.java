@@ -124,7 +124,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
         protected Integer doInBackground(Void... urls) {
             try {
                 Request request = new Request.Builder()
-                        .url("http://10.42.0.1/lynda-php/jsontest2.php")
+                        .url("http://10.42.0.1/lynda-php/jsontest4.php")
                         .build();
                 OkHttpClient client = new OkHttpClient();
                 Response response = client.newCall(request).execute();
