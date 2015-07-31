@@ -1,4 +1,4 @@
-package com.app.cryptotunnel.nutriplan;
+package com.app.cryptotunnel.nutriplan.dailyplan;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.app.cryptotunnel.nutriplan.R;
 import com.app.cryptotunnel.nutriplan.scanner.ScannerActivity;
 
 public class Checker extends Fragment {

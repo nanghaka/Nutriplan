@@ -1,4 +1,4 @@
-package com.app.cryptotunnel.nutriplan;
+package com.app.cryptotunnel.nutriplan.nutricalculator;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.app.cryptotunnel.nutriplan.R;
 
 
 public class NutriCalculator extends ActionBarActivity  implements ActionBar.TabListener {

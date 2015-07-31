@@ -1,4 +1,4 @@
-package com.app.cryptotunnel.nutriplan;
+package com.app.cryptotunnel.nutriplan.nutricalculator;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,12 +11,14 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.app.cryptotunnel.nutriplan.R;
+
 public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeListener {
 
     RadioGroup energyLevel;
     EditText weightEdit;
     Button calculate;
-    Double weight,proteinResult;
+    Double proteinResult;
     TextView show;
 
 	@Override

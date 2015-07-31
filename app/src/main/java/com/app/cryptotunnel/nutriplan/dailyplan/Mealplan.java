@@ -1,4 +1,4 @@
-package com.app.cryptotunnel.nutriplan;
+package com.app.cryptotunnel.nutriplan.dailyplan;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -19,6 +19,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.cryptotunnel.nutriplan.R;
+import com.google.android.gms.wallet.MaskedWallet;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -41,11 +43,19 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
       "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
     };
     int counter = 0;
-    final int n=days.length;
+    //final int n=days.length;
+    private ProgressDialog pDialog;
+    String[] breakfastArray;
+    String[] lunchArray;
+    String[] dinnerArray;
+    private int n ;
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.mealplan, container, false);
+
+        RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
+        retrieveFeedTask.execute();
 
         dayoftheweek= (TextView) rootView.findViewById(R.id.weekDay);
         breakfastFood = (TextView) rootView.findViewById(R.id.breakfastFood);
@@ -100,12 +110,117 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
 
     private void updatetext () {
            // Toast.makeText(getActivity(), "In progress..", Toast.LENGTH_SHORT).show();
-            dayoftheweek.setText(days[counter]);
+       // HealthTips tips = new HealthTips();
+
+        breakfastFood.setText(breakfastArray[counter]);
+        lunchFood.setText(lunchArray[counter]);
+        dinnerFood.setText(dinnerArray[counter]);
+        dayoftheweek.setText(days[counter]);
     }
 
 
+    public class RetrieveFeedTask extends AsyncTask<Void, Void, Integer> {
 
+        protected Integer doInBackground(Void... urls) {
+            try {
+                Request request = new Request.Builder()
+                        .url("http://10.42.0.1/lynda-php/jsontest2.php")
+                        .build();
+                OkHttpClient client = new OkHttpClient();
+                Response response = client.newCall(request).execute();
+
+                String jsonData = response.body().string();
+                Log.d("JSON STRING_DATA", jsonData);
+                return getNutritionDataFromJson(jsonData);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.d("URL BUG", e.toString());
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Showing progress dialog
+            pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Please wait...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        protected void onPostExecute(Integer feed) {
+
+
+            n = feed;
+
+            updatetext();
+
+            if (pDialog.isShowing()){
+                Thread timer = new Thread(){
+                    public void run(){
+                        try {
+                            sleep(2000);
+                        }catch (InterruptedException e){
+                            e.printStackTrace();
+                        }finally {
+                            pDialog.dismiss();
+                        }
+                    }
+                };
+                timer.start();
+            }
+        }
+    }
+
+    private int getNutritionDataFromJson(String forecastJsonStr)
+            throws JSONException {
+
+        // These are the names of the JSON objects that need to be extracted.
+        final String TAG_ID = "id";
+        final String TAG_DAY = "day";
+        final String TAG_BREAKFAST = "breakfast";
+        final String TAG_TITLE = "title";
+        final String TAG_LUNCH = "lunch";
+        final String TAG_DINNER = "dinner";
+
+        JSONObject forecastJson = new JSONObject(forecastJsonStr);
+        JSONArray nutriArray = forecastJson.getJSONArray(TAG_TITLE);//traverse down into the array
+        int jsonLength = nutriArray.length();//get lenght of the jsonArray
+
+
+        breakfastArray = new String[jsonLength];//make string array that will temporarily store the data
+        lunchArray = new String[jsonLength];
+        dinnerArray = new String[jsonLength];
+        for(int i = 0; i < jsonLength; i++) {
+
+            // Get the JSON object representing the day
+            JSONObject c = nutriArray.getJSONObject(i);//point to a single row in the jsonArray
+            //extract individual items from the json object
+            String id = c.getString(TAG_ID);
+            String day = c.getString(TAG_DAY);
+            String breakfast = c.getString(TAG_BREAKFAST);
+            String lunch = c.getString(TAG_LUNCH);
+            String dinner = c.getString(TAG_DINNER);
+
+            Log.d("FEEDBA", id+ " "+day + " "+breakfast+ " "+lunch+ " "+dinner);
+
+            breakfastArray[i] = breakfast;
+            lunchArray[i] = lunch;
+            dinnerArray[i] = dinner;
+
+            //resultStrs[i] = id + " - " + day + " - " + breakfast+ " - " + lunch+ " - " + dinner;
+        }
+
+
+        return breakfastArray.length;//return the array of data to the doInBackGround method
+
+    }
 }
+
+
+
+
 
 
 

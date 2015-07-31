@@ -23,14 +23,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DailyPlan"
+            android:name=".dailyplan.DailyPlan"
             android:label="@string/title_activity_daily_plan" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.app.cryptotunnel.nutriplan.MainActivity" />
         </activity>
         <activity
-            android:name=".HealthTips"
+            android:name=".healthtips.HealthTips"
             android:label="@string/title_activity_health_tips"
             android:parentActivityName=".MainActivity" >
             <meta-data
@@ -38,7 +38,7 @@
                 android:value="com.app.cryptotunnel.nutriplan.MainActivity" />
         </activity>
         <activity
-            android:name=".MealDairy"
+            android:name=".nutridiary.NutriDairy"
             android:label="@string/title_activity_meal_dairy"
             android:parentActivityName=".MainActivity" >
             <meta-data
@@ -46,7 +46,7 @@
                 android:value="com.app.cryptotunnel.nutriplan.MainActivity" />
         </activity>
         <activity
-            android:name=".NutriCalculator"
+            android:name=".nutricalculator.NutriCalculator"
             android:label="@string/title_activity_nutri_calculator"
             android:parentActivityName=".MainActivity" >
             <meta-data
@@ -54,19 +54,19 @@
                 android:value="com.app.cryptotunnel.nutriplan.MainActivity" />
         </activity>
         <activity
-            android:name=".NoteEditorActivity"
+            android:name=".nutridiary.NoteEditorActivity"
             android:label="@string/title_activity_note_editor"
-            android:parentActivityName=".MealDairy" >
+            android:parentActivityName=".nutridiary.NutriDairy" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.app.cryptotunnel.nutriplan.MealDairy" />
+                android:value=".nutridiary.NutriDairy" />
         </activity>
         <activity
-            android:name=".LineChartActivity"
+            android:name=".dailyplan.LineChartActivity"
             android:label="@string/graph" >
         </activity>
         <activity
-            android:name=".History"
+            android:name=".dailyplan.History"
             android:label="@string/title_activity_history" >
         </activity>
         <activity
@@ -103,7 +103,7 @@
 
         <activity
             android:name=".Splash"
-            android:label="@string/title_activity_splash" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

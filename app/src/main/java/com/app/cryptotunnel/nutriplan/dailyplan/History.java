@@ -1,4 +1,4 @@
-package com.app.cryptotunnel.nutriplan;
+package com.app.cryptotunnel.nutriplan.dailyplan;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.app.cryptotunnel.nutriplan.database.Contact;
+import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
+import com.app.cryptotunnel.nutriplan.R;
+import com.app.cryptotunnel.nutriplan.database.WeightTrackerContract;
 
 import java.util.ArrayList;
 import java.util.List;

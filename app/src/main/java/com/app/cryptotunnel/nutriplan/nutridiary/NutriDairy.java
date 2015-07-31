@@ -1,4 +1,4 @@
-package com.app.cryptotunnel.nutriplan;
+package com.app.cryptotunnel.nutriplan.nutridiary;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +12,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.app.cryptotunnel.nutriplan.database.Contact;
+import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
+import com.app.cryptotunnel.nutriplan.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MealDairy extends AppCompatActivity {
+public class NutriDairy extends AppCompatActivity {
 
 
     private ListView mainListView;

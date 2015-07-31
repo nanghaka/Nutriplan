@@ -1,4 +1,4 @@
-package com.app.cryptotunnel.nutriplan;
+package com.app.cryptotunnel.nutriplan.nutridiary;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.app.cryptotunnel.nutriplan.database.Contact;
+import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
+import com.app.cryptotunnel.nutriplan.R;
+import com.app.cryptotunnel.nutriplan.database.WeightTrackerContract;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

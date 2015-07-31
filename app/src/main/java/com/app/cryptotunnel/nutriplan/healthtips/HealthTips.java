@@ -1,4 +1,4 @@
-package com.app.cryptotunnel.nutriplan;
+package com.app.cryptotunnel.nutriplan.healthtips;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -15,6 +15,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.cryptotunnel.nutriplan.R;
+import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
+import com.app.cryptotunnel.nutriplan.database.WeightTrackerContract;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -36,7 +39,7 @@ public class HealthTips extends AppCompatActivity {
     private ImageView food;
     private static int counter;
     private static int icount;
-    String[] resultStrs;
+    public String[] resultStrs;
     private ProgressDialog pDialog;
     ImageButton d;
 

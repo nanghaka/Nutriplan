@@ -1,4 +1,4 @@
-package com.app.cryptotunnel.nutriplan;
+package com.app.cryptotunnel.nutriplan.dailyplan;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
+import com.app.cryptotunnel.nutriplan.nutridiary.NoteEditorActivity;
+import com.app.cryptotunnel.nutriplan.R;
+import com.app.cryptotunnel.nutriplan.database.WeightTrackerContract;
 
 public class WeightLoss extends Fragment implements  View.OnClickListener {
 	//LineChartView lineChartView;
@@ -94,7 +99,7 @@ public class WeightLoss extends Fragment implements  View.OnClickListener {
 			case R.id.save:
 				DatabaseHandler db = new DatabaseHandler(getActivity());
 				Log.d("SQL Insert: ", "Inserting ..");
-				db.addWeight(new WeightTrackerContract(currentWeight.getText().toString(),NoteEditorActivity.getTime()));
+				db.addWeight(new WeightTrackerContract(currentWeight.getText().toString(), NoteEditorActivity.getTime()));
 
 
 				break;

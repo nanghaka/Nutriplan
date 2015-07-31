@@ -91,6 +91,7 @@
     <string name="Lunch">Lunch</string>
     <string name="Dinner">Dinner</string>
     <string name="login">Debug Login</string>
+    <string name="day">Monday</string>
 
     <!--end of scanner strings-->
 

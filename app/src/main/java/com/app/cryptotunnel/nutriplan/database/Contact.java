@@ -1,4 +1,4 @@
-package com.app.cryptotunnel.nutriplan;
+package com.app.cryptotunnel.nutriplan.database;
 
 /**
  * Created by codephillip on 6/20/15.

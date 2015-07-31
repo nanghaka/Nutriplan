@@ -6,9 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
+
+import com.app.cryptotunnel.nutriplan.dailyplan.DailyPlan;
+import com.app.cryptotunnel.nutriplan.healthtips.HealthTips;
+import com.app.cryptotunnel.nutriplan.nutricalculator.NutriCalculator;
+import com.app.cryptotunnel.nutriplan.nutridiary.NutriDairy;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -20,6 +23,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
         mdailyplan = (Button) findViewById(R.id.dailyplan);
         mnutricalc = (Button) findViewById(R.id.calc);
@@ -45,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this,HealthTips.class));
                 break;
             case R.id.diary:
-                startActivity(new Intent(MainActivity.this,MealDairy.class));
+                startActivity(new Intent(MainActivity.this,NutriDairy.class));
                 break;
         }
 
