@@ -41,7 +41,7 @@
         android:layout_below="@+id/next"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout">
+        android:id="@+id/breakfasttitle">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,9 +61,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout2"
+        android:id="@+id/lunchtitle"
         android:layout_marginTop="118dp"
-        android:layout_below="@+id/linearLayout"
+        android:layout_below="@+id/breakfasttitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
@@ -79,87 +79,96 @@
             android:layout_alignEnd="@+id/next" />
     </LinearLayout>
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout3"
-        android:layout_below="@+id/linearLayout2"
+        android:weightSum="4"
+        android:layout_below="@+id/breakfasttitle"
+        android:id="@+id/imagelayout1">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="110dp"
+            android:id="@+id/imageView2"
+            android:layout_weight="1"
+            android:src="@drawable/breakfast"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="1 bowl of boiled broccoli, fresh greens and raw papaya and 2 glasses of water"
+            android:id="@+id/breakfastFood"
+            />
+
+
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dinnertitle"
+        android:layout_below="@+id/imagelayout12"
+        android:layout_marginTop="10dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="103dp">
+        android:layout_alignParentStart="true">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Dinner"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"/>
+
 
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="110dp"
-        android:id="@+id/imageView2"
-        android:src="@drawable/breakfast"
-        android:layout_below="@+id/linearLayout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/imageView3"
-        android:layout_alignEnd="@+id/imageView3" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1 cucumber, 1 tomato and a half boiled beef and 2 glasses of water"
-        android:id="@+id/lunchFood"
-        android:layout_alignTop="@+id/imageView3"
-        android:layout_alignLeft="@+id/weekDay"
-        android:layout_alignStart="@+id/weekDay" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="110dp"
-        android:id="@+id/imageView3"
-        android:src="@drawable/breakfast"
-        android:layout_alignBottom="@+id/linearLayout3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/lunchFood"
-        android:layout_toStartOf="@+id/lunchFood" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="110dp"
-        android:id="@+id/imageView4"
-        android:src="@drawable/breakfast"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/imageView3"
-        android:layout_alignEnd="@+id/imageView3" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1 cup of diced apples and 1-2 glasses of water jasoigsao oisag"
-        android:id="@+id/breakfastFood"
-        android:layout_alignTop="@+id/imageView2"
-        android:layout_alignLeft="@+id/weekDay"
-        android:layout_alignStart="@+id/weekDay" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1 bowl of boiled broccoli, fresh greens and raw papaya and 2 glasses of water"
-        android:id="@+id/dinnerFood"
-        android:layout_alignTop="@+id/imageView4"
-        android:layout_toRightOf="@+id/imageView4"
-        android:layout_toEndOf="@+id/imageView4" />
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:gravity="center_horizontal"
-        android:id="@+id/textView5"
-        android:text="@string/Dinner"
-        android:layout_below="@+id/linearLayout3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:weightSum="4"
+        android:layout_below="@+id/lunchtitle"
+        android:id="@+id/imagelayout12">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="110dp"
+            android:id="@+id/imageView23"
+            android:layout_weight="1"
+            android:src="@drawable/breakfast"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="1 bowl of boiled broccoli, fresh greens and raw papaya and 2 glasses of water"
+            android:id="@+id/lunchFood"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:layout_below="@+id/dinnertitle"
+        android:id="@+id/imagelayout13">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="110dp"
+            android:id="@+id/imageView2d"
+            android:layout_weight="1"
+            android:src="@drawable/breakfast"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="1 bowl of boiled broccoli, fresh greens and raw papaya and 2 glasses of water"
+            android:id="@+id/dinnerFood"/>
+    </LinearLayout>
 
 
 </RelativeLayout>
