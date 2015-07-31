@@ -23,6 +23,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class HealthTips extends AppCompatActivity {
 
@@ -37,41 +40,45 @@ public class HealthTips extends AppCompatActivity {
     private ProgressDialog pDialog;
     ImageButton d;
 
+    ArrayList<String> al = new ArrayList<String>();
+    DatabaseHandler db = new DatabaseHandler(this);
+    String[] weightArray;
 
-    public int[] array = {
-            R.string.share0,
-            R.string.share1,
-            R.string.share2,
-            R.string.share3,
-            R.string.share4,
-            R.string.share5,
-            R.string.share6,
-            R.string.share7,
-            R.string.share8,
-            R.string.share9,
-            R.string.share10,
-            R.string.share11,
-            R.string.share12,
-            R.string.share13,
-            R.string.share14,
-            R.string.share15,
-            R.string.share16,
-            R.string.share17,
-            R.string.share18,
-            R.string.share19,
-            R.string.share20,
-            R.string.share21,
-            R.string.share23,
-            R.string.share22,
-            R.string.share24,
-            R.string.share25,
-            R.string.share26,
-            R.string.share27,
-            R.string.share28,
-            R.string.share29,
-            R.string.share30
 
-    };
+//    public int[] array = {
+//            R.string.share0,
+//            R.string.share1,
+//            R.string.share2,
+//            R.string.share3,
+//            R.string.share4,
+//            R.string.share5,
+//            R.string.share6,
+//            R.string.share7,
+//            R.string.share8,
+//            R.string.share9,
+//            R.string.share10,
+//            R.string.share11,
+//            R.string.share12,
+//            R.string.share13,
+//            R.string.share14,
+//            R.string.share15,
+//            R.string.share16,
+//            R.string.share17,
+//            R.string.share18,
+//            R.string.share19,
+//            R.string.share20,
+//            R.string.share21,
+//            R.string.share23,
+//            R.string.share22,
+//            R.string.share24,
+//            R.string.share25,
+//            R.string.share26,
+//            R.string.share27,
+//            R.string.share28,
+//            R.string.share29,
+//            R.string.share30
+//
+//    };
 
     private String sendText;
     private final int[] image = {
@@ -150,9 +157,11 @@ public class HealthTips extends AppCompatActivity {
                 try {
                     if (counter < n && counter >= 0) {
                         updatetext();
+                        Log.d("SHARE", words.getText().toString());
                     } else {
                         counter = 0;
                         updatetext();
+                        Log.d("SHARE", words.getText().toString());
                     }
 
                     if (icount < m && counter >= 0) updateImage();
@@ -196,16 +205,30 @@ public class HealthTips extends AppCompatActivity {
         });
     }
 
-    private Intent createShareTips() {
-        // wordList = Arrays.asList(array);
-        sendText = getString(array[counter]);
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-        shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_TEXT,
-                sendText + APP_SHARE_HASHTAG);
-        return shareIntent;
+    private Intent createShareTips(int position) {
 
+        final List<WeightTrackerContract> wtc = db.getAllWeights();
+
+        for (WeightTrackerContract cn : wtc) {
+            String log = " Time: " + cn.get_weight_time()+"\n"+"Weights: " + cn.get_weight();
+            // Writing Contacts to log
+            Log.d("History", log);
+            al.add(log);
+        }
+
+        weightArray = new String[al.size()];
+        weightArray = al.toArray(weightArray);
+        // wordList = Arrays.asList(array);
+        Intent shareIntent = null;
+
+            Log.d("SHARE", weightArray[position]);
+            sendText =  weightArray[position];
+            shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_TEXT,
+                    sendText + APP_SHARE_HASHTAG);
+        return shareIntent;
     }
 
     private void updatetext() {
@@ -230,7 +253,7 @@ public class HealthTips extends AppCompatActivity {
         // Attach an intent to this ShareActionProvider.  You can update this at any time,
         // like when the user selects a new piece of data they might like to share.
         if (mShareActionProvider != null) {
-            mShareActionProvider.setShareIntent(createShareTips());
+            mShareActionProvider.setShareIntent(createShareTips(counter));
         } else {
             Log.d("shareIntent", "Share Action Provider is null?");
         }
@@ -258,7 +281,7 @@ public class HealthTips extends AppCompatActivity {
         protected String[] doInBackground(Void... urls) {
             try {
                 Request request = new Request.Builder()
-                        .url("http://10.42.0.1/lynda-php/jsontest2.php")
+                        .url("http://10.42.0.1/lynda-php/jsontest3.php")
                         .build();
                 OkHttpClient client = new OkHttpClient();
                 Response response = client.newCall(request).execute();
@@ -314,11 +337,9 @@ public class HealthTips extends AppCompatActivity {
 
         // These are the names of the JSON objects that need to be extracted.
         final String TAG_ID = "id";
-        final String TAG_DAY = "day";
-        final String TAG_BREAKFAST = "breakfast";
+        final String TAG_COMMENT = "comment";
         final String TAG_TITLE = "title";
-        final String TAG_LUNCH = "lunch";
-        final String TAG_DINNER = "dinner";
+
 
         JSONObject forecastJson = new JSONObject(forecastJsonStr);
         JSONArray nutriArray = forecastJson.getJSONArray(TAG_TITLE);//traverse down into the array
@@ -331,15 +352,12 @@ public class HealthTips extends AppCompatActivity {
             // Get the JSON object representing the day
             JSONObject c = nutriArray.getJSONObject(i);//point to a single row in the jsonArray
             //extract individual items from the json object
+            String comment = c.getString(TAG_COMMENT);
             String id = c.getString(TAG_ID);
-            String day = c.getString(TAG_DAY);
-            String breakfast = c.getString(TAG_BREAKFAST);
-            String lunch = c.getString(TAG_LUNCH);
-            String dinner = c.getString(TAG_DINNER);
 
-            Log.d("FEEDBA", id+ " "+day + " "+breakfast+ " "+lunch+ " "+dinner);
+            Log.d("FEEDBA", id +" -- "+comment);
 
-            resultStrs[i] = id + " - " + day + " - " + breakfast+ " - " + lunch+ " - " + dinner;
+            resultStrs[i] = comment;
         }
 
         for (String s : resultStrs) {//testing to see if all the data was stored into the array
