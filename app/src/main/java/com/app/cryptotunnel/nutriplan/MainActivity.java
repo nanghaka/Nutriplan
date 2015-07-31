@@ -27,6 +27,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
+        viewConnections();
+
+
+    }
+
+    private void viewConnections() {
         mdailyplan = (Button) findViewById(R.id.dailyplan);
         mnutricalc = (Button) findViewById(R.id.calc);
         mhealthtips = (Button) findViewById(R.id.tips);

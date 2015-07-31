@@ -83,7 +83,6 @@ public class HealthTips extends AppCompatActivity {
 //
 //    };
 
-    private String sendText;
     private final int[] image = {
             R.drawable.food1,
             R.drawable.food3,
@@ -225,7 +224,7 @@ public class HealthTips extends AppCompatActivity {
         Intent shareIntent = null;
 
             Log.d("SHARE", weightArray[position]);
-            sendText =  weightArray[position];
+        String sendText = weightArray[position];
             shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
             shareIntent.setType("text/plain");

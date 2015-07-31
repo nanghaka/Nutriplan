@@ -23,22 +23,9 @@ import java.util.List;
 public class NutriDairy extends AppCompatActivity {
 
 
-    private ListView mainListView;
     ListView listView;
     ArrayList<String> al = new ArrayList<String>();
     DatabaseHandler db = new DatabaseHandler(this);
-    Contact contact = new Contact();
-
-
-    private ArrayAdapter<String> listAdapter;
-
-//    String[] nutriArray={
-//            "Daily plan",
-//            "Nutri Calculator",
-//            "Health tips",
-//            "Meal dairy",
-//            "About"
-//    };
 
     String[] nutriArray;
 
@@ -50,16 +37,7 @@ public class NutriDairy extends AppCompatActivity {
         // Get ListView object from xml
         listView = (ListView) findViewById(R.id.list);
 
-        // Defined Array values to show in ListView
-        String[] values = new String[]{"Android List View",
-                "Adapter implementation",
-                "Simple List View In Android",
-                "Create List View Android",
-                "Android Example",
-                "List View Source Code",
-                "List View Array Adapter",
-                "Android Example List View"
-        };
+
 
         final List<Contact> contacts = db.getAllContacts();
 
@@ -73,10 +51,6 @@ public class NutriDairy extends AppCompatActivity {
 
         nutriArray = new String[al.size()];
         nutriArray = al.toArray(nutriArray);
-
-//        nutriArray =new String[]{
-//          al.get(0),al.get(1),al.get(2),al.get(3)
-//        };
 
 
         // Define a new Adapter

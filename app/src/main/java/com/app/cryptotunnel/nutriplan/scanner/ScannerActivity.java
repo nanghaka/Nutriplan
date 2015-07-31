@@ -166,7 +166,9 @@ public class ScannerActivity extends AppCompatActivity implements MessageDialogF
 
            }
 
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
        // showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());
     }
 

@@ -13,7 +13,6 @@ import com.app.cryptotunnel.nutriplan.R;
 
 public class NutriCalculator extends ActionBarActivity  implements ActionBar.TabListener {
 
-    private TabsPagerAdapter pageAdapter;
     private ViewPager pager;
     private ActionBar actionBar;
 
@@ -23,7 +22,7 @@ public class NutriCalculator extends ActionBarActivity  implements ActionBar.Tab
         setContentView(R.layout.activity_nutri_calculator);
         pager = (ViewPager) findViewById(R.id.pager);
         actionBar = getSupportActionBar();
-        pageAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+        TabsPagerAdapter pageAdapter = new TabsPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pageAdapter);
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 

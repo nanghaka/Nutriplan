@@ -92,6 +92,7 @@
     <string name="Dinner">Dinner</string>
     <string name="login">Debug Login</string>
     <string name="day">Monday</string>
+    <string name="loginscreen">Login</string>
 
     <!--end of scanner strings-->
 

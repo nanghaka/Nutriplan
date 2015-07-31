@@ -12,7 +12,6 @@ import com.app.cryptotunnel.nutriplan.R;
 
 
 public class DailyPlan extends AppCompatActivity implements ActionBar.TabListener {
-    private TabsPagerAdapterDailyPlan pageAdapter;
     private ViewPager pager;
     private ActionBar actionBar;
 
@@ -22,7 +21,7 @@ public class DailyPlan extends AppCompatActivity implements ActionBar.TabListene
         setContentView(R.layout.activity_nutri_calculator);
         pager = (ViewPager) findViewById(R.id.pager);
         actionBar = getSupportActionBar();
-        pageAdapter = new TabsPagerAdapterDailyPlan(getSupportFragmentManager());
+        TabsPagerAdapterDailyPlan pageAdapter = new TabsPagerAdapterDailyPlan(getSupportFragmentManager());
         pager.setAdapter(pageAdapter);
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
