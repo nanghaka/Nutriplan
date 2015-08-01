@@ -1,5 +1,6 @@
 package com.app.cryptotunnel.nutriplan.dailyplan;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.app.cryptotunnel.nutriplan.SettingsActivity;
 import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
 import com.app.cryptotunnel.nutriplan.R;
 import com.app.cryptotunnel.nutriplan.database.WeightTrackerContract;
@@ -185,6 +187,10 @@ public class LineChartActivity extends AppCompatActivity {
             }
             if (id == R.id.action_zoom_vertical) {
                 chart.setZoomType(ZoomType.VERTICAL);
+                return true;
+            }
+            if (id == R.id.action_settings) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
                 return true;
             }
             return super.onOptionsItemSelected(item);

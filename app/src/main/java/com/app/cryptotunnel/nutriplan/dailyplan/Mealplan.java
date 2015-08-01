@@ -12,6 +12,7 @@ import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.cryptotunnel.nutriplan.R;
+import com.app.cryptotunnel.nutriplan.SettingsActivity;
 import com.google.android.gms.wallet.MaskedWallet;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -206,4 +208,6 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
         }
         return breakfastArray.length;//return the array of data to the doInBackGround method
     }
+
+
 }

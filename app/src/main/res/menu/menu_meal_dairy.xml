@@ -5,10 +5,11 @@
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        android:icon="@drawable/mr_ic_settings_dark"
+        app:showAsAction="never|withText" />
     <item android:id="@+id/action_create"
         android:title="@string/action_create"
         android:orderInCategory="1"
         android:icon="@drawable/ic_add_white_24dp"
-        app:showAsAction="always" />
+        app:showAsAction="always|withText" />
 </menu>

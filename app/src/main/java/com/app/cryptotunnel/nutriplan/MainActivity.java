@@ -83,9 +83,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(MainActivity.this, SettingsActivity.class));
             return true;
         }
-
-
-
         return super.onOptionsItemSelected(item);
     }
 }

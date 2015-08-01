@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.cryptotunnel.nutriplan.R;
+import com.app.cryptotunnel.nutriplan.SettingsActivity;
 import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
 import com.app.cryptotunnel.nutriplan.database.WeightTrackerContract;
 import com.squareup.okhttp.OkHttpClient;
@@ -202,6 +203,7 @@ public class HealthTips extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(HealthTips.this, SettingsActivity.class));
             return true;
         }
 
