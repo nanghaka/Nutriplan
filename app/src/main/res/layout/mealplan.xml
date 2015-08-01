@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/day"
+        android:textSize="18sp"
         android:id="@+id/weekDay"
         android:layout_marginTop="17dp"
         android:layout_alignParentTop="true"
@@ -47,6 +48,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:id="@+id/breakfast"
+            android:textColor="@color/dark_lime"
             android:gravity="center_horizontal"
             android:text="@string/breakfast"
             android:layout_below="@+id/next"
@@ -74,6 +76,7 @@
             android:gravity="center_horizontal"
             android:id="@+id/textView3"
             android:text="@string/Lunch"
+            android:textColor="@color/dark_lime"
             android:layout_below="@+id/next"
             android:layout_alignRight="@+id/next"
             android:layout_alignEnd="@+id/next" />
@@ -96,8 +99,8 @@
             />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="3"
             android:text="1 bowl of boiled broccoli, fresh greens and raw papaya and 2 glasses of water"
             android:id="@+id/breakfastFood"
@@ -112,13 +115,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/dinnertitle"
         android:layout_below="@+id/imagelayout12"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="4dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Dinner"
+            android:textColor="@color/dark_lime"
             android:textSize="20sp"
             android:gravity="center_horizontal"/>
 
@@ -140,8 +144,8 @@
             />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="3"
             android:text="1 bowl of boiled broccoli, fresh greens and raw papaya and 2 glasses of water"
             android:id="@+id/lunchFood"/>
@@ -163,8 +167,8 @@
             />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="3"
             android:text="1 bowl of boiled broccoli, fresh greens and raw papaya and 2 glasses of water"
             android:id="@+id/dinnerFood"/>
