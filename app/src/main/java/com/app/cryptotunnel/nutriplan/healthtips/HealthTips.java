@@ -41,47 +41,10 @@ public class HealthTips extends AppCompatActivity {
     private static int icount;
     public String[] resultStrs;
     private ProgressDialog pDialog;
-    ImageButton d;
 
     ArrayList<String> al = new ArrayList<String>();
     DatabaseHandler db = new DatabaseHandler(this);
     String[] weightArray;
-
-
-//    public int[] array = {
-//            R.string.share0,
-//            R.string.share1,
-//            R.string.share2,
-//            R.string.share3,
-//            R.string.share4,
-//            R.string.share5,
-//            R.string.share6,
-//            R.string.share7,
-//            R.string.share8,
-//            R.string.share9,
-//            R.string.share10,
-//            R.string.share11,
-//            R.string.share12,
-//            R.string.share13,
-//            R.string.share14,
-//            R.string.share15,
-//            R.string.share16,
-//            R.string.share17,
-//            R.string.share18,
-//            R.string.share19,
-//            R.string.share20,
-//            R.string.share21,
-//            R.string.share23,
-//            R.string.share22,
-//            R.string.share24,
-//            R.string.share25,
-//            R.string.share26,
-//            R.string.share27,
-//            R.string.share28,
-//            R.string.share29,
-//            R.string.share30
-//
-//    };
 
     private final int[] image = {
             R.drawable.food1,
@@ -106,13 +69,7 @@ public class HealthTips extends AppCompatActivity {
             R.drawable.food25
     };
     private final int m = image.length;
-    //private final int n = array.length;
     private int n ;
-
-
-
-    //ArrayList<array> hand = new ArrayList<Card>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,39 +79,18 @@ public class HealthTips extends AppCompatActivity {
         RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
         retrieveFeedTask.execute();
 
-//        if (android.os.Build.VERSION.SDK_INT > 9) {
-//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//            StrictMode.setThreadPolicy(policy);
-//        }
         next = (ImageButton) findViewById(R.id.next);
         previous = (ImageButton) findViewById(R.id.previous);
         words = (TextView) findViewById(R.id.words);
         food = (ImageView) findViewById(R.id.food);
 
 
-       // updatetext();
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 counter++;
                 icount++;
-
-//                // issue the Get request
-//                TestMain2 example = new TestMain2();
-//                String getResponse = null;
-//                try {
-//                    getResponse = example.doGetRequest("http://localhost/lynda-php/jsontest2.php");
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    Log.d("URL BUG", e.toString());
-//                }
-//                System.out.println(getResponse);
-//                Log.d("URL RESULTS", getResponse);
-
-//                RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
-//                retrieveFeedTask.execute();
-
 
                 try {
                     if (counter < n && counter >= 0) {
@@ -183,11 +119,6 @@ public class HealthTips extends AppCompatActivity {
             public void onClick(View v) {
                 counter--;
                 icount--;
-
-//                RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
-//                retrieveFeedTask.execute();
-
-
 
                 try {
                     if (counter <= n && counter >= 0) {
@@ -283,7 +214,7 @@ public class HealthTips extends AppCompatActivity {
         protected String[] doInBackground(Void... urls) {
             try {
                 Request request = new Request.Builder()
-                        .url("http://10.42.0.1/lynda-php/jsontest3.php")
+                        .url("http://192.168.57.1/lynda-php/jsontest3.php")
                         .build();
                 OkHttpClient client = new OkHttpClient();
                 Response response = client.newCall(request).execute();
