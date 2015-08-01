@@ -131,9 +131,6 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
     }
 
     private void updatetext () {
-           // Toast.makeText(getActivity(), "In progress..", Toast.LENGTH_SHORT).show();
-       // HealthTips tips = new HealthTips();
-
         breakfastFood.setText(breakfastArray[counter]);
         lunchFood.setText(lunchArray[counter]);
         dinnerFood.setText(dinnerArray[counter]);
@@ -145,9 +142,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
 
         protected Integer doInBackground(String... urls) {
             try {
-                Request request = new Request.Builder()
-                        .url(urls[0])
-                        .build();
+                Request request = new Request.Builder().url(urls[0]).build();
                 OkHttpClient client = new OkHttpClient();
                 Response response = client.newCall(request).execute();
 

@@ -119,14 +119,7 @@ public class NutriDairy extends AppCompatActivity {
                                 "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
                                 .show();
                         break;
-
-
                 }
-
-                // Show Alert
-//                Toast.makeText(getApplicationContext(),
-//                        "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
-//                        .show();
 
             }
 
