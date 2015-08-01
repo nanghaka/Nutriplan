@@ -2,8 +2,10 @@ package com.app.cryptotunnel.nutriplan.dailyplan;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
@@ -56,7 +58,30 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
 		View rootView = inflater.inflate(R.layout.mealplan, container, false);
 
         RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
-        retrieveFeedTask.execute();
+
+        //getting users input from settings screen
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String input;
+        input = prefs.getString(getString(R.string.pref_age_key),
+                getString(R.string.pref_default_age_key));
+
+           //testing what the user inserted with what information is appropriate for her age
+        switch (input){
+            case ("30"):
+                retrieveFeedTask.execute("http://192.168.57.1/lynda-php/jsontest4.php");
+                break;
+           // case ("20"):
+            default:
+                retrieveFeedTask.execute("http://192.168.57.1/lynda-php/jsontest2.php");
+                break;
+
+        }
+      //  if (input.equals(prefs.getString(getString(R.string.pref_age_key)))
+
+        //retrieveFeedTask.execute();
+
+
+
 
         dayoftheweek= (TextView) rootView.findViewById(R.id.weekDay);
         breakfastFood = (TextView) rootView.findViewById(R.id.breakfastFood);
@@ -116,12 +141,12 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
     }
 
 
-    public class RetrieveFeedTask extends AsyncTask<Void, Void, Integer> {
+    public class RetrieveFeedTask extends AsyncTask<String, Void, Integer> {
 
-        protected Integer doInBackground(Void... urls) {
+        protected Integer doInBackground(String... urls) {
             try {
                 Request request = new Request.Builder()
-                        .url("http://192.168.57.1/lynda-php/jsontest4.php")
+                        .url(urls[0])
                         .build();
                 OkHttpClient client = new OkHttpClient();
                 Response response = client.newCall(request).execute();
