@@ -63,6 +63,7 @@
     <string name="title_activity_history">History</string>
     <string name="enter">Current Weight</string>
     <string name="title_activity_simple_scanner">SimpleScannerActivity</string>
+    <string name="weight_required">Weight required</string>
 
     <!--scanner strings-->
     <string name="scanner_activity">Scanner</string>
