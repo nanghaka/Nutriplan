@@ -35,7 +35,7 @@ public class Calories extends Fragment {
 
         weight = (EditText) rootView.findViewById(R.id.weight);
 
-        TextInputLayout textInputLayout = (TextInputLayout) rootView.findViewById(R.id.text_input_layout).findViewById(R.id.weight);
+        TextInputLayout textInputLayout = (TextInputLayout) rootView.findViewById(R.id.text_input_layout);
         textInputLayout.setErrorEnabled(true);
         Resources res = getResources();
         textInputLayout.setError(res.getString(R.string.weight_required));
