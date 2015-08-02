@@ -5,6 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/orange</item>
         <item name="colorPrimaryDark">@color/moderate_orange</item>
+        <item name="colorAccent">@color/teal</item>
     </style>
 
     <!-- Main activity theme. -->
