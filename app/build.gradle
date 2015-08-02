@@ -13,7 +13,7 @@ android {
     buildToolsVersion "22.0.1"
     defaultConfig {
         applicationId "com.app.cryptotunnel.nutriplan"
-        minSdkVersion 10
+        minSdkVersion 13
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -34,6 +34,7 @@ dependencies {
     compile files('libs/gson-2.2.4.jar')
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.android.support:design:22.2.1'
+    compile "com.android.support:support-v13:21.0.2"
     compile 'com.github.lecho:hellocharts-library:1.5.5@aar'
     compile 'com.google.android.gms:play-services:7.5.0'
     compile 'me.dm7.barcodescanner:zxing:1.7.2'
@@ -42,4 +43,5 @@ dependencies {
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.android.support:support-v4:22.2.1'
     compile 'com.melnykov:floatingactionbutton:1.2.0'
+    compile 'com.parse.bolts:bolts-android:1.+'
 }

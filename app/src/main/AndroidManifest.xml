@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:theme="@android:style/Theme.Holo"
     package="com.app.cryptotunnel.nutriplan" >
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -68,10 +69,6 @@
         <activity
             android:name=".dailyplan.History"
             android:label="@string/title_activity_history" >
-        </activity>
-        <activity
-            android:name=".SimpleScannerActivity"
-            android:label="@string/title_activity_simple_scanner" >
         </activity>
         <activity
             android:name=".scanner.ScannerActivity"
