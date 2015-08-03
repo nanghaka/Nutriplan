@@ -1,30 +1,20 @@
 package com.app.cryptotunnel.nutriplan.dailyplan;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.cryptotunnel.nutriplan.R;
-import com.app.cryptotunnel.nutriplan.SettingsActivity;
-import com.google.android.gms.wallet.MaskedWallet;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -32,11 +22,6 @@ import com.squareup.okhttp.Response;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit.client.OkClient;
 
 public class Mealplan extends Fragment implements  View.OnClickListener{
 
@@ -55,7 +40,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.mealplan, container, false);
+		View rootView = inflater.inflate(R.layout.meal_plan, container, false);
 
         RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
 

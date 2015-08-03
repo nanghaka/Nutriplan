@@ -16,7 +16,7 @@ import com.app.cryptotunnel.nutriplan.nutridiary.NoteEditorActivity;
 import com.app.cryptotunnel.nutriplan.R;
 import com.app.cryptotunnel.nutriplan.database.WeightTrackerContract;
 
-public class WeightLoss extends Fragment implements  View.OnClickListener {
+public class WeightTracker extends Fragment implements  View.OnClickListener {
 	//LineChartView lineChartView;
 	Button graph,history,save;
 	EditText currentWeight;
@@ -25,7 +25,7 @@ public class WeightLoss extends Fragment implements  View.OnClickListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.weightloss, container, false);
+		View rootView = inflater.inflate(R.layout.weight_tracker, container, false);
 //		lineChartView = (LineChartView) rootView.findViewById(R.id.chart);
 //		lineChartView.setInteractive(true);
 //		lineChartView.setZoomEnabled(true);

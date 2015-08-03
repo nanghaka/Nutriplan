@@ -4,10 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.app.cryptotunnel.nutriplan.dailyplan.Checker;
-import com.app.cryptotunnel.nutriplan.dailyplan.Mealplan;
-import com.app.cryptotunnel.nutriplan.dailyplan.WeightLoss;
-
 public class TabsPagerAdapterDailyPlan extends FragmentPagerAdapter {
 
 	public TabsPagerAdapterDailyPlan(FragmentManager fm) {
@@ -20,7 +16,7 @@ public class TabsPagerAdapterDailyPlan extends FragmentPagerAdapter {
 		case 0:
 			return new Mealplan();
 		case 1:
-			return new WeightLoss();
+			return new WeightTracker();
 		case 2:
 			return new Checker();
 
