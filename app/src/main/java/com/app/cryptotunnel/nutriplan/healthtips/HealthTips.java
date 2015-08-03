@@ -1,7 +1,10 @@
 package com.app.cryptotunnel.nutriplan.healthtips;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
@@ -14,6 +17,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.cryptotunnel.nutriplan.R;
 import com.app.cryptotunnel.nutriplan.SettingsActivity;
@@ -77,8 +81,16 @@ public class HealthTips extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_tips);
 
-        RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
-        retrieveFeedTask.execute();
+            boolean connectionCheck = isConnectedToInternet();
+
+        if (connectionCheck==true){
+            RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
+            retrieveFeedTask.execute();
+        }else {
+            Toast.makeText(getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
+        }
+
+
 
         next = (ImageButton) findViewById(R.id.next);
         previous = (ImageButton) findViewById(R.id.previous);
@@ -242,19 +254,31 @@ public class HealthTips extends AppCompatActivity {
         }
 
         protected void onPostExecute(String[] feed) {
+            try{//handling error for internet connection
+                for (String output: feed){
+                    Log.d("OPEO", output);
+                }
 
-            for (String output: feed){
-                Log.d("OPEO", output);
+                n = feed.length;
+
+                updatetext();
+
+            }catch (NullPointerException e){
+                e.printStackTrace();
+                Log.e("NPE",e.toString());
+            }catch (Exception e){
+                e.printStackTrace();
+                Log.e("GENERAL ERROR",e.toString());
             }
-            n = feed.length;
 
-            updatetext();
+
+
 
             if (pDialog.isShowing()){
                 Thread timer = new Thread(){
                     public void run(){
                         try {
-                            sleep(2000);
+                            sleep(300);
                         }catch (InterruptedException e){
                             e.printStackTrace();
                         }finally {
@@ -300,6 +324,22 @@ public class HealthTips extends AppCompatActivity {
         }
         return resultStrs;//return the array of data to the doInBackGround method
 
+    }
+
+    public boolean isConnectedToInternet(){
+        ConnectivityManager connectivity = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null)
+        {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null)
+                for (int i = 0; i < info.length; i++)
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED)
+                    {
+                        return true;
+                    }
+
+        }
+        return false;
     }
 }
 
