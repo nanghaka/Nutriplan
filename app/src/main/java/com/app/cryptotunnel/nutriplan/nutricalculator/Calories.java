@@ -53,7 +53,7 @@ public class Calories extends Fragment {
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                show.setText(String.valueOf(calories));
+                //show.setText(String.valueOf(calories));
             }
         });
 
