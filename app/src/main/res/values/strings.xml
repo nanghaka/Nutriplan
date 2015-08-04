@@ -97,6 +97,8 @@
     <string name="pref_default_age_key">20</string>
     <string name="pref_age_key">age</string>
     <string name="pref_age_title">Age</string>
+    <string name="height_required">Height Required</string>
+    <string name="age_required">Age Required</string>
 
     <!--end of scanner strings-->
 

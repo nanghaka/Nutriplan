@@ -169,7 +169,7 @@ public class ScannerActivity extends AppCompatActivity implements MessageDialogF
         } catch (Exception e) {
             e.printStackTrace();
         }
-       // showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());
+       showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());
     }
 
     public void showMessageDialog(String message) {

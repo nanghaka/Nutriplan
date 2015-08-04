@@ -44,4 +44,6 @@ dependencies {
     compile 'com.android.support:support-v4:22.2.1'
     compile 'com.melnykov:floatingactionbutton:1.2.0'
     compile 'com.parse.bolts:bolts-android:1.+'
+    compile 'com.android.support:percent:22.2.0'
+    compile 'com.android.support:recyclerview-v7:22.2.1'
 }
