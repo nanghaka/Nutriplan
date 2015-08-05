@@ -99,6 +99,7 @@
     <string name="pref_age_title">Age</string>
     <string name="height_required">Height Required</string>
     <string name="age_required">Age Required</string>
+    <string name="reset">reset</string>
 
     <!--end of scanner strings-->
 

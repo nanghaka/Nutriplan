@@ -1,69 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_orange"
-    android:orientation="vertical" >
+    tools:context=".nutricalculator.Calories"
+    android:orientation="vertical">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/wt"
-        android:layout_marginLeft="61dp"
-        android:layout_marginStart="61dp"
-        android:layout_marginTop="91dp"
-        android:id="@+id/weightc"
-        android:textSize="20sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/inner_relative_layout"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ht"
-        android:textSize="20sp"
-        android:layout_below="@+id/weightc"
-        android:layout_alignRight="@+id/weightc"
-        android:layout_alignEnd="@+id/weightc"
-        android:layout_marginTop="85dp"
-        android:id="@+id/textView" />
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/weightedit"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+            <EditText
+                android:id="@+id/weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_action_person"
+                android:drawableLeft="@drawable/ic_action_person"
+                android:ems="10"
+                android:maxLength="5"
+                android:inputType="numberDecimal"
+                android:hint="@string/wt"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout_height"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/text_input_layout_weight"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLength="5"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:drawableStart="@drawable/ic_action_person"
+                android:drawableLeft="@drawable/ic_action_person"
+                android:hint="@string/ht"/>
+        </android.support.design.widget.TextInputLayout>
 
 
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/heightedit"
-        android:layout_alignBottom="@+id/weightc"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/weightc"
-        android:layout_toEndOf="@+id/weightc" />
+        <Button
+            android:layout_width="wrap_content"
+            android:text="@string/calculator"
+            android:layout_height="wrap_content"
+            android:id="@+id/calculate"
+            android:textColor="@color/white"
+            android:background="@color/accent_material_light"
+            android:layout_below="@+id/text_input_layout_height"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:text="@string/calculator"
-        android:layout_height="wrap_content"
-        android:id="@+id/calculate"
-        android:layout_alignParentBottom="true"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:text="@string/reset"
+            android:layout_height="wrap_content"
+            android:id="@+id/reset"
+            android:layout_alignTop="@+id/calculate"
+            android:layout_alignRight="@+id/text_input_layout_height"
+            android:layout_alignEnd="@+id/text_input_layout_height" />
+    </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="show"
-        android:id="@+id/show"
-        android:layout_above="@+id/calculate"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView" />
+
+
 </RelativeLayout>

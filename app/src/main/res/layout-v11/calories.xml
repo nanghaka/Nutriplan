@@ -89,8 +89,18 @@
             android:text="@string/calculator"
             android:layout_height="wrap_content"
             android:id="@+id/calculate"
+            android:textColor="@color/white"
             android:background="@color/accent_material_light"
             android:layout_below="@+id/gender"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:text="@string/reset"
+            android:layout_height="wrap_content"
+            android:id="@+id/reset"
+            android:layout_alignTop="@+id/calculate"
+            android:layout_alignRight="@+id/text_input_layout_age"
+            android:layout_alignEnd="@+id/text_input_layout_age" />
     </RelativeLayout>
 
 

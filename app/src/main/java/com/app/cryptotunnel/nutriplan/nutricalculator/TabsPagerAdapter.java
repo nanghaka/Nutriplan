@@ -3,6 +3,7 @@ package com.app.cryptotunnel.nutriplan.nutricalculator;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.widget.RadioGroup;
 
 import com.app.cryptotunnel.nutriplan.nutricalculator.BMI;
 import com.app.cryptotunnel.nutriplan.nutricalculator.Calories;
@@ -20,7 +21,12 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 		case 0:
 			return new Calories();
 		case 1:
-			return new Proteins();
+			return new Proteins() {
+				@Override
+				public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+				}
+			};
         case 2:
             return new BMI();
 

@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.app.cryptotunnel.nutriplan.R;
 
-public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeListener {
+public abstract class Proteins extends Fragment implements RadioGroup.OnCheckedChangeListener {
 
     RadioGroup energyLevel;
     EditText weightEdit;
@@ -26,42 +26,42 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.proteins, container, false);
 
-        calculate = (Button) rootView.findViewById(R.id.calculate);
-        weightEdit = (EditText) rootView.findViewById(R.id.weightedit);
-        energyLevel = (RadioGroup) rootView.findViewById(R.id.energyLevel);
-        show = (TextView) rootView.findViewById(R.id.show);
-
-        energyLevel.setOnCheckedChangeListener(this);
-
-        calculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                show.setText(proteinResult.toString());
-            }
-        });
+//        calculate = (Button) rootView.findViewById(R.id.calculate);
+//        weightEdit = (EditText) rootView.findViewById(R.id.weightedit);
+//        energyLevel = (RadioGroup) rootView.findViewById(R.id.energyLevel);
+//        show = (TextView) rootView.findViewById(R.id.show);
+//
+//        energyLevel.setOnCheckedChangeListener(this);
+//
+//        calculate.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                show.setText(proteinResult.toString());
+//            }
+//        });
 
 		return rootView;
 	}
 
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId){
-            case R.id.simple:
-                proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.4);
-                //show.setText(proteinResult.toString());
-                break;
-            case R.id.moderate:
-                //proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.4);
-                proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.6);
-                //show.setText(proteinResult.toString());
-                break;
-            case R.id.active:
-               // proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.6);
-                proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.9);
-                break;
-
-        }
+//    @Override
+//    public void onCheckedChanged(RadioGroup group, int checkedId) {
+//        switch (checkedId){
+//            case R.id.simple:
+//                proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.4);
+//                //show.setText(proteinResult.toString());
+//                break;
+//            case R.id.moderate:
+//                //proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.4);
+//                proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.6);
+//                //show.setText(proteinResult.toString());
+//                break;
+//            case R.id.active:
+//               // proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.6);
+//                proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.9);
+//                break;
+//
+//        }
 
     }
 
-}
+
