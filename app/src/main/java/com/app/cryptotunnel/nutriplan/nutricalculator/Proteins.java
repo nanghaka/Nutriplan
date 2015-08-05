@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.app.cryptotunnel.nutriplan.R;
 
-public abstract class Proteins extends Fragment implements RadioGroup.OnCheckedChangeListener {
+public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeListener {
 
     RadioGroup energyLevel;
     EditText weightEdit;
@@ -43,24 +43,24 @@ public abstract class Proteins extends Fragment implements RadioGroup.OnCheckedC
 		return rootView;
 	}
 
-//    @Override
-//    public void onCheckedChanged(RadioGroup group, int checkedId) {
-//        switch (checkedId){
-//            case R.id.simple:
-//                proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.4);
-//                //show.setText(proteinResult.toString());
-//                break;
-//            case R.id.moderate:
-//                //proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.4);
-//                proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.6);
-//                //show.setText(proteinResult.toString());
-//                break;
-//            case R.id.active:
-//               // proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.6);
-//                proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.9);
-//                break;
-//
-//        }
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId){
+            case R.id.simple:
+                proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.4);
+                //show.setText(proteinResult.toString());
+                break;
+            case R.id.moderate:
+                //proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.4);
+                proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.6);
+                //show.setText(proteinResult.toString());
+                break;
+            case R.id.active:
+               // proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.6);
+                proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.9);
+                break;
+
+        }
 
     }
 
