@@ -15,7 +15,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class FormatSelectorDialogFragment extends DialogFragment {
     public interface FormatSelectorDialogListener {
-        public void onFormatsSaved(ArrayList<Integer> selectedIndices);
+        void onFormatsSaved(ArrayList<Integer> selectedIndices);
     }
 
     private ArrayList<Integer> mSelectedIndices;
@@ -48,11 +48,7 @@ public class FormatSelectorDialogFragment extends DialogFragment {
         int i = 0;
         for(BarcodeFormat format : ZXingScannerView.ALL_FORMATS) {
             formats[i] = format.toString();
-            if(mSelectedIndices.contains(i)) {
-                checkedIndices[i] = true;
-            } else {
-                checkedIndices[i] = false;
-            }
+            checkedIndices[i] = mSelectedIndices.contains(i);
             i++;
         }
 

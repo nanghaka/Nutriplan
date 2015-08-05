@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.cryptotunnel.nutriplan.R;
+import com.app.cryptotunnel.nutriplan.customexception.InvalidValueException;
 
 public class BMI extends Fragment {
 
@@ -52,10 +53,14 @@ public class BMI extends Fragment {
 						value=(w/(h*h));
 						Toast.makeText(getActivity(), "Clicked button "+ value, Toast.LENGTH_SHORT).show();
 					}else {
-						editTextError();
+						throw new InvalidValueException(value);
 					}
 
 				}catch (NumberFormatException e){
+					e.printStackTrace();
+					Log.e("ONCHECKCLICKED_BUG", e.toString());
+					editTextError();
+				} catch (InvalidValueException e) {
 					e.printStackTrace();
 					Log.e("ONCHECKCLICKED_BUG", e.toString());
 					editTextError();

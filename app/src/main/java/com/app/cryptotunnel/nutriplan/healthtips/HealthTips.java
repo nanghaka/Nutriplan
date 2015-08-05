@@ -177,6 +177,7 @@ public class HealthTips extends AppCompatActivity {
         }catch (ArrayIndexOutOfBoundsException e){
             e.printStackTrace();
             Log.e("ARRAY_SHARE_BUT", e.toString());
+            Toast.makeText(HealthTips.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
         }
 
 

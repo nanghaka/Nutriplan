@@ -65,6 +65,7 @@
             android:text="@string/reset"
             android:layout_height="wrap_content"
             android:id="@+id/reset"
+            android:background="@color/button_material_light"
             android:layout_alignTop="@+id/calculate"
             android:layout_alignRight="@+id/text_input_layout_height"
             android:layout_alignEnd="@+id/text_input_layout_height" />

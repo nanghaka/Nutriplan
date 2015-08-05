@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.cryptotunnel.nutriplan.R;
+import com.app.cryptotunnel.nutriplan.customexception.InvalidValueException;
 
 public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeListener {
 
@@ -47,7 +48,7 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getActivity(), "Clicked button", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Clicked button" + proteinResult, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -69,10 +70,14 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
                     if (proteinResult > 0){
                         Toast.makeText(getActivity(), "Clicked button "+ proteinResult, Toast.LENGTH_SHORT).show();
                     }else {
-                        editTextError();
+                        throw new InvalidValueException(proteinResult);
                     }
 
                 }catch (NumberFormatException e){
+                    e.printStackTrace();
+                    Log.e("ONCHECKCLICKED_BUG", e.toString());
+                    editTextError();
+                } catch (InvalidValueException e) {
                     e.printStackTrace();
                     Log.e("ONCHECKCLICKED_BUG", e.toString());
                     editTextError();
@@ -89,10 +94,14 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
                     if (proteinResult > 0){
                         Toast.makeText(getActivity(), "Clicked button "+ proteinResult, Toast.LENGTH_SHORT).show();
                     }else {
-                        editTextError();
+                        throw new InvalidValueException(proteinResult);
                     }
 
                 }catch (NumberFormatException e){
+                    e.printStackTrace();
+                    Log.e("ONCHECKCLICKED_BUG", e.toString());
+                    editTextError();
+                } catch (InvalidValueException e) {
                     e.printStackTrace();
                     Log.e("ONCHECKCLICKED_BUG", e.toString());
                     editTextError();
@@ -109,10 +118,14 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
                     if (proteinResult > 0){
                         Toast.makeText(getActivity(), "Clicked button "+ proteinResult, Toast.LENGTH_SHORT).show();
                     }else {
-                        editTextError();
+                       throw new InvalidValueException(proteinResult);
                     }
 
                 }catch (NumberFormatException e){
+                    e.printStackTrace();
+                    Log.e("ONCHECKCLICKED_BUG", e.toString());
+                    editTextError();
+                } catch (InvalidValueException e) {
                     e.printStackTrace();
                     Log.e("ONCHECKCLICKED_BUG", e.toString());
                     editTextError();
@@ -127,6 +140,5 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
         Resources res = getResources();
         textInputLayoutWeight.setError(res.getString(R.string.weight_required));
     }
-
 }
 

@@ -15,14 +15,16 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.app.cryptotunnel.nutriplan.R;
+import com.app.cryptotunnel.nutriplan.customexception.InvalidValueException;
 
 
-public class Calories extends Fragment implements RadioGroup.OnCheckedChangeListener {
+public class Calories extends Fragment implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 
-    Button calculate;
+    Button calculate,reset;
     RadioGroup gender;
-    double w, h, a, calories;
+    double w, h, a, calories, doubleTest;
     EditText weight,height,age;
+    int numberSentByRadioButton = 0;
     TextInputLayout textInputLayoutHeight,textInputLayoutWeight,textInputLayoutAge;
 
 
@@ -41,6 +43,8 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
         textInputLayoutAge = (TextInputLayout) rootView.findViewById(R.id.text_input_layout_age);
 
         calculate = (Button) rootView.findViewById(R.id.calculate);
+        reset = (Button) rootView.findViewById(R.id.reset);
+
 
         textInputLayoutHeight.setErrorEnabled(true);
         textInputLayoutWeight.setErrorEnabled(true);
@@ -48,17 +52,8 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
 
         gender.setOnCheckedChangeListener(this);
 
-
-        calculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(getActivity(), "Clicked button", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-
+        calculate.setOnClickListener(this);
+        reset.setOnClickListener(this);
 
         return rootView;
     }
@@ -69,36 +64,43 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
         switch (checkedId) {
 
             case R.id.male:
-                try {
-                    changeStringToDouble();
-                    if (w > 0 && h > 0 && a > 0){
-                        calories = ((10 * w) + (6.25 * h) - (5 * a) + 5);
-                    }else {
-                editTextError();
-            }
 
-        }catch (NumberFormatException e){
-                    e.printStackTrace();
-                    Log.e("ONCHECKCLICKED_BUG", e.toString());
-                   editTextError();
-                }
+                resultFromRadioButtons(1);
+//                try {
+//
+//                    changeStringToDouble();
+//                    calories = ((10 * w) + (6.25 * h) - (5 * a) + 5);
+//
+//                }catch (NumberFormatException e){
+//                    e.printStackTrace();
+//                    Log.e("ONCHECKCLICKED_BUG", e.toString());
+//                   editTextError();
+//                } catch (InvalidValueException e) {
+//                    e.printStackTrace();
+//                    editTextError();
+//                }
                 break;
 
             case R.id.female:
-                try {
-                    changeStringToDouble();
-                    if (w > 0 && h > 0 && a > 0){
-                        calories = ((10 * w) + (6.25 * h) - (5 * a) - 161);
-                    }else {
-                        editTextError();
-                    }
 
-                }catch (NumberFormatException e){
-                    e.printStackTrace();
-                    Log.e("ONCHECKCLICKED_BUG", e.toString());
-                    editTextError();
-                }
+                resultFromRadioButtons(2);
+//                try {
+//
+//                    changeStringToDouble();
+//                    calories = ((10 * w) + (6.25 * h) - (5 * a) - 161);
+//
+//                }catch (NumberFormatException e){
+//                    e.printStackTrace();
+//                    Log.e("ONCHECKCLICKED_BUG", e.toString());
+//                    editTextError();
+//                } catch (InvalidValueException e) {
+//                    e.printStackTrace();
+//                    editTextError();
+//                }
                 break;
+
+            default:
+
         }
     }
 
@@ -110,13 +112,76 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
         textInputLayoutAge.setError(res.getString(R.string.age_required));
     }
 
-    public void changeStringToDouble(){
+    public void changeStringToDouble() throws InvalidValueException {
         w = Double.parseDouble(String.valueOf(weight.getText()));
         h = Double.parseDouble(String.valueOf(height.getText()));
         a = Double.parseDouble(String.valueOf(age.getText()));
+
+        if (w <= 0 && h <= 0 && a <= 0){
+            throw new InvalidValueException(w);
+        }
     }
 
 
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+            case R.id.calculate:
+
+
+                switch (numberSentByRadioButton) {
+                    case 1:
+                        try {
+
+                            changeStringToDouble();
+                            calories = ((10 * w) + (6.25 * h) - (5 * a) + 5);
+                            Toast.makeText(getActivity(), "Clicked button "+ calories, Toast.LENGTH_SHORT).show();
+
+                        }catch (NumberFormatException e){
+                            e.printStackTrace();
+                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+                            editTextError();
+                        } catch (InvalidValueException e) {
+                            e.printStackTrace();
+                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+                            editTextError();
+                        }
+                        break;
+
+                    case 2:
+                        try {
+
+                            changeStringToDouble();
+                            calories = ((10 * w) + (6.25 * h) - (5 * a) - 161);
+                            Toast.makeText(getActivity(), "Clicked button "+ calories, Toast.LENGTH_SHORT).show();
+
+                        }catch (NumberFormatException e){
+                            e.printStackTrace();
+                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+                            editTextError();
+                        } catch (InvalidValueException e) {
+                            e.printStackTrace();
+                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+                            editTextError();
+                        }
+                        break;
+                }
+                break;
+
+
+            case R.id.reset:
+                weight.setText("");
+                height.setText("");
+                age.setText("");
+                break;
+        }
+
+    }
+
+    public void resultFromRadioButtons(int r){
+       numberSentByRadioButton = r;
+    }
 }
 
 

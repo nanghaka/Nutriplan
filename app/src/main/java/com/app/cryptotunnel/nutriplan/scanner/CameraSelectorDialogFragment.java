@@ -11,7 +11,7 @@ import com.app.cryptotunnel.nutriplan.R;
 
 public class CameraSelectorDialogFragment extends DialogFragment {
     public interface CameraSelectorDialogListener {
-        public void onCameraSelected(int cameraId);
+        void onCameraSelected(int cameraId);
     }
 
     private int mCameraId;
