@@ -163,11 +163,7 @@ public class LoginActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(View v) {
-//        Object buttonId = v.getId();
-//        if (buttonId == R.id.sign_in_button) {
-//            onSignInClicked();
-//        }
-//        else if ()
+
         switch (v.getId()){
             case R.id.sign_in_button:
                 onSignInClicked();
@@ -201,9 +197,6 @@ public class LoginActivity extends AppCompatActivity implements
                     mGoogleApiClient.connect();
                 }
             } else {
-                // Could not resolve the connection result, show the user an
-                // error dialog.
-               // showErrorDialog(connectionResult);
                 showErrorDialog(connectionResult.getErrorCode());
                 Log.d(TAG,"error" );
                 Toast.makeText(getApplicationContext(), "Login failure", Toast.LENGTH_SHORT).show();

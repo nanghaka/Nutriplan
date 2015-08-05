@@ -42,7 +42,6 @@ public class NutriDairy extends AppCompatActivity {
         final List<Contact> contacts = db.getAllContacts();
 
         for (Contact cn : contacts) {
-           // String log = "Id: " + cn.getID() + " ,Name: " + cn.getName() + " ,Phone: " + cn.getPhoneNumber();
             String log = " Time: " + cn.getPhoneNumber()+"\n"+" Note: " + cn.getName();
             // Writing Contacts to log
             Log.d("Name: ", log);
@@ -52,13 +51,11 @@ public class NutriDairy extends AppCompatActivity {
         nutriArray = new String[al.size()];
         nutriArray = al.toArray(nutriArray);
 
-
         // Define a new Adapter
         // First parameter - Context
         // Second parameter - Layout for the row
         // Third parameter - ID of the TextView to which the data is written
         // Forth - the Array of data
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, nutriArray);
 
@@ -83,31 +80,24 @@ public class NutriDairy extends AppCompatActivity {
 
                 switch (itemPosition) {
                     case 0:
-                       // if (contact.getID() == position) db.deleteContact(new Contact(itemPosition));
                         db.deleteContact(new Contact(0));
                         Toast.makeText(getApplicationContext(),
                                 "clicked daily plan" + itemValue, Toast.LENGTH_LONG)
                                 .show();
                         break;
                     case 1:
-                      //  if (contact.getID() == position)
                             db.deleteContact(new Contact(1));
-                       // db.deleteContact(new Contact(itemPosition));
                         Toast.makeText(getApplicationContext(),
                                 "clicked nutri calculator", Toast.LENGTH_LONG)
                                 .show();
                         break;
                     case 2:
-                        //if (contact.getID() == position) db.deleteContact(new Contact(itemPosition));
-                        //db.deleteContact(new Contact(contact.getID()));
-
                          db.deleteContact(new Contact(2));
                         Toast.makeText(getApplicationContext(),
                                 "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
                                 .show();
                         break;
                     case 3:
-                        //db.deleteContact(new Contact(itemPosition));
                         db.deleteContact(new Contact(3));
                         Toast.makeText(getApplicationContext(),
                                 "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)

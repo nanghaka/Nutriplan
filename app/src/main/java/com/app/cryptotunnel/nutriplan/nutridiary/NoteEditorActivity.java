@@ -27,10 +27,7 @@ public class NoteEditorActivity extends AppCompatActivity {
     String[] nutriArray;
 
     DatabaseHandler db = new DatabaseHandler(this);
-    Contact contact = new Contact();
-    WeightTrackerContract wtc = new WeightTrackerContract();
     ArrayList<String> al = new ArrayList<String>();
-    //DatabaseHandler db = new DatabaseHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +37,6 @@ public class NoteEditorActivity extends AppCompatActivity {
         noteText = (EditText) findViewById(R.id.noteText);
         save = (Button) findViewById(R.id.save);
         cancel = (Button) findViewById(R.id.cancel);
-//
-//        final List<WeightTrackerContract> wtc = db.getAllWeights();
-//
-//        for (WeightTrackerContract cn : wtc) {
-//            String log = "Weights: :-)" + cn.get_weight();
-//            // Writing Contacts to log
-//            Log.d("Weights: ", log);
-//            al.add(log);
-//        }
 
         nutriArray = new String[al.size()];
         nutriArray = al.toArray(nutriArray);
@@ -58,8 +46,6 @@ public class NoteEditorActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("Insert: ", "Inserting ..");
                 db.addContact(new Contact(noteText.getText().toString(), getTime()));
-//                String k= nutriArray[2];
-//                Log.d("SQL", "results"+k);
                 Toast.makeText(getApplicationContext(),"Note has been saved", Toast.LENGTH_SHORT).show();
             }
         });
@@ -67,15 +53,6 @@ public class NoteEditorActivity extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  db.deleteContact(new Contact(20));
-//                Log.d("SQL Insert: ", "Inserting ..");
-//                db.addWeight(new WeightTrackerContract("36",getTime()));
-//                Log.d("SQL Insert: ", "Inserting 36"+getTime());
-//                db.addWeight(new WeightTrackerContract("56",getTime()));
-//                Log.d("SQL Insert: ", "Inserting 56"+getTime());
-//
-//                Toast.makeText(getBaseContext(), "Inserting...", Toast.LENGTH_SHORT).show();
-
                 onBackPressed();
             }
         });
@@ -84,10 +61,6 @@ public class NoteEditorActivity extends AppCompatActivity {
     }
     @SuppressLint("SimpleDateFormat")
     public static String getTime() {
-
-//        Locale locale = new Locale("en_US");
-//        Locale.setDefault(locale);
-
         String pattern = "yyyy-MM-dd HH:mm:ss ";
         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
         String key = formatter.format(new Date());

@@ -164,11 +164,10 @@ public class HealthTips extends AppCompatActivity {
 
         weightArray = new String[al.size()];
         weightArray = al.toArray(weightArray);
-        // wordList = Arrays.asList(array);
         Intent shareIntent = null;
 
             Log.d("SHARE", weightArray[position]);
-        String sendText = weightArray[position];
+            String sendText = weightArray[position];
             shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
             shareIntent.setType("text/plain");
@@ -270,8 +269,6 @@ public class HealthTips extends AppCompatActivity {
                 e.printStackTrace();
                 Log.e("GENERAL ERROR",e.toString());
             }
-
-
 
 
             if (pDialog.isShowing()){
