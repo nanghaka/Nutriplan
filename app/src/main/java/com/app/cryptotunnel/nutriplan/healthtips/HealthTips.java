@@ -166,6 +166,7 @@ public class HealthTips extends AppCompatActivity {
         weightArray = al.toArray(weightArray);
         Intent shareIntent = null;
 
+        try {
             Log.d("SHARE", weightArray[position]);
             String sendText = weightArray[position];
             shareIntent = new Intent(Intent.ACTION_SEND);
@@ -173,6 +174,12 @@ public class HealthTips extends AppCompatActivity {
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_TEXT,
                     sendText + APP_SHARE_HASHTAG);
+        }catch (ArrayIndexOutOfBoundsException e){
+            e.printStackTrace();
+            Log.e("ARRAY_SHARE_BUT", e.toString());
+        }
+
+
         return shareIntent;
     }
 
