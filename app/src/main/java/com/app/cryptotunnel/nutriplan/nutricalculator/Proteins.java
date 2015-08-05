@@ -30,11 +30,11 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.proteins, container, false);
 
-        energyLevel = (RadioGroup) rootView.findViewById(R.id.gender);
+        energyLevel = (RadioGroup) rootView.findViewById(R.id.energylevel);
 
-        weightEdit = (EditText) rootView.findViewById(R.id.age);
+        weightEdit = (EditText) rootView.findViewById(R.id.weight);
 
-        textInputLayoutWeight = (TextInputLayout) rootView.findViewById(R.id.text_input_layout_age);
+        textInputLayoutWeight = (TextInputLayout) rootView.findViewById(R.id.text_input_layout_weight);
 
         calculate = (Button) rootView.findViewById(R.id.calculate);
 
@@ -125,7 +125,7 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
 
     public void editTextError() {
         Resources res = getResources();
-        textInputLayoutWeight.setError(res.getString(R.string.age_required));
+        textInputLayoutWeight.setError(res.getString(R.string.weight_required));
     }
 
 }
