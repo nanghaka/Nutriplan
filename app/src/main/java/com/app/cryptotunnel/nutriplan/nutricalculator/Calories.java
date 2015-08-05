@@ -52,8 +52,7 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //show.setText(String.valueOf(calories));
-               // showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());
+
                 Toast.makeText(getActivity(), "Clicked button", Toast.LENGTH_SHORT).show();
             }
         });
@@ -71,13 +70,14 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
 
             case R.id.male:
                 try {
-                    w = Double.parseDouble(String.valueOf(weight.getText()));
-                    h = Double.parseDouble(String.valueOf(height.getText()));
-                    a = Double.parseDouble(String.valueOf(age.getText()));
+                    changeStringToDouble();
                     if (w > 0 && h > 0 && a > 0){
                         calories = ((10 * w) + (6.25 * h) - (5 * a) + 5);
-                    }
-                }catch (NumberFormatException e){
+                    }else {
+                editTextError();
+            }
+
+        }catch (NumberFormatException e){
                     e.printStackTrace();
                     Log.e("ONCHECKCLICKED_BUG", e.toString());
                    editTextError();
@@ -86,12 +86,13 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
 
             case R.id.female:
                 try {
-                    w = Double.parseDouble(String.valueOf(weight.getText()));
-                    h = Double.parseDouble(String.valueOf(height.getText()));
-                    a = Double.parseDouble(String.valueOf(age.getText()));
+                    changeStringToDouble();
                     if (w > 0 && h > 0 && a > 0){
                         calories = ((10 * w) + (6.25 * h) - (5 * a) - 161);
+                    }else {
+                        editTextError();
                     }
+
                 }catch (NumberFormatException e){
                     e.printStackTrace();
                     Log.e("ONCHECKCLICKED_BUG", e.toString());
@@ -108,17 +109,14 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
         textInputLayoutWeight.setError(res.getString(R.string.weight_required));
         textInputLayoutAge.setError(res.getString(R.string.age_required));
     }
-//    public void showMessageDialog(String message) {
-//        DialogFragment fragment = MessageDialogFragment.newInstance("Scan Results", message, this);
-//        fragment.show(getSupportFragmentManager(), "scan_results");
-//    }
-//    /**
-//     * Return the FragmentManager for interacting with fragments associated
-//     * with this activity.
-//     */
-//    public FragmentManager getSupportFragmentManager() {
-//        return mFragments;
-//    }
+
+    public void changeStringToDouble(){
+        w = Double.parseDouble(String.valueOf(weight.getText()));
+        h = Double.parseDouble(String.valueOf(height.getText()));
+        a = Double.parseDouble(String.valueOf(age.getText()));
+    }
+
+
 }
 
 

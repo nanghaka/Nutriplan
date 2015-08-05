@@ -17,38 +17,13 @@ import com.app.cryptotunnel.nutriplan.R;
 import com.app.cryptotunnel.nutriplan.database.WeightTrackerContract;
 
 public class WeightTracker extends Fragment implements  View.OnClickListener {
-	//LineChartView lineChartView;
 	Button graph,history,save;
 	EditText currentWeight;
-	//Button history;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.weight_tracker, container, false);
-//		lineChartView = (LineChartView) rootView.findViewById(R.id.chart);
-//		lineChartView.setInteractive(true);
-//		lineChartView.setZoomEnabled(true);
-//		lineChartView.setZoomType(ZoomType.HORIZONTAL_AND_VERTICAL);
-//		//lineChartView.setContainerScrollEnabled(true,container);
-//
-//		List<PointValue> values = new ArrayList<PointValue>();
-//		values.add(new PointValue(8, 5));
-//		values.add(new PointValue(8, 8));
-//		values.add(new PointValue(2, 1));
-//		values.add(new PointValue(3, 4));
-//
-//		//In most cased you can call data model methods in builder-pattern-like manner.
-//		Line line = new Line(values).setColor(R.color.blue).setCubic(true);
-//		List<Line> lines = new ArrayList<Line>();
-//		lines.add(line);
-//
-//		LineChartData data = new LineChartData();
-//		data.setLines(lines);
-//
-////		LineChartView chart = new LineChartView(context);
-////		chart.setLineChartData(data);
-//		lineChartView.setLineChartData(data);
 
 		save = (Button) rootView.findViewById(R.id.save);
 		currentWeight = (EditText) rootView.findViewById(R.id.currentWeightEdit);
@@ -57,30 +32,6 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
 		graph.setOnClickListener(this);
 		history.setOnClickListener(this);
 		save.setOnClickListener(this);
-//		graph.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				startActivity(new Intent(getActivity(), LineChartActivity.class));
-//			}
-//		});
-//
-//		history.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//
-//				startActivity(new Intent(getActivity(), History.class));
-////				Log.d("SQL Insert: ", "Inserting ..");
-////				db.addWeight(new WeightTrackerContract("36"));
-////				Log.d("SQL Insert: ", "Inserting 36");
-////				db.addWeight(new WeightTrackerContract("56"));
-////				Log.d("SQL Insert: ", "Inserting 56");
-////
-////				Toast.makeText(getActivity(), "Note has been saved", Toast.LENGTH_SHORT).show();
-//			}
-//		});
-
-
-
 
 		return rootView;
 	}

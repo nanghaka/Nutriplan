@@ -21,22 +21,9 @@ import java.util.List;
 public class History extends AppCompatActivity {
 
     String TAG = "History activity";
-    private ListView mainListView;
     ListView listView;
     ArrayList<String> al = new ArrayList<String>();
     DatabaseHandler db = new DatabaseHandler(this);
-    Contact contact = new Contact();
-
-
-    private ArrayAdapter<String> listAdapter;
-
-//    String[] weightArray={
-//            "Daily plan",
-//            "Nutri Calculator",
-//            "Health tips",
-//            "Meal dairy",
-//            "About"
-//    };
 
     String[] weightArray;
 
@@ -70,11 +57,8 @@ public class History extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, weightArray);
 
-
         // Assign adapter to ListView
         listView.setAdapter(adapter);
-
-
 
     }
 

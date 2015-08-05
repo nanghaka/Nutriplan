@@ -19,151 +19,57 @@ import com.app.cryptotunnel.nutriplan.R;
 
 public class BMI extends Fragment {
 
-    EditText heightEdit,weightEdit;
     Button calculate;
-    TextView mshow;
     double w,h,value;
-	EditText weight,height,age;
-	TextInputLayout textInputLayoutHeight,textInputLayoutWeight,textInputLayoutAge;
+	EditText weight,height;
+	TextInputLayout textInputLayoutHeight,textInputLayoutWeight;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.bmi, container, false);
 
-
-	//	gender = (RadioGroup) rootView.findViewById(R.id.gender);
-
 		weight = (EditText) rootView.findViewById(R.id.weight);
 		height = (EditText) rootView.findViewById(R.id.height);
-	//	age = (EditText) rootView.findViewById(R.id.age);
 
 		textInputLayoutHeight = (TextInputLayout) rootView.findViewById(R.id.text_input_layout_height);
 		textInputLayoutWeight = (TextInputLayout) rootView.findViewById(R.id.text_input_layout_weight);
-		//textInputLayoutAge = (TextInputLayout) rootView.findViewById(R.id.text_input_layout_age);
 
 		calculate = (Button) rootView.findViewById(R.id.calculate);
 
 		textInputLayoutHeight.setErrorEnabled(true);
 		textInputLayoutWeight.setErrorEnabled(true);
-		//textInputLayoutAge.setErrorEnabled(true);
-
-		//gender.setOnCheckedChangeListener(this);
 
 
 		calculate.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				w=Double.parseDouble(String.valueOf(weightEdit.getText()));
-                h=Double.parseDouble(String.valueOf(heightEdit.getText()));
-                value=(w/(h*h));
-               // value=math.log()
+				try {
+					w = Double.parseDouble(String.valueOf(weight.getText()));
+					h = Double.parseDouble(String.valueOf(height.getText()));
 
+					if (w > 0 && h > 0){
+						value=(w/(h*h));
+						Toast.makeText(getActivity(), "Clicked button "+ value, Toast.LENGTH_SHORT).show();
+					}else {
+						editTextError();
+					}
 
-				//show.setText(String.valueOf(calories));
-				// showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());
-				Toast.makeText(getActivity(), "Clicked button "+ value, Toast.LENGTH_SHORT).show();
+				}catch (NumberFormatException e){
+					e.printStackTrace();
+					Log.e("ONCHECKCLICKED_BUG", e.toString());
+					editTextError();
+				}
 			}
 		});
 
-
-
-
 		return rootView;
 	}
-
-
-//	@Override
-//	public void onCheckedChanged(RadioGroup group, int checkedId) {
-//		switch (checkedId) {
-//
-//			case R.id.male:
-//				try {
-//					w = Double.parseDouble(String.valueOf(weight.getText()));
-//					h = Double.parseDouble(String.valueOf(height.getText()));
-//					a = Double.parseDouble(String.valueOf(age.getText()));
-//					if (w > 0 && h > 0 && a > 0){
-//						calories = ((10 * w) + (6.25 * h) - (5 * a) + 5);
-//					}
-//				}catch (NumberFormatException e){
-//					e.printStackTrace();
-//					Log.e("ONCHECKCLICKED_BUG", e.toString());
-//					editTextError();
-//				}
-//				break;
-//
-//			case R.id.female:
-//				try {
-//					w = Double.parseDouble(String.valueOf(weight.getText()));
-//					h = Double.parseDouble(String.valueOf(height.getText()));
-//					a = Double.parseDouble(String.valueOf(age.getText()));
-//					if (w > 0 && h > 0 && a > 0){
-//						calories = ((10 * w) + (6.25 * h) - (5 * a) - 161);
-//					}
-//				}catch (NumberFormatException e){
-//					e.printStackTrace();
-//					Log.e("ONCHECKCLICKED_BUG", e.toString());
-//					editTextError();
-//				}
-//				break;
-//		}
-//	}
 
 
 	public void editTextError(){
 		Resources res = getResources();
 		textInputLayoutHeight.setError(res.getString(R.string.height_required));
 		textInputLayoutWeight.setError(res.getString(R.string.weight_required));
-		textInputLayoutAge.setError(res.getString(R.string.age_required));
 	}
-//    public void showMessageDialog(String message) {
-//        DialogFragment fragment = MessageDialogFragment.newInstance("Scan Results", message, this);
-//        fragment.show(getSupportFragmentManager(), "scan_results");
-//    }
-//    /**
-//     * Return the FragmentManager for interacting with fragments associated
-//     * with this activity.
-//     */
-//    public FragmentManager getSupportFragmentManager() {
-//        return mFragments;
-//    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//        heightEdit= (EditText) rootView.findViewById(R.id.heightedit);
-//        weightEdit= (EditText) rootView.findViewById(R.id.weightedit);
-//        calculate = (Button) rootView.findViewById(R.id.calculate);
-//        mshow = (TextView) rootView.findViewById(R.id.show);
-//
-//        calculate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                w=Double.parseDouble(String.valueOf(weightEdit.getText()));
-//                h=Double.parseDouble(String.valueOf(heightEdit.getText()));
-//                value=(w/(h*h));
-//                //value=math.log()
-//
-//               mshow.setText(String.valueOf(value));
-//
-//            }
-//        });
-//
-//		return rootView;
-//	}
-//}

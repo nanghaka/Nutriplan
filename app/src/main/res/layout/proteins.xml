@@ -26,24 +26,30 @@
                 android:maxLength="3"
                 android:ems="10"
                 android:inputType="numberDecimal"
-                android:hint="@string/age"/>
+                android:hint="@string/wt"/>
         </android.support.design.widget.TextInputLayout>
 
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/gender"
+            android:id="@+id/energylevel"
             android:layout_below="@+id/text_input_layout_age">
+
             <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/male"
-                android:text="@string/male"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/simple"
+            android:text="@string/simple"/>
             <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/female"
-                android:text="@string/female"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/moderate"
+            android:text="@string/moderate"/>
+            <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/active"
+            android:text="@string/very_active"/>
 
         </RadioGroup>
 
@@ -54,7 +60,7 @@
             android:id="@+id/calculate"
             android:textColor="@color/white"
             android:background="@color/accent_material_light"
-            android:layout_below="@+id/gender"/>
+            android:layout_below="@+id/energylevel"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -66,179 +72,7 @@
             android:layout_alignEnd="@+id/text_input_layout_age" />
     </RelativeLayout>
 
-
-
 </RelativeLayout>
 
 
 
-    <!--<?xml version="1.0" encoding="utf-8"?>-->
-    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:background="@color/light_orange"-->
-    <!--android:orientation="vertical" >-->
-
-
-
-    <!--<EditText-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/editText"-->
-    <!--android:hint="@string/wt"-->
-    <!--android:fontFamily="sans-serif"-->
-    <!--android:inputType="numberDecimal"-->
-    <!--android:layout_marginTop="68dp"-->
-    <!--/>-->
-
-    <!--<EditText-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/editText2"-->
-    <!--android:hint="@string/ht"-->
-    <!--android:fontFamily="sans-serif"-->
-    <!--android:inputType="numberDecimal"-->
-    <!--android:layout_below="@+id/editText3"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:layout_marginTop="50dp" />-->
-
-
-    <!--<EditText-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/editText3"-->
-    <!--android:hint="@string/age"-->
-    <!--android:fontFamily="sans-serif"-->
-    <!--android:inputType="numberDecimal"-->
-    <!--android:layout_marginTop="78dp"-->
-    <!--android:layout_below="@+id/editText" />-->
-
-    <!--<Button-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:text="@string/calculator"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/calculate"-->
-    <!--android:layout_alignParentBottom="true"/>-->
-
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="New Text"-->
-    <!--android:id="@+id/show"-->
-    <!--android:layout_above="@+id/calculate"-->
-    <!--android:layout_alignLeft="@+id/textView"-->
-    <!--android:layout_alignStart="@+id/textView" />-->
-
-    <!--<RadioGroup-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/gender"-->
-    <!--android:layout_above="@+id/calculate"-->
-    <!-->-->
-    <!--<RadioButton-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/male"-->
-    <!--android:text="@string/male"/>-->
-    <!--<RadioButton-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/female"-->
-    <!--android:text="@string/female"/>-->
-
-    <!--</RadioGroup>-->
-    <!--</RelativeLayout>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:background="@color/light_orange"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:orientation="vertical" >-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/weightc"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/wt"-->
-        <!--android:textColor="@color/grey_700"-->
-        <!--android:layout_alignBottom="@+id/weightedit"-->
-        <!--android:layout_centerHorizontal="true" />-->
-    <!--<EditText-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/weightedit"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_marginTop="142dp"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_toRightOf="@+id/weightc"-->
-        <!--android:layout_toEndOf="@+id/weightc" />-->
-    <!--<Button-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@id/calculate"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:text="@string/calculate"/>-->
-
-    <!--<RadioGroup-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="fill_parent"-->
-        <!--android:id="@+id/energyLevel"-->
-        <!--android:layout_below="@+id/weightedit"-->
-        <!--android:layout_marginTop="91dp">-->
-        <!--<RadioButton-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/simple"-->
-            <!--android:text="simple"/>-->
-        <!--<RadioButton-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/moderate"-->
-            <!--android:text="moderate"/>-->
-        <!--<RadioButton-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/active"-->
-            <!--android:text="very active"/>-->
-
-        <!--</RadioGroup>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="show"-->
-        <!--android:id="@+id/show"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_alignLeft="@+id/weightedit"-->
-        <!--android:layout_alignStart="@+id/weightedit" />-->
-
-<!--</RelativeLayout>-->

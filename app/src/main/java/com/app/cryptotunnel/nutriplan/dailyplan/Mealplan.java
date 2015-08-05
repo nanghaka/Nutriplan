@@ -55,17 +55,12 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
             case ("30"):
                 retrieveFeedTask.execute("http://192.168.57.1/lynda-php/jsontest4.php");
                 break;
-           // case ("20"):
+
             default:
                 retrieveFeedTask.execute("http://192.168.57.1/lynda-php/jsontest2.php");
                 break;
 
         }
-      //  if (input.equals(prefs.getString(getString(R.string.pref_age_key)))
-
-        //retrieveFeedTask.execute();
-
-
 
 
         dayoftheweek= (TextView) rootView.findViewById(R.id.weekDay);
@@ -103,9 +98,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
                     if (counter <= n && counter >= 0) {
                         updatetext();
                     } else counter = n;
-;
                     break;
-
 
             }
 
@@ -162,7 +155,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
                 Thread timer = new Thread(){
                     public void run(){
                         try {
-                            sleep(2000);
+                            sleep(1000);
                         }catch (InterruptedException e){
                             e.printStackTrace();
                         }finally {
