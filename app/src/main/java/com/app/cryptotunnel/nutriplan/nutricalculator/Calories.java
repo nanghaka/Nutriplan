@@ -25,7 +25,6 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
     EditText weight,height,age;
     TextInputLayout textInputLayoutHeight,textInputLayoutWeight,textInputLayoutAge;
 
-    Resources res = getResources();
 
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -80,7 +79,7 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
                     }
                 }catch (NumberFormatException e){
                     e.printStackTrace();
-                    Log.e("OnCheckChanged", e.toString());
+                    Log.e("ONCHECKCLICKED_BUG", e.toString());
                    editTextError();
                 }
                 break;
@@ -95,7 +94,7 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
                     }
                 }catch (NumberFormatException e){
                     e.printStackTrace();
-                    Log.e("OnCheckChanged", e.toString());
+                    Log.e("ONCHECKCLICKED_BUG", e.toString());
                     editTextError();
                 }
                 break;
@@ -104,6 +103,7 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
 
 
     public void editTextError(){
+        Resources res = getResources();
         textInputLayoutHeight.setError(res.getString(R.string.height_required));
         textInputLayoutWeight.setError(res.getString(R.string.weight_required));
         textInputLayoutAge.setError(res.getString(R.string.age_required));
