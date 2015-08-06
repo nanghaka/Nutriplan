@@ -56,7 +56,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
 
         if (connectionCheck==true){
 
-            retrieveFeedTask.execute();
+            retrieveFeedTask.execute("http://192.168.57.1/lynda-php/jsontest2.php");
         }else {
             //Toast.makeText(getActivity().getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
             Snackbar.make(rootView, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
@@ -185,7 +185,9 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
                             Toast.makeText(getActivity(), "Connection was interrupted", Toast.LENGTH_SHORT).show();
                         }catch (NullPointerException e){
                             e.printStackTrace();
-                            Snackbar.make(rootView, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
+                            //Snackbar.make(rootView, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
+                            pDialog.dismiss();
+//                            Toast.makeText(getActivity(), "Connection was interrupted", Toast.LENGTH_SHORT).show();
                         }finally {
                             pDialog.dismiss();
                         }

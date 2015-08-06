@@ -77,10 +77,15 @@ public class HealthTips extends AppCompatActivity {
     private final int m = image.length;
     private int n ;
 
+    View parentLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_tips);
+        parentLayout = findViewById(R.id.root_view);
+
+
 
             boolean connectionCheck = isConnectedToInternet();
 
@@ -88,7 +93,7 @@ public class HealthTips extends AppCompatActivity {
             RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
             retrieveFeedTask.execute();
         }else {
-                        Snackbar.make(null, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(parentLayout, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
         }
 
 
@@ -124,6 +129,10 @@ public class HealthTips extends AppCompatActivity {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     e.printStackTrace();
                     Log.d("array", String.valueOf(e.toString()));
+                } catch (NullPointerException e){
+                    e.printStackTrace();
+                    Log.d("array", String.valueOf(e.toString()));
+                    Snackbar.make(parentLayout, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
@@ -146,8 +155,11 @@ public class HealthTips extends AppCompatActivity {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     e.printStackTrace();
                     Log.d("array", String.valueOf(e.toString()));
+                } catch (NullPointerException e){
+                    e.printStackTrace();
+                    Log.d("array", String.valueOf(e.toString()));
+                    Snackbar.make(parentLayout, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
                 }
-
             }
         });
     }
@@ -261,32 +273,25 @@ public class HealthTips extends AppCompatActivity {
             pDialog.show();
         }
 
-        protected void onPostExecute(String[] feed) {
-            try{//handling error for internet connection
-                for (String output: feed){
-                    Log.d("OPEO", output);
-                }
-
-                n = feed.length;
-
-                updatetext();
-
-            }catch (NullPointerException e){
-                e.printStackTrace();
-                Log.e("NPE",e.toString());
-            }catch (Exception e){
-                e.printStackTrace();
-                Log.e("GENERAL ERROR",e.toString());
-            }
-
+        protected void onPostExecute(final String[] feed) {
 
             if (pDialog.isShowing()){
                 Thread timer = new Thread(){
                     public void run(){
                         try {
-                            sleep(300);
+                            n = feed.length;
+                            updatetext();
+                            sleep(1000);
                         }catch (InterruptedException e){
                             e.printStackTrace();
+                            pDialog.dismiss();
+                            //Toast.makeText(getApplicationContext(), "Connection was interrupted", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(parentLayout, "Connection was interrupted", Snackbar.LENGTH_SHORT).show();
+                        }catch (NullPointerException e){
+                            e.printStackTrace();
+                            pDialog.dismiss();
+                            Snackbar.make(parentLayout, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
+//                            Toast.makeText(getApplicationContext(), "Connection was interrupted", Toast.LENGTH_SHORT).show();
                         }finally {
                             pDialog.dismiss();
                         }
@@ -294,6 +299,38 @@ public class HealthTips extends AppCompatActivity {
                 };
                 timer.start();
             }
+//            try{//handling error for internet connection
+//                for (String output: feed){
+//                    Log.d("OPEO", output);
+//                }
+//
+//                n = feed.length;
+//
+//                updatetext();
+//
+//            }catch (NullPointerException e){
+//                e.printStackTrace();
+//                Log.e("NPE",e.toString());
+//            }catch (Exception e){
+//                e.printStackTrace();
+//                Log.e("GENERAL ERROR",e.toString());
+//            }
+//
+//
+//            if (pDialog.isShowing()){
+//                Thread timer = new Thread(){
+//                    public void run(){
+//                        try {
+//                            sleep(300);
+//                        }catch (InterruptedException e){
+//                            e.printStackTrace();
+//                        }finally {
+//                            pDialog.dismiss();
+//                        }
+//                    }
+//                };
+//                timer.start();
+//            }
         }
     }
 
