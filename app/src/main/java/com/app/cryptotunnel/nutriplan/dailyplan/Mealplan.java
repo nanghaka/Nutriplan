@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,10 +42,12 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
     String[] lunchArray;
     String[] dinnerArray;
     private int n ;
+    View rootView;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.meal_plan, container, false);
+		 rootView = inflater.inflate(R.layout.meal_plan, container, false);
 
         RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
 
@@ -55,7 +58,9 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
 
             retrieveFeedTask.execute();
         }else {
-            Toast.makeText(getActivity().getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity().getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
+            Snackbar.make(rootView, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
+
         }
 
 
@@ -123,8 +128,8 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
         } catch (NullPointerException e){
             e.printStackTrace();
             Log.d("Meal plan", "ARRAYBUG" + e.toString());
-            Toast.makeText(getActivity().getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
-
+           // Toast.makeText(getActivity().getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
+            Snackbar.make(rootView, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
         }
     }
 
@@ -177,11 +182,12 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
                             sleep(1000);
                         }catch (InterruptedException e){
                             e.printStackTrace();
+                            Toast.makeText(getActivity(), "Connection was interrupted", Toast.LENGTH_SHORT).show();
                         }catch (NullPointerException e){
                             e.printStackTrace();
+                            Snackbar.make(rootView, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
                         }finally {
                             pDialog.dismiss();
-//                            Toast.makeText(getActivity(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
                         }
                     }
                 };

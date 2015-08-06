@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
@@ -87,7 +88,7 @@ public class HealthTips extends AppCompatActivity {
             RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
             retrieveFeedTask.execute();
         }else {
-            Toast.makeText(getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(null, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
         }
 
 
@@ -177,7 +178,7 @@ public class HealthTips extends AppCompatActivity {
         }catch (ArrayIndexOutOfBoundsException e){
             e.printStackTrace();
             Log.e("ARRAY_SHARE_BUT", e.toString());
-            Toast.makeText(HealthTips.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(null, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
         }
 
 
