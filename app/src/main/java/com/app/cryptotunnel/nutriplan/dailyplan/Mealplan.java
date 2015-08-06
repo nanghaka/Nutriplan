@@ -1,7 +1,10 @@
 package com.app.cryptotunnel.nutriplan.dailyplan;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -13,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.cryptotunnel.nutriplan.R;
 import com.squareup.okhttp.OkHttpClient;
@@ -44,6 +48,17 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
 
         RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
 
+
+        boolean connectionCheck = isConnectedToInternet();
+
+        if (connectionCheck==true){
+
+            retrieveFeedTask.execute();
+        }else {
+            Toast.makeText(getActivity().getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
+        }
+
+
         //getting users input from settings screen
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String input;
@@ -57,7 +72,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
                 break;
 
             default:
-                retrieveFeedTask.execute("http://192.168.57.1/lynda-php/jsontest2.php");
+//                retrieveFeedTask.execute("http://192.168.57.1/lynda-php/jsontest2.php");
                 break;
 
         }
@@ -105,6 +120,11 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
             Log.d("Meal plan", "ARRAYBUG" + e.toString());
+        } catch (NullPointerException e){
+            e.printStackTrace();
+            Log.d("Meal plan", "ARRAYBUG" + e.toString());
+            Toast.makeText(getActivity().getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
+
         }
     }
 
@@ -144,22 +164,24 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
             pDialog.show();
         }
 
-        protected void onPostExecute(Integer feed) {
+        protected void onPostExecute(final Integer feed) {
 
 
-            n = feed;
-
-            updatetext();
 
             if (pDialog.isShowing()){
                 Thread timer = new Thread(){
                     public void run(){
                         try {
+                            n = feed;
+                            updatetext();
                             sleep(1000);
                         }catch (InterruptedException e){
                             e.printStackTrace();
+                        }catch (NullPointerException e){
+                            e.printStackTrace();
                         }finally {
                             pDialog.dismiss();
+//                            Toast.makeText(getActivity(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
                         }
                     }
                 };
@@ -205,6 +227,22 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
             dinnerArray[i] = dinner;
         }
         return breakfastArray.length;//return the array of data to the doInBackGround method
+    }
+
+    public boolean isConnectedToInternet(){
+        ConnectivityManager connectivity = (ConnectivityManager) getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null)
+        {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null)
+                for (int i = 0; i < info.length; i++)
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED)
+                    {
+                        return true;
+                    }
+
+        }
+        return false;
     }
 
 
