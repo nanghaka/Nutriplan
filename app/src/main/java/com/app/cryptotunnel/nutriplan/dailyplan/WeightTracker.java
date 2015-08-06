@@ -71,7 +71,7 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
 		}
 	}
 
-	
+
 	public void snackBar(String message){
 		Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT);
 		View snackbarView = snackbar.getView();
