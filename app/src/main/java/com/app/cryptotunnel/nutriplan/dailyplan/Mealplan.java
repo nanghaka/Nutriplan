@@ -3,6 +3,7 @@ package com.app.cryptotunnel.nutriplan.dailyplan;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -59,8 +60,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
             retrieveFeedTask.execute("http://192.168.57.1/lynda-php/jsontest2.php");
         }else {
             //Toast.makeText(getActivity().getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
-            Snackbar.make(rootView, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
-
+            snackBar("Check Internet Connection");
         }
 
 
@@ -129,7 +129,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
             e.printStackTrace();
             Log.d("Meal plan", "ARRAYBUG" + e.toString());
            // Toast.makeText(getActivity().getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
-            Snackbar.make(rootView, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
+            snackBar("Check Internet Connection");
         }
     }
 
@@ -251,6 +251,13 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
 
         }
         return false;
+    }
+
+    public void snackBar(String message){
+        Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT);
+        View snackbarView = snackbar.getView();
+        snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+        snackbar.show();
     }
 
 

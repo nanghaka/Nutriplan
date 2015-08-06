@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.app.cryptotunnel.nutriplan.R;
 import com.app.cryptotunnel.nutriplan.SettingsActivity;
@@ -93,7 +92,7 @@ public class HealthTips extends AppCompatActivity {
             RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
             retrieveFeedTask.execute();
         }else {
-            Snackbar.make(parentLayout, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
+            snackBar("Check Internet Connection");
         }
 
 
@@ -132,7 +131,7 @@ public class HealthTips extends AppCompatActivity {
                 } catch (NullPointerException e){
                     e.printStackTrace();
                     Log.d("array", String.valueOf(e.toString()));
-                    Snackbar.make(parentLayout, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
+                    snackBar("Check Internet Connection");
                 }
             }
         });
@@ -158,7 +157,7 @@ public class HealthTips extends AppCompatActivity {
                 } catch (NullPointerException e){
                     e.printStackTrace();
                     Log.d("array", String.valueOf(e.toString()));
-                    Snackbar.make(parentLayout, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
+                    snackBar("Check Internet Connection");
                 }
             }
         });
@@ -190,7 +189,7 @@ public class HealthTips extends AppCompatActivity {
         }catch (ArrayIndexOutOfBoundsException e){
             e.printStackTrace();
             Log.e("ARRAY_SHARE_BUT", e.toString());
-                        Snackbar.make(null, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
+            snackBar("Check Internet Connection");
         }
 
 
@@ -259,6 +258,7 @@ public class HealthTips extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.d("URL BUG", e.toString());
+                snackBar("Check Internet Connection");
                 return null;
             }
         }
@@ -286,11 +286,11 @@ public class HealthTips extends AppCompatActivity {
                             e.printStackTrace();
                             pDialog.dismiss();
                             //Toast.makeText(getApplicationContext(), "Connection was interrupted", Toast.LENGTH_SHORT).show();
-                            Snackbar.make(parentLayout, "Connection was interrupted", Snackbar.LENGTH_SHORT).show();
+                            snackBar("Check Internet Connection");
                         }catch (NullPointerException e){
                             e.printStackTrace();
                             pDialog.dismiss();
-                            Snackbar.make(parentLayout, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
+                            snackBar("Check Internet Connection");
 //                            Toast.makeText(getApplicationContext(), "Connection was interrupted", Toast.LENGTH_SHORT).show();
                         }finally {
                             pDialog.dismiss();
@@ -299,38 +299,6 @@ public class HealthTips extends AppCompatActivity {
                 };
                 timer.start();
             }
-//            try{//handling error for internet connection
-//                for (String output: feed){
-//                    Log.d("OPEO", output);
-//                }
-//
-//                n = feed.length;
-//
-//                updatetext();
-//
-//            }catch (NullPointerException e){
-//                e.printStackTrace();
-//                Log.e("NPE",e.toString());
-//            }catch (Exception e){
-//                e.printStackTrace();
-//                Log.e("GENERAL ERROR",e.toString());
-//            }
-//
-//
-//            if (pDialog.isShowing()){
-//                Thread timer = new Thread(){
-//                    public void run(){
-//                        try {
-//                            sleep(300);
-//                        }catch (InterruptedException e){
-//                            e.printStackTrace();
-//                        }finally {
-//                            pDialog.dismiss();
-//                        }
-//                    }
-//                };
-//                timer.start();
-//            }
         }
     }
 
@@ -383,6 +351,13 @@ public class HealthTips extends AppCompatActivity {
 
         }
         return false;
+    }
+
+    public void snackBar(String message){
+        Snackbar snackbar = Snackbar.make(parentLayout, message, Snackbar.LENGTH_SHORT);
+        View snackbarView = snackbar.getView();
+        snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+        snackbar.show();
     }
 }
 

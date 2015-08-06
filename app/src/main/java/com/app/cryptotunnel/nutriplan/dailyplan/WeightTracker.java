@@ -51,7 +51,6 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
 				break;
 
 			case R.id.save:
-
 				DatabaseHandler db = new DatabaseHandler(getActivity());
 				Log.d("SQL Insert: ", "Inserting ..");
 				String storedWeight = currentWeight.getText().toString();
@@ -62,18 +61,21 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
 					} catch (InvalidValueException e) {
 						e.printStringError(storedWeight);
 						Log.e("SQL BUG", e.toString());
-						Snackbar.make(rootView, "Please enter your current weight", Snackbar.LENGTH_SHORT).show();
+						//Snackbar.make(rootView, "Please enter your current weight", Snackbar.LENGTH_SHORT).show();
+						snackBar("Check Internet Connection");
 					}
 				}else {
 					db.addWeight(new WeightTrackerContract(storedWeight, NoteEditorActivity.getTime()));
 				}
-
-
-
 				break;
-
 		}
+	}
 
-
+	
+	public void snackBar(String message){
+		Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT);
+		View snackbarView = snackbar.getView();
+		snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+		snackbar.show();
 	}
 }
