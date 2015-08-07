@@ -45,7 +45,6 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
         calculate = (Button) rootView.findViewById(R.id.calculate);
         reset = (Button) rootView.findViewById(R.id.reset);
 
-
         textInputLayoutHeight.setErrorEnabled(true);
         textInputLayoutWeight.setErrorEnabled(true);
         textInputLayoutAge.setErrorEnabled(true);
@@ -64,39 +63,11 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
         switch (checkedId) {
 
             case R.id.male:
-
                 resultFromRadioButtons(1);
-//                try {
-//
-//                    changeStringToDouble();
-//                    calories = ((10 * w) + (6.25 * h) - (5 * a) + 5);
-//
-//                }catch (NumberFormatException e){
-//                    e.printStackTrace();
-//                    Log.e("ONCHECKCLICKED_BUG", e.toString());
-//                   editTextError();
-//                } catch (InvalidValueException e) {
-//                    e.printStackTrace();
-//                    editTextError();
-//                }
                 break;
 
             case R.id.female:
-
                 resultFromRadioButtons(2);
-//                try {
-//
-//                    changeStringToDouble();
-//                    calories = ((10 * w) + (6.25 * h) - (5 * a) - 161);
-//
-//                }catch (NumberFormatException e){
-//                    e.printStackTrace();
-//                    Log.e("ONCHECKCLICKED_BUG", e.toString());
-//                    editTextError();
-//                } catch (InvalidValueException e) {
-//                    e.printStackTrace();
-//                    editTextError();
-//                }
                 break;
 
             default:
@@ -118,6 +89,9 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
         a = Double.parseDouble(String.valueOf(age.getText()));
 
         if (w <= 0 && h <= 0 && a <= 0){
+            weight.setText("");
+            height.setText("");
+            age.setText("");
             throw new InvalidValueException(w);
         }
     }
@@ -129,11 +103,9 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
         switch (view.getId()){
             case R.id.calculate:
 
-
                 switch (numberSentByRadioButton) {
                     case 1:
                         try {
-
                             changeStringToDouble();
                             calories = ((10 * w) + (6.25 * h) - (5 * a) + 5);
                             Toast.makeText(getActivity(), "Clicked button "+ calories, Toast.LENGTH_SHORT).show();
@@ -151,7 +123,6 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
 
                     case 2:
                         try {
-
                             changeStringToDouble();
                             calories = ((10 * w) + (6.25 * h) - (5 * a) - 161);
                             Toast.makeText(getActivity(), "Clicked button "+ calories, Toast.LENGTH_SHORT).show();

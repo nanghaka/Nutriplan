@@ -1,6 +1,7 @@
 package com.app.cryptotunnel.nutriplan.nutricalculator;
 
 import android.content.res.Resources;
+import android.nfc.TagLostException;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
@@ -18,13 +19,14 @@ import android.widget.Toast;
 import com.app.cryptotunnel.nutriplan.R;
 import com.app.cryptotunnel.nutriplan.customexception.InvalidValueException;
 
-public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeListener {
+public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 
     RadioGroup energyLevel;
     EditText weightEdit;
     double proteinResult;
-    Button calculate;
+    Button calculate, reset;
     TextInputLayout textInputLayoutWeight;
+    int numberSentByRadioButton = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -38,20 +40,15 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
         textInputLayoutWeight = (TextInputLayout) rootView.findViewById(R.id.text_input_layout_weight);
 
         calculate = (Button) rootView.findViewById(R.id.calculate);
+        reset = (Button) rootView.findViewById(R.id.reset);
 
         textInputLayoutWeight.setErrorEnabled(true);
+        textInputLayoutWeight.setError("Error testing");
 
         energyLevel.setOnCheckedChangeListener(this);
 
-
-        calculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(getActivity(), "Clicked button" + proteinResult, Toast.LENGTH_SHORT).show();
-            }
-        });
-
+        calculate.setOnClickListener(this);
+        reset.setOnClickListener(this);
 
         return rootView;
     }
@@ -63,74 +60,18 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
         switch (checkedId){
 
             case R.id.simple:
-                try {
-
-                    proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.4);
-
-                    if (proteinResult > 0){
-                        Toast.makeText(getActivity(), "Clicked button "+ proteinResult, Toast.LENGTH_SHORT).show();
-                    }else {
-                        throw new InvalidValueException(proteinResult);
-                    }
-
-                }catch (NumberFormatException e){
-                    e.printStackTrace();
-                    Log.e("ONCHECKCLICKED_BUG", e.toString());
-                    editTextError();
-                } catch (InvalidValueException e) {
-                    e.printStackTrace();
-                    Log.e("ONCHECKCLICKED_BUG", e.toString());
-                    editTextError();
-                }
-
+                Log.d("CHECKBOXCLICK", "you have checked box one"+1);
+                resultFromRadioButtons(1);
                 break;
 
             case R.id.moderate:
-
-                try {
-
-                    proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.6);
-
-                    if (proteinResult > 0){
-                        Toast.makeText(getActivity(), "Clicked button "+ proteinResult, Toast.LENGTH_SHORT).show();
-                    }else {
-                        throw new InvalidValueException(proteinResult);
-                    }
-
-                }catch (NumberFormatException e){
-                    e.printStackTrace();
-                    Log.e("ONCHECKCLICKED_BUG", e.toString());
-                    editTextError();
-                } catch (InvalidValueException e) {
-                    e.printStackTrace();
-                    Log.e("ONCHECKCLICKED_BUG", e.toString());
-                    editTextError();
-                }
-
+                Log.d("CHECKBOXCLICK", "you have checked box "+2);
+                resultFromRadioButtons(2);
                 break;
 
             case R.id.active:
-
-                try {
-
-                    proteinResult=(Double.parseDouble(weightEdit.getText().toString())*0.9);
-
-                    if (proteinResult > 0){
-                        Toast.makeText(getActivity(), "Clicked button "+ proteinResult, Toast.LENGTH_SHORT).show();
-                    }else {
-                       throw new InvalidValueException(proteinResult);
-                    }
-
-                }catch (NumberFormatException e){
-                    e.printStackTrace();
-                    Log.e("ONCHECKCLICKED_BUG", e.toString());
-                    editTextError();
-                } catch (InvalidValueException e) {
-                    e.printStackTrace();
-                    Log.e("ONCHECKCLICKED_BUG", e.toString());
-                    editTextError();
-                }
-
+                Log.d("CHECKBOXCLICK", "you have checked box one"+3);
+                resultFromRadioButtons(3);
                 break;
         }
     }
@@ -139,6 +80,85 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
     public void editTextError() {
         Resources res = getResources();
         textInputLayoutWeight.setError(res.getString(R.string.weight_required));
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.calculate:
+
+                Log.d("CALCULATE BUTTON", "you have clicked the calculate button");
+                switch (numberSentByRadioButton){
+                    case 1:
+                        try {
+                            Log.d("CHECKBOX", "you have checked box one");
+                            changeStringToDouble();
+                            Toast.makeText(getActivity(), "Clicked button "+ proteinResult, Toast.LENGTH_SHORT).show();
+                        }catch (NumberFormatException e){
+                            e.printStackTrace();
+                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+                            editTextError();
+                        } catch (InvalidValueException e) {
+                            e.printStackTrace();
+                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+                            editTextError();
+                        }
+
+                        break;
+
+                    case 2:
+                        try {
+                            Log.d("CHECKBOX", "you have checked box one");
+                            changeStringToDouble();
+                            Toast.makeText(getActivity(), "Clicked button "+ proteinResult, Toast.LENGTH_SHORT).show();
+                        }catch (NumberFormatException e){
+                            e.printStackTrace();
+                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+                            editTextError();
+                        } catch (InvalidValueException e) {
+                            e.printStackTrace();
+                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+                            editTextError();
+                        }
+
+                    case 3:
+                        try {
+                            Log.d("CHECKBOX", "you have checked box one");
+                            changeStringToDouble();
+                            Toast.makeText(getActivity(), "Clicked button "+ proteinResult, Toast.LENGTH_SHORT).show();
+                        }catch (NumberFormatException e){
+                            e.printStackTrace();
+                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+                            editTextError();
+                        } catch (InvalidValueException e) {
+                            e.printStackTrace();
+                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+                            editTextError();
+                        }
+                        break;
+                }
+                break;
+
+            case R.id.reset:
+                weightEdit.setText("");
+                break;
+        }
+
+    }
+
+
+    public void changeStringToDouble() throws InvalidValueException {
+        proteinResult = Double.parseDouble(String.valueOf(weightEdit.getText()));
+
+        if (proteinResult <= 0){
+           // Toast.makeText(getActivity(), "Clicked button "+ proteinResult, Toast.LENGTH_SHORT).show();
+            throw new InvalidValueException(proteinResult);
+        }
+    }
+
+
+    public void resultFromRadioButtons(int r){
+        numberSentByRadioButton = r;
     }
 }
 
