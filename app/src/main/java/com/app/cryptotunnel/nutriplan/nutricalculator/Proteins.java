@@ -43,7 +43,6 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
         reset = (Button) rootView.findViewById(R.id.reset);
 
         textInputLayoutWeight.setErrorEnabled(true);
-        textInputLayoutWeight.setError("Error testing");
 
         energyLevel.setOnCheckedChangeListener(this);
 
@@ -84,17 +83,17 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.calculate:
-
+            ///////////////////////////////////////////////////////
                 Log.d("CALCULATE BUTTON", "you have clicked the calculate button");
-                switch (numberSentByRadioButton){
+                switch (numberSentByRadioButton) {
                     case 1:
                         try {
                             Log.d("CHECKBOX", "you have checked box one");
                             changeStringToDouble();
-                            Toast.makeText(getActivity(), "Clicked button "+ proteinResult, Toast.LENGTH_SHORT).show();
-                        }catch (NumberFormatException e){
+                            Toast.makeText(getActivity(), "Clicked button " , Toast.LENGTH_SHORT).show();
+                        } catch (NumberFormatException e) {
                             e.printStackTrace();
                             Log.e("ONCHECKCLICKED_BUG", e.toString());
                             editTextError();
@@ -110,8 +109,8 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
                         try {
                             Log.d("CHECKBOX", "you have checked box one");
                             changeStringToDouble();
-                            Toast.makeText(getActivity(), "Clicked button "+ proteinResult, Toast.LENGTH_SHORT).show();
-                        }catch (NumberFormatException e){
+                            Toast.makeText(getActivity(), "Clicked button ", Toast.LENGTH_SHORT).show();
+                        } catch (NumberFormatException e) {
                             e.printStackTrace();
                             Log.e("ONCHECKCLICKED_BUG", e.toString());
                             editTextError();
@@ -120,13 +119,14 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
                             Log.e("ONCHECKCLICKED_BUG", e.toString());
                             editTextError();
                         }
+                        break;
 
                     case 3:
                         try {
                             Log.d("CHECKBOX", "you have checked box one");
                             changeStringToDouble();
-                            Toast.makeText(getActivity(), "Clicked button "+ proteinResult, Toast.LENGTH_SHORT).show();
-                        }catch (NumberFormatException e){
+                            Toast.makeText(getActivity(), "Clicked button ", Toast.LENGTH_SHORT).show();
+                        } catch (NumberFormatException e) {
                             e.printStackTrace();
                             Log.e("ONCHECKCLICKED_BUG", e.toString());
                             editTextError();
@@ -139,11 +139,12 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
                 }
                 break;
 
+            /////// ////////////////////////////////////////////////////
             case R.id.reset:
                 weightEdit.setText("");
                 break;
-        }
 
+        }
     }
 
 
