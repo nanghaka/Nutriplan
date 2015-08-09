@@ -30,12 +30,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
     private static final String KEY_PH_NO = "phone_number";
+
     //WEIGHT TRACKER COLUMN NAMES
     private static final String KEY_ID_WEIGHT = "id_weight";
     private static final String KEY_WEIGHT = "weight";
     private static final String KEY_WEIGHT_TIME = "weighttime" ;
+
+    // bbn table: barcode, bc-birth_certificate_id , nutritips
+    private static final String KEY_ID_BBN = "id_weight";
+    private static final String KEY_NUTRITIPS = "nutritips";
+    private static final String KEY_BARCODE= "barcode";
+    private static final String KEY_BC = "bc";
+
+
     public Contact contact;
     public WeightTrackerContract wtc;
+    public
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
