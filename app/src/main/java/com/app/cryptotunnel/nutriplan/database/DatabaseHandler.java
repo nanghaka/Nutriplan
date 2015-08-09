@@ -25,6 +25,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Contacts table name
     private static final String TABLE_CONTACTS = "contacts";
     private static final String TABLE_WEIGHT_TRACKER = "weighttrackertable";
+    private static final String TABLE_BBN = "bbnContract";
 
     // Contacts Table Columns names
     private static final String KEY_ID = "id";
@@ -36,7 +37,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_WEIGHT = "weight";
     private static final String KEY_WEIGHT_TIME = "weighttime" ;
 
-    // bbn table: barcode, bc-birth_certificate_id , nutritips
+    // bbnContract table: barcode, bc-birth_certificate_id , nutritips
     private static final String KEY_ID_BBN = "id_weight";
     private static final String KEY_NUTRITIPS = "nutritips";
     private static final String KEY_BARCODE= "barcode";
@@ -45,7 +46,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Contact contact;
     public WeightTrackerContract wtc;
-    public
+    public BbnContract bbnContract;
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -58,9 +59,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
                 + KEY_PH_NO + " TEXT" + ")";
         String CREATE_WEIGHT_TRACKER_TABLE = "CREATE TABLE " + TABLE_WEIGHT_TRACKER + "("
-                + KEY_ID_WEIGHT + " INTEGER PRIMARY KEY," + KEY_WEIGHT + " TEXT,"+ KEY_WEIGHT_TIME + " TEXT" +")";
+                + KEY_ID_WEIGHT + " INTEGER PRIMARY KEY,"
+                + KEY_WEIGHT + " TEXT,"+ KEY_WEIGHT_TIME + " TEXT" +")";
+
+        String CREATE_BBN_TABLE = "CREATE TABLE " + TABLE_BBN + "("
+                + KEY_ID_BBN + " INTEGER PRIMARY KEY," + KEY_BARCODE
+                + " TEXT,"+ KEY_BC + " TEXT," +  KEY_NUTRITIPS+ " TEXT" +")";
+
         db.execSQL(CREATE_CONTACTS_TABLE);
         db.execSQL(CREATE_WEIGHT_TRACKER_TABLE);
+        db.execSQL(CREATE_BBN_TABLE);
         Log.d("SQL", "tables created" + CREATE_CONTACTS_TABLE + "++##+++" + CREATE_WEIGHT_TRACKER_TABLE);
     }
 
@@ -70,6 +78,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WEIGHT_TRACKER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BBN);
 
         // Create tables again
         onCreate(db);
@@ -106,6 +115,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
+    //ADDING DATA TO BBN_TABLE
+    public void addBbnData(BbnContract bbnContract) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_BARCODE, bbnContract.getBarcode()); // ADDING barcode TO THE DATABASE
+        values.put(KEY_BC, bbnContract.getBc()); // ADDING birth_certificate_id
+        values.put(KEY_NUTRITIPS, bbnContract.getNutritips());
+
+        // Inserting Row
+        db.insert(TABLE_BBN, null, values);
+        Log.d("SQL****", "inserting weight data" + values.toString());
+        db.close(); // Closing database connection
+    }
+
     // Getting single contact
     Contact getContact(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -125,8 +149,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             Log.d("Sql", "NullPointer Exception"+e);
 
         }
-
-        // return contact
         return contact;
     }
 
@@ -209,6 +231,33 @@ public class DatabaseHandler extends SQLiteOpenHelper {
        Log.d("SQL","getting all weights");
         // return contact list
         return WeightList;
+    }
+
+    // GETTING ALL WEIGHTS
+    public List<BbnContract> getBbnData() {
+        List<BbnContract> bbnList = new ArrayList<BbnContract>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_BBN;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+
+                BbnContract wtc = new BbnContract();
+                wtc.set_id(Integer.parseInt(cursor.getString(0)));
+                wtc.setBarcode(cursor.getString(1));
+                wtc.setBc(cursor.getString(2));
+                wtc.setNutritips(cursor.getString(3));
+                bbnList.add(wtc);
+
+            } while (cursor.moveToNext());
+        }
+        Log.d("SQL","getting all weights");
+        // return contact list
+        return bbnList;
     }
 
     // Updating single contact

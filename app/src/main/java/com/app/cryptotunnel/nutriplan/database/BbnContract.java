@@ -3,21 +3,24 @@ package com.app.cryptotunnel.nutriplan.database;
 /**
  * Created by codephillip on 8/9/15.
  */
-public class Bbn {
+public class BbnContract {
 
     int _id;
     String barcode;
     String bc;
     String nutritips;
 
-    public Bbn(int _id, String barcode, String bc, String nutritips) {
+    public BbnContract() {
+    }
+
+    public BbnContract(int _id, String barcode, String bc, String nutritips) {
         this._id = _id;
         this.barcode = barcode;
         this.bc = bc;
         this.nutritips = nutritips;
     }
 
-    public Bbn(String barcode, String bc, String nutritips) {
+    public BbnContract(String barcode, String bc, String nutritips) {
         this.barcode = barcode;
         this.bc = bc;
         this.nutritips = nutritips;

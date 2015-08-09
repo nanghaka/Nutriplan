@@ -4,17 +4,14 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.app.cryptotunnel.nutriplan.database.Contact;
-import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
 import com.app.cryptotunnel.nutriplan.R;
-import com.app.cryptotunnel.nutriplan.database.WeightTrackerContract;
+import com.app.cryptotunnel.nutriplan.database.BbnContract;
+import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,7 +42,9 @@ public class NoteEditorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("Insert: ", "Inserting ..");
-                db.addContact(new Contact(noteText.getText().toString(), getTime()));
+                //db.addContact(new Contact(noteText.getText().toString(), getTime()));
+                db.addBbnData(new BbnContract(5,"4859", "78859","drink plenty of water"));
+                db.addBbnData(new BbnContract(5,"8927", "12378","eat fruits daily"));
                 Toast.makeText(getApplicationContext(),"Note has been saved", Toast.LENGTH_SHORT).show();
             }
         });
