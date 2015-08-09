@@ -26,6 +26,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_CONTACTS = "contacts";
     private static final String TABLE_WEIGHT_TRACKER = "weighttrackertable";
     private static final String TABLE_BBN = "bbnContract";
+    private static final String TABLE_MEAL_PLAN = "mealplan";
 
     // Contacts Table Columns names
     private static final String KEY_ID = "id";
@@ -42,6 +43,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_NUTRITIPS = "nutritips";
     private static final String KEY_BARCODE= "barcode";
     private static final String KEY_BC = "bc";
+
+    // MealPlanContract table
+    private static final String KEY_ID_MEALPLAN = "id_mealPlan";
+    private static final String KEY_DAY = "day";
+    private static final String KEY_BREAKFAST= "breakfast";
+    private static final String KEY_LUNCH = "lunch";
+    private static final String KEY_DINNER = "dinner";
 
 
     public Contact contact;
@@ -66,9 +74,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_ID_BBN + " INTEGER PRIMARY KEY," + KEY_BARCODE
                 + " TEXT,"+ KEY_BC + " TEXT," +  KEY_NUTRITIPS+ " TEXT" +")";
 
+        String CREATE_MEALPLAN_TABLE = "CREATE TABLE " + TABLE_MEAL_PLAN + "("
+                + KEY_ID_MEALPLAN + " INTEGER PRIMARY KEY," + KEY_DAY
+                + " TEXT,"+ KEY_BREAKFAST + " TEXT," +  KEY_LUNCH+ " TEXT," +  KEY_DINNER+ " TEXT" +")";
+
+
         db.execSQL(CREATE_CONTACTS_TABLE);
         db.execSQL(CREATE_WEIGHT_TRACKER_TABLE);
         db.execSQL(CREATE_BBN_TABLE);
+        db.execSQL(CREATE_MEALPLAN_TABLE);
         Log.d("SQL", "tables created" + CREATE_CONTACTS_TABLE + "++##+++" + CREATE_WEIGHT_TRACKER_TABLE);
     }
 
@@ -79,6 +93,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WEIGHT_TRACKER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BBN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MEAL_PLAN);
 
         // Create tables again
         onCreate(db);
@@ -130,50 +145,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
-    // Getting single contact
-    Contact getContact(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Log.d("SQL", "getting single contact");
+    //ADDING DATA TO MEAL_PLAN
+    public void addMealPlan(MealPlanContract mealPlanContract) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.query(TABLE_CONTACTS, new String[]{KEY_ID,
-                        KEY_NAME, KEY_PH_NO}, KEY_ID + "=?",
-                new String[]{String.valueOf(id)}, null, null, null, null);
-        if (cursor != null)
-            cursor.moveToFirst();
+        ContentValues values = new ContentValues();
+        values.put(KEY_DAY, mealPlanContract.getDay()); // ADDING barcode TO THE DATABASE
+        values.put(KEY_BREAKFAST, mealPlanContract.getBreakfast()); // ADDING birth_certificate_id
+        values.put(KEY_LUNCH, mealPlanContract.getLunch());
+        values.put(KEY_DINNER, mealPlanContract.getDinner());
 
-        try {
-             contact = new Contact(Integer.parseInt(cursor.getString(0)),
-                    cursor.getString(1), cursor.getString(2));
-
-        }catch (NullPointerException e){
-            Log.d("Sql", "NullPointer Exception"+e);
-
-        }
-        return contact;
+        // Inserting Row
+        db.insert(TABLE_MEAL_PLAN, null, values);
+        Log.d("SQL****", "inserting weight data" + values.toString());
+        db.close(); // Closing database connection
     }
-
-    // GETTING SINGLE WEIGHT
-    WeightTrackerContract getWeight(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Log.d("SQL", "getting single weight");
-        Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID_WEIGHT,
-                        KEY_WEIGHT,KEY_WEIGHT_TIME }, KEY_ID_WEIGHT + "=?",
-                new String[] { String.valueOf(id) }, null, null, null, null);
-        if (cursor != null)
-            cursor.moveToFirst();
-
-        try {
-
-            wtc = new WeightTrackerContract(Integer.parseInt(cursor.getString(0)),
-                    cursor.getString(1));
-        }catch (NullPointerException e){
-            Log.d("Sql", "NullPointer Exception"+e);
-        }
-
-        // return contact
-        return wtc;
-    }
-
 
 
     // Getting All Contacts
@@ -219,13 +205,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 wtc.set_weight(cursor.getString(1));
                 wtc.set_weight_time(cursor.getString(2));
                 WeightList.add(wtc);
-
-//                Contact contact = new Contact();
-//                contact.setID(Integer.parseInt(cursor.getString(0)));
-//                contact.setWe(cursor.getString(1));
-               // contact.setPhoneNumber(cursor.getString(2));
-                // Adding contact to list
-                //contactList.add(contact);
             } while (cursor.moveToNext());
         }
        Log.d("SQL","getting all weights");
@@ -247,7 +226,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             do {
 
                 BbnContract wtc = new BbnContract();
-                wtc.set_id(Integer.parseInt(cursor.getString(0)));
+                wtc.set_id_bbn(Integer.parseInt(cursor.getString(0)));
                 wtc.setBarcode(cursor.getString(1));
                 wtc.setBc(cursor.getString(2));
                 wtc.setNutritips(cursor.getString(3));
@@ -258,6 +237,34 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Log.d("SQL","getting all weights");
         // return contact list
         return bbnList;
+    }
+
+    // GETTING ALL WEIGHTS
+    public List<MealPlanContract> getMealPlan() {
+        List<MealPlanContract> mealPlanContractList = new ArrayList<MealPlanContract>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_MEAL_PLAN;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+
+                MealPlanContract wtc = new MealPlanContract();
+                wtc.set_id_mealPlan(Integer.parseInt(cursor.getString(0)));
+                wtc.setDay(cursor.getString(1));
+                wtc.setBreakfast(cursor.getString(2));
+                wtc.setLunch(cursor.getString(3));
+                wtc.setDinner(cursor.getString(4));
+                mealPlanContractList.add(wtc);
+
+            } while (cursor.moveToNext());
+        }
+        Log.d("SQL","getting all weights");
+        // return contact list
+        return mealPlanContractList;
     }
 
     // Updating single contact

@@ -6,12 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
-import com.app.cryptotunnel.nutriplan.R;
 import com.app.cryptotunnel.nutriplan.database.Contact;
 import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
+import com.app.cryptotunnel.nutriplan.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +63,57 @@ public class NutriDairy extends AppCompatActivity {
         // Assign adapter to ListView
         listView.setAdapter(adapter);
 
+        // ListView Item Click Listener
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                // ListView Clicked item index
+                int itemPosition = position;
+
+                // ListView Clicked item value
+                String itemValue = (String) listView.getItemAtPosition(position);
+
+
+
+                switch (itemPosition) {
+                    case 0:
+                        db.deleteContact(new Contact(0));
+                        Toast.makeText(getApplicationContext(),
+                                "clicked daily plan" + itemValue, Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 1:
+                            db.deleteContact(new Contact(1));
+                        Toast.makeText(getApplicationContext(),
+                                "clicked nutri calculator", Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 2:
+                         db.deleteContact(new Contact(2));
+                        Toast.makeText(getApplicationContext(),
+                                "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 3:
+                        db.deleteContact(new Contact(3));
+                        Toast.makeText(getApplicationContext(),
+                                "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 4:
+                        db.deleteContact(new Contact(4));
+                        Toast.makeText(getApplicationContext(),
+                                "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                }
+
+            }
+
+        });
     }
 
     @Override

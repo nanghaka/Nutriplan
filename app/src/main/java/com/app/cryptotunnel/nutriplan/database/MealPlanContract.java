@@ -5,14 +5,14 @@ package com.app.cryptotunnel.nutriplan.database;
  */
 public class MealPlanContract {
 
-    int _id;
+    int _id_mealPlan;
     String day, breakfast, lunch, dinner;
 
     public MealPlanContract() {
     }
 
-    public MealPlanContract(int _id, String day, String breakfast, String lunch, String dinner) {
-        this._id = _id;
+    public MealPlanContract(int _id_mealPlan, String day, String breakfast, String lunch, String dinner) {
+        this._id_mealPlan = _id_mealPlan;
         this.day = day;
         this.breakfast = breakfast;
         this.lunch = lunch;
@@ -26,12 +26,12 @@ public class MealPlanContract {
         this.dinner = dinner;
     }
 
-    public int get_id() {
-        return _id;
+    public int get_id_mealPlan() {
+        return _id_mealPlan;
     }
 
-    public void set_id(int _id) {
-        this._id = _id;
+    public void set_id_mealPlan(int _id_mealPlan) {
+        this._id_mealPlan = _id_mealPlan;
     }
 
     public String getDay() {

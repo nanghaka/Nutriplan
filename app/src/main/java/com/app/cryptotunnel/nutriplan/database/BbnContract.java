@@ -5,7 +5,7 @@ package com.app.cryptotunnel.nutriplan.database;
  */
 public class BbnContract {
 
-    int _id;
+    int _id_bbn;
     String barcode;
     String bc;
     String nutritips;
@@ -13,8 +13,8 @@ public class BbnContract {
     public BbnContract() {
     }
 
-    public BbnContract(int _id, String barcode, String bc, String nutritips) {
-        this._id = _id;
+    public BbnContract(int _id_bbn, String barcode, String bc, String nutritips) {
+        this._id_bbn = _id_bbn;
         this.barcode = barcode;
         this.bc = bc;
         this.nutritips = nutritips;
@@ -26,12 +26,12 @@ public class BbnContract {
         this.nutritips = nutritips;
     }
 
-    public int get_id() {
-        return _id;
+    public int get_id_bbn() {
+        return _id_bbn;
     }
 
-    public void set_id(int _id) {
-        this._id = _id;
+    public void set_id_bbn(int _id_bbn) {
+        this._id_bbn = _id_bbn;
     }
 
     public String getBarcode() {
