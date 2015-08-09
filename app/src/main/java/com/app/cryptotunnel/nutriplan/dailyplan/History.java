@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.app.cryptotunnel.nutriplan.SettingsActivity;
-import com.app.cryptotunnel.nutriplan.database.Contact;
 import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
 import com.app.cryptotunnel.nutriplan.R;
 import com.app.cryptotunnel.nutriplan.database.WeightTrackerContract;

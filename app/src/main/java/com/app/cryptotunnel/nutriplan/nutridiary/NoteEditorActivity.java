@@ -10,7 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.app.cryptotunnel.nutriplan.R;
+import com.app.cryptotunnel.nutriplan.database.BbnContract;
 import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
+import com.app.cryptotunnel.nutriplan.database.DiaryContract;
 import com.app.cryptotunnel.nutriplan.database.MealPlanContract;
 
 import java.text.SimpleDateFormat;
@@ -42,12 +44,12 @@ public class NoteEditorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("Insert: ", "Inserting ..");
-                //db.addContact(new Contact(noteText.getText().toString(), getTime()));
-//                db.addBbnData(new BbnContract(5,"4859", "78859","drink plenty of water"));
-//                db.addBbnData(new BbnContract(5,"8927", "12378","eat fruits daily"));
+                db.addContact(new DiaryContract(noteText.getText().toString(), getTime()));
+                db.addBbnData(new BbnContract(5,"4859", "78859","drink plenty of water"));
+                db.addBbnData(new BbnContract(5,"8927", "12378","eat fruits daily"));
                 db.addMealPlan(new MealPlanContract("monday", "matooke", "rice", "posho"));
                 db.addMealPlan(new MealPlanContract("tuesday", "rice", "matooke", "posho"));
-               // db.addMealPlan(new BbnContract(5, "8927", "12378", "eat fruits daily"));
+              //  db.addMealPlan(new BbnContract(5, "8927", "12378", "eat fruits daily"));
                 Toast.makeText(getApplicationContext(),"Note has been saved", Toast.LENGTH_SHORT).show();
             }
         });

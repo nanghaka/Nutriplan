@@ -23,15 +23,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "contactsManager";
 
     // Contacts table name
-    private static final String TABLE_CONTACTS = "contacts";
+    private static final String TABLE_DIARY = "diary";
     private static final String TABLE_WEIGHT_TRACKER = "weighttrackertable";
     private static final String TABLE_BBN = "bbnContract";
     private static final String TABLE_MEAL_PLAN = "mealplan";
 
     // Contacts Table Columns names
     private static final String KEY_ID = "id";
-    private static final String KEY_NAME = "name";
-    private static final String KEY_PH_NO = "phone_number";
+    private static final String KEY_NOTE = "note";
+    private static final String KEY_TIME = "time";
 
     //WEIGHT TRACKER COLUMN NAMES
     private static final String KEY_ID_WEIGHT = "id_weight";
@@ -52,7 +52,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_DINNER = "dinner";
 
 
-    public Contact contact;
+    public DiaryContract diaryContract;
     public WeightTrackerContract wtc;
     public BbnContract bbnContract;
 
@@ -63,9 +63,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
-                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_PH_NO + " TEXT" + ")";
+        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_DIARY + "("
+                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NOTE + " TEXT,"
+                + KEY_TIME + " TEXT" + ")";
         String CREATE_WEIGHT_TRACKER_TABLE = "CREATE TABLE " + TABLE_WEIGHT_TRACKER + "("
                 + KEY_ID_WEIGHT + " INTEGER PRIMARY KEY,"
                 + KEY_WEIGHT + " TEXT,"+ KEY_WEIGHT_TIME + " TEXT" +")";
@@ -90,7 +90,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DIARY);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WEIGHT_TRACKER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BBN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MEAL_PLAN);
@@ -103,17 +103,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * All CRUD(Create, Read, Update, Delete) Operations
      */
 
-    // Adding new contact
-    public void addContact(Contact contact) {
+    // Adding new diaryContract
+    public void addContact(DiaryContract diaryContract) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME, contact.getName()); // Contact Name
-        values.put(KEY_PH_NO, contact.getPhoneNumber()); // Contact Phone
-        Log.d("SQL", "inserting contact data" + values.toString());
+        values.put(KEY_NOTE, diaryContract.getNote()); // DiaryContract note
+        values.put(KEY_TIME, diaryContract.getTime()); // DiaryContract time
+        Log.d("SQL", "inserting diaryContract data" + values.toString());
 
         // Inserting Row
-        db.insert(TABLE_CONTACTS, null, values);
+        db.insert(TABLE_DIARY, null, values);
         db.close(); // Closing database connection
     }
     //ADDING NEW WEIGHT
@@ -163,10 +163,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     // Getting All Contacts
-    public List<Contact> getAllContacts() {
-        List<Contact> contactList = new ArrayList<Contact>();
+    public List<DiaryContract> getAllContacts() {
+        List<DiaryContract> diaryContractList = new ArrayList<DiaryContract>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_CONTACTS;
+        String selectQuery = "SELECT  * FROM " + TABLE_DIARY;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -174,17 +174,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                Contact contact = new Contact();
-                contact.setID(Integer.parseInt(cursor.getString(0)));
-                contact.setName(cursor.getString(1));
-                contact.setPhoneNumber(cursor.getString(2));
-                // Adding contact to list
-                contactList.add(contact);
+                DiaryContract diaryContract = new DiaryContract();
+                diaryContract.setID(Integer.parseInt(cursor.getString(0)));
+                diaryContract.setNote(cursor.getString(1));
+                diaryContract.setTime(cursor.getString(2));
+                // Adding diaryContract to list
+                diaryContractList.add(diaryContract);
             } while (cursor.moveToNext());
         }
 
-        // return contact list
-        return contactList;
+        // return diaryContract list
+        return diaryContractList;
     }
 
     // GETTING ALL WEIGHTS
@@ -208,7 +208,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
        Log.d("SQL","getting all weights");
-        // return contact list
+        // return diaryContract list
         return WeightList;
     }
 
@@ -235,7 +235,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         Log.d("SQL","getting all weights");
-        // return contact list
+        // return diaryContract list
         return bbnList;
     }
 
@@ -263,52 +263,52 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         Log.d("SQL","getting all weights");
-        // return contact list
+        // return diaryContract list
         return mealPlanContractList;
     }
 
-    // Updating single contact
-    public int updateContact(Contact contact) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_NAME, contact.getName());
-        values.put(KEY_PH_NO, contact.getPhoneNumber());
-
-        // updating row
-        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?",
-                new String[] { String.valueOf(contact.getID()) });
-    }
-
-    // Deleting single contact
-    public void deleteContact(Contact contact) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_CONTACTS, KEY_ID + " = ?",
-                new String[] { String.valueOf(contact.getID()) });
-     //   db.delete(TABLE_CONTACTS, KEY_ID + " = ?");
-        db.close();
-    }
-
-
-    // Getting contacts Count
-    public int getContactsCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_CONTACTS;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.close();
-
-        // return count
-        return cursor.getCount();
-    }
-
-    public int getWeightCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_WEIGHT_TRACKER;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.close();
-
-        // return count
-        return cursor.getCount();
-    }
+//    // Updating single diaryContract
+//    public int updateContact(DiaryContract diaryContract) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//
+//        ContentValues values = new ContentValues();
+//        values.put(KEY_NOTE, diaryContract.getNote());
+//        values.put(KEY_TIME, diaryContract.getTime());
+//
+//        // updating row
+//        return db.update(TABLE_DIARY, values, KEY_ID + " = ?",
+//                new String[] { String.valueOf(diaryContract.getID()) });
+//    }
+//
+//    // Deleting single diaryContract
+//    public void deleteContact(DiaryContract diaryContract) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        db.delete(TABLE_DIARY, KEY_ID + " = ?",
+//                new String[] { String.valueOf(diaryContract.getID()) });
+//     //   db.delete(TABLE_DIARY, KEY_ID + " = ?");
+//        db.close();
+//    }
+//
+//
+//    // Getting contacts Count
+//    public int getContactsCount() {
+//        String countQuery = "SELECT  * FROM " + TABLE_DIARY;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery(countQuery, null);
+//        cursor.close();
+//
+//        // return count
+//        return cursor.getCount();
+//    }
+//
+//    public int getWeightCount() {
+//        String countQuery = "SELECT  * FROM " + TABLE_WEIGHT_TRACKER;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery(countQuery, null);
+//        cursor.close();
+//
+//        // return count
+//        return cursor.getCount();
+//    }
 
 }
