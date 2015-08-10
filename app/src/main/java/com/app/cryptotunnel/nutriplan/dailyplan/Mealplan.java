@@ -3,7 +3,6 @@ package com.app.cryptotunnel.nutriplan.dailyplan;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -52,35 +51,39 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
 
         RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
 
-
-        boolean connectionCheck = isConnectedToInternet();
-
-        if (connectionCheck==true){
-
-            retrieveFeedTask.execute("http://192.168.57.1/lynda-php/jsontest2.php");
-        }else {
-            //Toast.makeText(getActivity().getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
-            snackBar("Check Internet Connection");
-        }
-
-
         //getting users input from settings screen
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String input;
         input = prefs.getString(getString(R.string.pref_age_key),
                 getString(R.string.pref_default_age_key));
 
-           //testing what the user inserted with what information is appropriate for her age
-        switch (input){
-            case ("30"):
-                retrieveFeedTask.execute("http://192.168.57.1/lynda-php/jsontest4.php");
-                break;
 
-            default:
-//                retrieveFeedTask.execute("http://192.168.57.1/lynda-php/jsontest2.php");
-                break;
+        boolean connectionCheck = isConnectedToInternet();
 
+        if (connectionCheck==true){
+
+            //testing what the user inserted with what information is appropriate for her age
+            switch (input){
+                case ("30"):
+                    retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest4.php");
+                    break;
+
+                default:
+                    retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest2.php");
+                    break;
+
+            }
+
+            //retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest2.php");
+        }else {
+            //Toast.makeText(getActivity().getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
+            snackBar("Check Internet Connection");
         }
+
+
+
+
+
 
 
         dayoftheweek= (TextView) rootView.findViewById(R.id.weekDay);
@@ -171,7 +174,13 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
 
         protected void onPostExecute(final Integer feed) {
 
+            try {
+                n = feed;
+                updatetext();
 
+            }catch (NullPointerException e){
+                e.printStackTrace();
+            }
 
             if (pDialog.isShowing()){
                 Thread timer = new Thread(){

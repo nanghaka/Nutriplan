@@ -247,7 +247,7 @@ public class HealthTips extends AppCompatActivity {
         protected String[] doInBackground(Void... urls) {
             try {
                 Request request = new Request.Builder()
-                        .url("http://192.168.57.1/lynda-php/jsontest3.php")
+                        .url("http://192.168.56.1/lynda-php/nutritips.php")
                         .build();
                 OkHttpClient client = new OkHttpClient();
                 Response response = client.newCall(request).execute();
