@@ -46,9 +46,9 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
     RetrieveFeedTask retrieveFeedTask;
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        startInternetConnection();
+    public void onResume() {
+        super.onResume();
+        //startInternetConnection();
     }
 
     @Override
@@ -113,6 +113,9 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
         lunchFood.setText(lunchArray[counter]);
         dinnerFood.setText(dinnerArray[counter]);
         dayoftheweek.setText(days[counter]);
+//        if (pDialog.isShowing()){
+//            pDialog.dismiss();
+//        }
     }
 
 
@@ -150,31 +153,37 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
                 n = feed;
                 updatetext();
 
-            }catch (NullPointerException e){
-                e.printStackTrace();
-                Snackbar.make(rootView, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
-            }
+//                if (pDialog.isShowing()){
+//                    pDialog.dismiss();
+//                }
 
-            if (pDialog.isShowing()){
-                Thread timer = new Thread(){
-                    public void run(){
-                        try {
-                            sleep(1000);
-                        }catch (InterruptedException e){
-                            e.printStackTrace();
-                            Toast.makeText(getActivity(), "Connection was interrupted", Toast.LENGTH_SHORT).show();
+
+                if (pDialog.isShowing()){
+                    Thread timer = new Thread(){
+                        public void run(){
+                            try {
+                                sleep(1000);
+                            }catch (InterruptedException e){
+                                e.printStackTrace();
+                                Toast.makeText(getActivity(), "Connection was interrupted", Toast.LENGTH_SHORT).show();
 //                        }catch (NullPointerException e){
 //                            e.printStackTrace();
 //                            //Snackbar.make(rootView, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
 //                            pDialog.dismiss();
 ////                            Toast.makeText(getActivity(), "Connection was interrupted", Toast.LENGTH_SHORT).show();
-                        }finally {
-                            pDialog.dismiss();
+                            }finally {
+                                pDialog.dismiss();
+                            }
                         }
-                    }
-                };
-                timer.start();
+                    };
+                    timer.start();
+                }
+
+            }catch (NullPointerException e){
+                e.printStackTrace();
+                Snackbar.make(rootView, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
             }
+
         }
     }
 
@@ -245,10 +254,13 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
         //getting users input from settings screen
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String input = prefs.getString(getString(R.string.pref_age_key), getString(R.string.pref_default_age_key));
-        String listpref = prefs.getString("example_list", "-1");
-        String syncpref = prefs.getString("sync_frequency","180");
+        String genderSettings = prefs.getString("gender", "1");
+        String syncpref = prefs.getString("sync_frequency", "180");
+        String physical_activity = prefs.getString("pref_physical_activity", "1");
 
-        // Toast.makeText(getActivity(), "list value "+"#"+listpref+"#"+ syncpref, Toast.LENGTH_SHORT).show();
+        Log.d("PREFERENCE_DATA" ,"list value " + "#" + genderSettings + "#" + syncpref+ "#" + physical_activity+ "#" + input);
+
+        // Toast.makeText(getActivity(), "list value "+"#"+gender+"#"+ syncpref, Toast.LENGTH_SHORT).show();
 
 
         boolean connectionCheck = isConnectedToInternet();
@@ -257,18 +269,18 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
         if (connectionCheck==true){
 
             //testing what the user inserted with what information is appropriate for her age
-            switch (input){
-                case ("30"):
-                    retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest4.php");
-                    break;
-
-                default:
-                    retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest2.php");
-                    break;
-
+            if (genderSettings.equals("1") && physical_activity.equals("1")) {
+                //retrieveFeedTask.execute("http://192.168.56.1/lynda-php/api1.php");
+                retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest4.php");
+            } else if (genderSettings.equals("1") && physical_activity.equals("0")){
+                retrieveFeedTask.execute("http://192.168.56.1/lynda-php/api2.php");
+            }else if (genderSettings.equals("0") && physical_activity.equals("1")){
+                retrieveFeedTask.execute("http://192.168.56.1/lynda-php/api3.php");
+            }else if (genderSettings.equals("0") && physical_activity.equals("0")){
+                retrieveFeedTask.execute("http://192.168.56.1/lynda-php/api4.php");
             }
 
-            //retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest2.php");
+
         }else {
             //Toast.makeText(getActivity().getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
             snackBar("Check Internet Connection");
