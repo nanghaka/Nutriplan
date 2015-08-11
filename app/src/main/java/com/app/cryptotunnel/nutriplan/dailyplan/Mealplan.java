@@ -113,9 +113,9 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
         lunchFood.setText(lunchArray[counter]);
         dinnerFood.setText(dinnerArray[counter]);
         dayoftheweek.setText(days[counter]);
-//        if (pDialog.isShowing()){
-//            pDialog.dismiss();
-//        }
+        if (pDialog.isShowing()){
+            pDialog.dismiss();
+        }
     }
 
 
@@ -153,7 +153,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
                 n = feed;
                 updatetext();
 
-//                if (pDialog.isShowing()){
+//                if (pDialog.isShowing()) {
 //                    pDialog.dismiss();
 //                }
 
@@ -181,10 +181,10 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
 
             }catch (NullPointerException e){
                 e.printStackTrace();
-                Snackbar.make(rootView, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
+                snackBar("Check Internet Connection");
             }
 
-        }
+            }
     }
 
     private int getNutritionDataFromJson(String forecastJsonStr)
@@ -243,6 +243,9 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
     }
 
     public void snackBar(String message){
+        if (pDialog.isShowing()) {
+            pDialog.dismiss();
+        }
         Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT);
         View snackbarView = snackbar.getView();
         snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
@@ -270,10 +273,11 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
 
             //testing what the user inserted with what information is appropriate for her age
             if (genderSettings.equals("1") && physical_activity.equals("1")) {
-                //retrieveFeedTask.execute("http://192.168.56.1/lynda-php/api1.php");
-                retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest4.php");
+                retrieveFeedTask.execute("http://192.168.56.1/lynda-php/api1.php");
+               // retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest4.php");
             } else if (genderSettings.equals("1") && physical_activity.equals("0")){
-                retrieveFeedTask.execute("http://192.168.56.1/lynda-php/api2.php");
+                //retrieveFeedTask.execute("http://192.168.56.1/lynda-php/api2.php");
+                retrieveFeedTask.execute("http://codephillip.webatu.com/api2.php");
             }else if (genderSettings.equals("0") && physical_activity.equals("1")){
                 retrieveFeedTask.execute("http://192.168.56.1/lynda-php/api3.php");
             }else if (genderSettings.equals("0") && physical_activity.equals("0")){
