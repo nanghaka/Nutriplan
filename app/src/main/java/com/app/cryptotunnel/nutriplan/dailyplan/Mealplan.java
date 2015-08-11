@@ -182,23 +182,22 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
 
             }catch (NullPointerException e){
                 e.printStackTrace();
+                Snackbar.make(rootView, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
             }
 
             if (pDialog.isShowing()){
                 Thread timer = new Thread(){
                     public void run(){
                         try {
-                            n = feed;
-                            updatetext();
                             sleep(1000);
                         }catch (InterruptedException e){
                             e.printStackTrace();
                             Toast.makeText(getActivity(), "Connection was interrupted", Toast.LENGTH_SHORT).show();
-                        }catch (NullPointerException e){
-                            e.printStackTrace();
-                            //Snackbar.make(rootView, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
-                            pDialog.dismiss();
-//                            Toast.makeText(getActivity(), "Connection was interrupted", Toast.LENGTH_SHORT).show();
+//                        }catch (NullPointerException e){
+//                            e.printStackTrace();
+//                            //Snackbar.make(rootView, "Check Internet Connection", Snackbar.LENGTH_SHORT).show();
+//                            pDialog.dismiss();
+////                            Toast.makeText(getActivity(), "Connection was interrupted", Toast.LENGTH_SHORT).show();
                         }finally {
                             pDialog.dismiss();
                         }
