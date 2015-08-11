@@ -57,7 +57,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
 		 rootView = inflater.inflate(R.layout.meal_plan, container, false);
 
         startInternetConnection();
-        
+
         dayoftheweek= (TextView) rootView.findViewById(R.id.weekDay);
         breakfastFood = (TextView) rootView.findViewById(R.id.breakfastFood);
         lunchFood = (TextView) rootView.findViewById(R.id.lunchFood);
