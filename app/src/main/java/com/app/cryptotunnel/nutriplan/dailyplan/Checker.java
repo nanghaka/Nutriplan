@@ -21,6 +21,8 @@ public class Checker extends Fragment {
 	Button button;
 	FloatingActionButton fab;
 
+
+
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

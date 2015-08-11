@@ -43,51 +43,21 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
     String[] dinnerArray;
     private int n ;
     View rootView;
+    RetrieveFeedTask retrieveFeedTask;
 
-	@Override
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        startInternetConnection();
+    }
+
+    @Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		 rootView = inflater.inflate(R.layout.meal_plan, container, false);
 
-        RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
-
-        //getting users input from settings screen
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String input = prefs.getString(getString(R.string.pref_age_key), getString(R.string.pref_default_age_key));
-        String listpref = prefs.getString("example_list", "-1");
-        String syncpref = prefs.getString("sync_frequency","180");
-
-       // Toast.makeText(getActivity(), "list value "+"#"+listpref+"#"+ syncpref, Toast.LENGTH_SHORT).show();
-
-
-        boolean connectionCheck = isConnectedToInternet();
-
-        if (connectionCheck==true){
-
-            //testing what the user inserted with what information is appropriate for her age
-            switch (input){
-                case ("30"):
-                    retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest4.php");
-                    break;
-
-                default:
-                    retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest2.php");
-                    break;
-
-            }
-
-            //retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest2.php");
-        }else {
-            //Toast.makeText(getActivity().getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
-            snackBar("Check Internet Connection");
-        }
-
-
-
-
-
-
-
+        startInternetConnection();
+        
         dayoftheweek= (TextView) rootView.findViewById(R.id.weekDay);
         breakfastFood = (TextView) rootView.findViewById(R.id.breakfastFood);
         lunchFood = (TextView) rootView.findViewById(R.id.lunchFood);
@@ -270,5 +240,40 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
         snackbar.show();
     }
 
+    public void startInternetConnection(){
 
+        //getting users input from settings screen
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String input = prefs.getString(getString(R.string.pref_age_key), getString(R.string.pref_default_age_key));
+        String listpref = prefs.getString("example_list", "-1");
+        String syncpref = prefs.getString("sync_frequency","180");
+
+        // Toast.makeText(getActivity(), "list value "+"#"+listpref+"#"+ syncpref, Toast.LENGTH_SHORT).show();
+
+
+        boolean connectionCheck = isConnectedToInternet();
+        retrieveFeedTask = new RetrieveFeedTask();
+
+        if (connectionCheck==true){
+
+            //testing what the user inserted with what information is appropriate for her age
+            switch (input){
+                case ("30"):
+                    retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest4.php");
+                    break;
+
+                default:
+                    retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest2.php");
+                    break;
+
+            }
+
+            //retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest2.php");
+        }else {
+            //Toast.makeText(getActivity().getApplicationContext(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
+            snackBar("Check Internet Connection");
+        }
+
+
+    }
 }
