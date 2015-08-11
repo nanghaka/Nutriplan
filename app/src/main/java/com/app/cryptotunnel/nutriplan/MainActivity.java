@@ -2,6 +2,7 @@ package com.app.cryptotunnel.nutriplan;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
         viewConnections();
+
+        PreferenceManager.setDefaultValues(this, R.xml.pref_general, false);
 
 
     }

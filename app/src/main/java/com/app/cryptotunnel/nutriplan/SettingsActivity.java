@@ -58,14 +58,17 @@ public class SettingsActivity extends PreferenceActivity {
             return;
         }
 
+        PreferenceCategory fakeHeader = new PreferenceCategory(this);
+
         // In the simplified UI, fragments are not used at all and we instead
         // use the older PreferenceActivity APIs.
 
         // Add 'general' preferences.
+        fakeHeader.setTitle(R.string.pref_header_general);
         addPreferencesFromResource(R.xml.pref_general);
 
         // Add 'notifications' preferences, and a corresponding header.
-        PreferenceCategory fakeHeader = new PreferenceCategory(this);
+
         fakeHeader.setTitle(R.string.pref_header_notifications);
         getPreferenceScreen().addPreference(fakeHeader);
         addPreferencesFromResource(R.xml.pref_notification);

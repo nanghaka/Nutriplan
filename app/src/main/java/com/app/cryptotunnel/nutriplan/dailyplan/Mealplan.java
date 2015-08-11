@@ -53,9 +53,11 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
 
         //getting users input from settings screen
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String input;
-        input = prefs.getString(getString(R.string.pref_age_key),
-                getString(R.string.pref_default_age_key));
+        String input = prefs.getString(getString(R.string.pref_age_key), getString(R.string.pref_default_age_key));
+        String listpref = prefs.getString("example_list", "-1");
+        String syncpref = prefs.getString("sync_frequency","180");
+
+       // Toast.makeText(getActivity(), "list value "+"#"+listpref+"#"+ syncpref, Toast.LENGTH_SHORT).show();
 
 
         boolean connectionCheck = isConnectedToInternet();
