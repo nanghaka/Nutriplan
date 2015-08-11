@@ -30,14 +30,14 @@
         android:negativeButtonText="@null"
         android:positiveButtonText="@null" />
 
-    <!--<ListPreference-->
-        <!--android:key="example_list"-->
-        <!--android:title="@string/pref_title_add_friends_to_messages"-->
-        <!--android:defaultValue="-1"-->
-        <!--android:entries="@array/pref_example_list_titles"-->
-        <!--android:entryValues="@array/pref_example_list_values"-->
-        <!--android:negativeButtonText="@null"-->
-        <!--android:positiveButtonText="@null" />-->
+    <ListPreference
+        android:key="pref_physical_activity"
+        android:title="@string/pref_physical_activity"
+        android:defaultValue="1"
+        android:entries="@array/pref_physical_activity_list_titles"
+        android:entryValues="@array/pref_physical_activity_list_values"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null" />
 
     <!--<ListPreference-->
         <!--android:key="example_list"-->

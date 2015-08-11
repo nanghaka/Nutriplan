@@ -24,6 +24,17 @@
         <item>0</item>
     </string-array>
 
+
+    <string name="pref_physical_activity">Level of Physical Activity</string>
+    <string-array name="pref_physical_activity_list_titles">
+        <item>Soft</item>
+        <item>Hard</item>
+    </string-array>
+    <string-array name="pref_physical_activity_list_values">
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+
     <!--<string name="pref_title_add_friends_to_messages">Add friends to messages</string>-->
     <!--<string-array name="pref_example_list_titles">-->
         <!--<item>Always</item>-->

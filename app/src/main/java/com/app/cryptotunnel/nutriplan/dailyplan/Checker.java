@@ -34,8 +34,9 @@ public class Checker extends Fragment {
 		String input = prefs.getString(getString(R.string.pref_age_key), getString(R.string.pref_default_age_key));
 		String listpref = prefs.getString("gender", "1");
 		String syncpref = prefs.getString("sync_frequency", "180");
+		String physical_activity = prefs.getString("pref_physical_activity", "1");
 
-		Toast.makeText(getActivity(), "list value " + "#" + listpref + "#" + syncpref, Toast.LENGTH_SHORT).show();
+		Toast.makeText(getActivity(), "list value " + "#" + listpref + "#" + syncpref+ "#" + physical_activity+ "#" + input, Toast.LENGTH_SHORT).show();
 
 
 

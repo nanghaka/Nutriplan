@@ -84,6 +84,7 @@ public class SettingsActivity extends PreferenceActivity {
         // to reflect the new value, per the Android Design guidelines.
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_age_key)));
         bindPreferenceSummaryToValue(findPreference("gender"));
+        bindPreferenceSummaryToValue(findPreference("pref_physical_activity"));
         bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
         bindPreferenceSummaryToValue(findPreference("sync_frequency"));
     }
