@@ -20,9 +20,6 @@ import org.json.JSONObject;
 
 public class ApiIntentService extends IntentService {
 
-    String[] breakfastArray;
-    String[] lunchArray;
-    String[] dinnerArray;
     String Url;
 
     @Override
@@ -80,13 +77,15 @@ public class ApiIntentService extends IntentService {
         }
 
         try {
-            Request request = new Request.Builder().url(Url).build();
-            OkHttpClient client = new OkHttpClient();
-            Response response = client.newCall(request).execute();
+            int k;
+            for (k=0; k<2 ; k++){
+               if (k == 0){
+                   getNutritionDataFromJson(connectToServer(Url));
+               } else if (k == 1){
+                   getBbnFromJson(connectToServer("http://192.168.56.1/lynda-php/apibbn.php"));
+               }
+            }
 
-            String jsonData = response.body().string();
-            Log.d("JSON STRING_DATA", jsonData);
-            getNutritionDataFromJson(jsonData);
         } catch (Exception e) {
             e.printStackTrace();
             Log.d("URL BUG", e.toString());
@@ -109,10 +108,6 @@ public class ApiIntentService extends IntentService {
         JSONArray nutriArray = forecastJson.getJSONArray(TAG_TITLE);//traverse down into the array
         int jsonLength = nutriArray.length();//get lenght of the jsonArray
 
-
-        breakfastArray = new String[jsonLength];//make string array that will temporarily store the data
-        lunchArray = new String[jsonLength];
-        dinnerArray = new String[jsonLength];
         for(int i = 0; i < jsonLength; i++) {
 
             // Get the JSON object representing the day
@@ -126,21 +121,28 @@ public class ApiIntentService extends IntentService {
 
             Log.d("FEEDBA", id+ " "+day + " "+breakfast+ " "+lunch+ " "+dinner);
 
-            breakfastArray[i] = breakfast;
-            lunchArray[i] = lunch;
-            dinnerArray[i] = dinner;
-
             storeInMealPlan(day, breakfast, lunch, dinner);
-
         }
 
-        for (String info: breakfastArray){
-            Log.d("BREAKFAST", info);
-        }
     }
 
-    private void   storeInMealPlan(String day, String breakfast, String lunch, String dinner){
+    private void storeInMealPlan(String day, String breakfast, String lunch, String dinner){
         DatabaseHandler db = new DatabaseHandler(this);
         db.addMealPlan(new MealPlanContract(day, breakfast, lunch, dinner));
     }
+
+    private String connectToServer(String urlConnection) throws Exception{
+        Request request = new Request.Builder().url(urlConnection).build();
+        OkHttpClient client = new OkHttpClient();
+        Response response = client.newCall(request).execute();
+
+        String jsonData = response.body().string();
+        Log.d("JSON STRING_DATA", jsonData);
+        return jsonData;
+    }
+
+    private void getBbnFromJson(String BbnJsonString){
+        Log.d("GETBBNFROMJSON", "pending..pending..");
+    }
+
 }
