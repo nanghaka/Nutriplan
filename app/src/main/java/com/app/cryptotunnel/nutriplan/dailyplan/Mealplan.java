@@ -113,9 +113,9 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
         lunchFood.setText(lunchArray[counter]);
         dinnerFood.setText(dinnerArray[counter]);
         dayoftheweek.setText(days[counter]);
-        if (pDialog.isShowing()){
-            pDialog.dismiss();
-        }
+//        if (pDialog.isShowing()){
+//            pDialog.dismiss();
+//        }
     }
 
 
