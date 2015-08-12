@@ -7,6 +7,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.app.cryptotunnel.nutriplan.R;
+import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
+import com.app.cryptotunnel.nutriplan.database.MealPlanContract;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -127,10 +129,18 @@ public class ApiIntentService extends IntentService {
             breakfastArray[i] = breakfast;
             lunchArray[i] = lunch;
             dinnerArray[i] = dinner;
+
+            storeInMealPlan(day, breakfast, lunch, dinner);
+
         }
 
         for (String info: breakfastArray){
             Log.d("BREAKFAST", info);
         }
+    }
+
+    private void   storeInMealPlan(String day, String breakfast, String lunch, String dinner){
+        DatabaseHandler db = new DatabaseHandler(this);
+        db.addMealPlan(new MealPlanContract(day, breakfast, lunch, dinner));
     }
 }
