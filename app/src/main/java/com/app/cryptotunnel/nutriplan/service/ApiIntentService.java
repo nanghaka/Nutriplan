@@ -21,6 +21,7 @@ import org.json.JSONObject;
 public class ApiIntentService extends IntentService {
 
     String Url;
+    DatabaseHandler db;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -78,6 +79,8 @@ public class ApiIntentService extends IntentService {
 
         try {
             int k;
+
+          //  db.deleteAll();
             for (k=0; k<2 ; k++){
                if (k == 0){
                    getNutritionDataFromJson(connectToServer(Url));
@@ -127,7 +130,7 @@ public class ApiIntentService extends IntentService {
     }
 
     private void storeInMealPlan(String day, String breakfast, String lunch, String dinner){
-        DatabaseHandler db = new DatabaseHandler(this);
+        db = new DatabaseHandler(this);
         db.addMealPlan(new MealPlanContract(day, breakfast, lunch, dinner));
     }
 

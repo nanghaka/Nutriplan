@@ -90,8 +90,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DIARY);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_WEIGHT_TRACKER);
+       // db.execSQL("DROP TABLE IF EXISTS " + TABLE_DIARY);
+       // db.execSQL("DROP TABLE IF EXISTS " + TABLE_WEIGHT_TRACKER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BBN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MEAL_PLAN);
 
@@ -266,7 +266,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // return diaryContract list
         return mealPlanContractList;
     }
-
 //    // Updating single diaryContract
 //    public int updateContact(DiaryContract diaryContract) {
 //        SQLiteDatabase db = this.getWritableDatabase();
@@ -281,13 +280,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 //    }
 //
 //    // Deleting single diaryContract
-//    public void deleteContact(DiaryContract diaryContract) {
-//        SQLiteDatabase db = this.getWritableDatabase();
+    public void deleteAll() {
+        SQLiteDatabase db = this.getWritableDatabase();
 //        db.delete(TABLE_DIARY, KEY_ID + " = ?",
 //                new String[] { String.valueOf(diaryContract.getID()) });
 //     //   db.delete(TABLE_DIARY, KEY_ID + " = ?");
-//        db.close();
-//    }
+        Log.d("SQL", "deleting content form meal_plan and bbn_table");
+        db.execSQL("DELETE FROM "+ TABLE_MEAL_PLAN);
+        db.execSQL("DELETE FROM "+ TABLE_BBN);
+        db.close();
+    }
 //
 //
 //    // Getting contacts Count
