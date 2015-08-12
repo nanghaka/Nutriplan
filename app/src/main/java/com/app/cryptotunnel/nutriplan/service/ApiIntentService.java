@@ -2,8 +2,11 @@ package com.app.cryptotunnel.nutriplan.service;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.app.cryptotunnel.nutriplan.R;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -18,6 +21,7 @@ public class ApiIntentService extends IntentService {
     String[] breakfastArray;
     String[] lunchArray;
     String[] dinnerArray;
+    String Url;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -51,8 +55,30 @@ public class ApiIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
+        //getting users input from settings screen
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String input = prefs.getString(getString(R.string.pref_age_key), getString(R.string.pref_default_age_key));
+        String genderSettings = prefs.getString("gender", "1");
+        String syncpref = prefs.getString("sync_frequency", "180");
+        String physical_activity = prefs.getString("pref_physical_activity", "1");
+
+        Log.d("PREFERENCE_DATA" ,"list value " + "#" + genderSettings + "#" + syncpref+ "#" + physical_activity+ "#" + input);
+
+        //testing what the user inserted with what information is appropriate for her age
+        if (genderSettings.equals("1") && physical_activity.equals("1")) {
+            Url="http://192.168.56.1/lynda-php/api1.php";
+            // retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest4.php");
+        } else if (genderSettings.equals("1") && physical_activity.equals("0")){
+            //retrieveFeedTask.execute("http://192.168.56.1/lynda-php/api2.php");
+            Url="http://codephillip.webatu.com/api2.php";
+        }else if (genderSettings.equals("0") && physical_activity.equals("1")){
+            Url="http://192.168.56.1/lynda-php/api3.php";
+        }else if (genderSettings.equals("0") && physical_activity.equals("0")){
+            Url="http://192.168.56.1/lynda-php/api4.php";
+        }
+
         try {
-            Request request = new Request.Builder().url("http://192.168.56.1/lynda-php/api1.php").build();
+            Request request = new Request.Builder().url(Url).build();
             OkHttpClient client = new OkHttpClient();
             Response response = client.newCall(request).execute();
 
@@ -62,7 +88,6 @@ public class ApiIntentService extends IntentService {
         } catch (Exception e) {
             e.printStackTrace();
             Log.d("URL BUG", e.toString());
-            return;
         }
 
     }
