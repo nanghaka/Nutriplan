@@ -1,6 +1,7 @@
 package com.app.cryptotunnel.nutriplan.nutridiary;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.app.cryptotunnel.nutriplan.database.BbnContract;
 import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
 import com.app.cryptotunnel.nutriplan.database.DiaryContract;
 import com.app.cryptotunnel.nutriplan.database.MealPlanContract;
+import com.app.cryptotunnel.nutriplan.service.ApiIntentService;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,7 +59,8 @@ public class NoteEditorActivity extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                //onBackPressed();
+                startService(new Intent(NoteEditorActivity.this, ApiIntentService.class));
             }
         });
 
