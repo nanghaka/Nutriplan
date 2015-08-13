@@ -26,7 +26,7 @@ import com.app.cryptotunnel.nutriplan.database.WeightTrackerContract;
 import com.app.cryptotunnel.nutriplan.nutridiary.NoteEditorActivity;
 
 public class WeightTracker extends Fragment implements  View.OnClickListener {
-	Button graph,history,save;
+	Button save;
 	EditText currentWeight;
 	View rootView;
 
@@ -52,13 +52,13 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
 
 		save = (Button) rootView.findViewById(R.id.save);
 		currentWeight = (EditText) rootView.findViewById(R.id.currentWeightEdit);
-		history = (Button) rootView.findViewById(R.id.history);
-		graph= (Button) rootView.findViewById(R.id.graph);
+//		history = (Button) rootView.findViewById(R.id.history);
+//		graph= (Button) rootView.findViewById(R.id.graph);
 		fabAction1 = rootView.findViewById(R.id.fab_action_1);
 		fabAction2 = rootView.findViewById(R.id.fab_action_2);
 		fabAction3 = rootView.findViewById(R.id.fab_action_3);
-		graph.setOnClickListener(this);
-		history.setOnClickListener(this);
+//		graph.setOnClickListener(this);
+//		history.setOnClickListener(this);
 		save.setOnClickListener(this);
 		fabAction1.setOnClickListener(this);
 		fabAction2.setOnClickListener(this);
@@ -98,13 +98,13 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()){
-			case R.id.history:
-				startActivity(new Intent(getActivity(), History.class));
-				break;
-
-			case R.id.graph:
-				startActivity(new Intent(getActivity(), LineChartActivity.class));
-				break;
+//			case R.id.history:
+//				startActivity(new Intent(getActivity(), History.class));
+//				break;
+//
+//			case R.id.graph:
+//				startActivity(new Intent(getActivity(), LineChartActivity.class));
+//				break;
 
 			case R.id.save:
 				DatabaseHandler db = new DatabaseHandler(getActivity());
@@ -127,11 +127,13 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
 
 			case R.id.fab_action_1:
 				Log.d(TAG, "Action 1");
-				snackBar("Action 1");
+				//snackBar("Action 1");
+				startActivity(new Intent(getActivity(), History.class));
 				break;
 			case R.id.fab_action_2:
 				Log.d(TAG, "Action 2");
-				snackBar("Action 2");
+				//snackBar("Action 2");
+				startActivity(new Intent(getActivity(), LineChartActivity.class));
 
 				break;
 			case R.id.fab_action_3:

@@ -6,7 +6,7 @@
 
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linear1"
         android:id="@+id/save"
@@ -14,51 +14,42 @@
         android:text="@string/save"/>
 
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:weightSum="4"
-       android:id="@+id/linear1"
-       android:layout_alignParentBottom="true">
+   <!--<LinearLayout-->
+       <!--android:layout_width="match_parent"-->
+       <!--android:layout_height="wrap_content"-->
+       <!--android:weightSum="4"-->
+       <!--android:id="@+id/linear1"-->
+       <!--android:layout_alignParentBottom="true">-->
 
-       <Button
-           android:layout_width="wrap_content"
-           android:layout_height="match_parent"
-           android:id="@+id/graph"
-           android:layout_weight="2"
-           android:text="@string/graph"
-           android:drawableTop="@drawable/ic_graph_black"
-           />
-       <Button
-           android:layout_width="wrap_content"
-           android:layout_height="match_parent"
-           android:id="@+id/history"
-           android:layout_weight="2"
-           android:text="@string/history"
-           android:drawableTop="@drawable/ic_history_black_36dp"
-           />
+       <!--<Button-->
+           <!--android:layout_width="wrap_content"-->
+           <!--android:layout_height="match_parent"-->
+           <!--android:id="@+id/graph"-->
+           <!--android:layout_weight="2"-->
+           <!--android:text="@string/graph"-->
+           <!--android:drawableTop="@drawable/ic_graph_black"-->
+           <!--/>-->
+       <!--<Button-->
+           <!--android:layout_width="wrap_content"-->
+           <!--android:layout_height="match_parent"-->
+           <!--android:id="@+id/history"-->
+           <!--android:layout_weight="2"-->
+           <!--android:text="@string/history"-->
+           <!--android:drawableTop="@drawable/ic_history_black_36dp"-->
+           <!--/>-->
 
-   </LinearLayout>
+   <!--</LinearLayout>-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/enter"
-        android:id="@+id/enter"
-        android:textSize="30sp"
-        android:layout_marginTop="128dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="5"
-        android:id="@+id/currentWeightEdit"
-        android:layout_alignTop="@+id/enter"
-        android:layout_toRightOf="@+id/enter"
-        android:layout_toEndOf="@+id/enter" />
+        android:layout_below="@+id/save"
+        android:hint="Enter current weight"
+        android:id="@+id/currentWeightEdit" />
 
     <include layout="@layout/fab" />
 
