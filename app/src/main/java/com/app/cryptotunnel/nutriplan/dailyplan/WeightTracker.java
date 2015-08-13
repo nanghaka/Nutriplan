@@ -15,21 +15,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 import com.app.cryptotunnel.nutriplan.R;
-import com.app.cryptotunnel.nutriplan.customexception.InvalidValueException;
 import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
 import com.app.cryptotunnel.nutriplan.database.WeightTrackerContract;
-import com.app.cryptotunnel.nutriplan.nutridiary.NoteEditorActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WeightTracker extends Fragment implements  View.OnClickListener {
-	Button save;
-	EditText currentWeight;
+	//Button save;
+	//EditText currentWeight;
 	View rootView;
-
+	ListView recyclerView;
+    ArrayList<String> al = new ArrayList<String>();
+    //String[] nutriArray= new String[9];
+    String[] nutriArray;
 	private static final String TAG = "Floating Action Button";
 	private static final String TRANSLATION_Y = "translationY";
 
@@ -45,24 +49,41 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
 	private float offset2;
 	private float offset3;
 
-	@Override
+    //DatabaseHandler db = new DatabaseHandler(getActivity());
+
+    //String[] weightArray;
+
+
+    @Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.weight_tracker, container, false);
 
-		save = (Button) rootView.findViewById(R.id.save);
-		currentWeight = (EditText) rootView.findViewById(R.id.currentWeightEdit);
+		//save = (Button) rootView.findViewById(R.id.save);
+		//currentWeight = (EditText) rootView.findViewById(R.id.currentWeightEdit);
 //		history = (Button) rootView.findViewById(R.id.history);
 //		graph= (Button) rootView.findViewById(R.id.graph);
 		fabAction1 = rootView.findViewById(R.id.fab_action_1);
 		fabAction2 = rootView.findViewById(R.id.fab_action_2);
 		fabAction3 = rootView.findViewById(R.id.fab_action_3);
+
+		recyclerView = (ListView) rootView.findViewById(R.id.lvToDoList);
 //		graph.setOnClickListener(this);
 //		history.setOnClickListener(this);
-		save.setOnClickListener(this);
+	//	save.setOnClickListener(this);
 		fabAction1.setOnClickListener(this);
 		fabAction2.setOnClickListener(this);
 		fabAction3.setOnClickListener(this);
+
+//        nutriArray[0] = "fasfpongwe";
+//        nutriArray[1] = "fasfpongwe";
+//        nutriArray[2] = "fasfpongwe";
+//        nutriArray[3] = "fasfpongwe";
+//        nutriArray[4] = "fasfpongwe";
+//        nutriArray[5] = "fasfpongwe";
+//        nutriArray[6] = "fasfpongwe";
+//        nutriArray[7] = "fasfpongwe";
+//        nutriArray[8] = "fasfpongwe";
 
 		final ViewGroup fabContainer = (ViewGroup) rootView.findViewById(R.id.fab_container);
 		fab = (ImageButton) rootView.findViewById(R.id.fab);
@@ -92,6 +113,32 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
 			}
 		});
 
+        DatabaseHandler db = new DatabaseHandler(getActivity());
+
+
+        final List<WeightTrackerContract> wtc = db.getAllWeights();
+
+        for (WeightTrackerContract cn : wtc) {
+            String log = "Weights: :-)" + cn.get_weight();
+            // Writing Contacts to log
+            Log.d("Weights: ", log);
+            al.add(cn.get_weight());
+        }
+
+        nutriArray = new String[al.size()];
+        nutriArray = al.toArray(nutriArray);
+        // Define a new Adapter
+        // First parameter - Context
+        // Second parameter - Layout for the row
+        // Third parameter - ID of the TextView to which the data is written
+        // Forth - the Array of data
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, android.R.id.text1, nutriArray);
+
+        // Assign adapter to ListView
+        recyclerView.setAdapter(adapter);
+
 		return rootView;
 	}
 
@@ -106,24 +153,24 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
 //				startActivity(new Intent(getActivity(), LineChartActivity.class));
 //				break;
 
-			case R.id.save:
-				DatabaseHandler db = new DatabaseHandler(getActivity());
-				Log.d("SQL Insert: ", "Inserting ..");
-				String storedWeight = currentWeight.getText().toString();
-
-				if (storedWeight.equals("")){
-					try {
-						throw new InvalidValueException(storedWeight);
-					} catch (InvalidValueException e) {
-						e.printStringError(storedWeight);
-						Log.e("SQL BUG", e.toString());
-						//Snackbar.make(rootView, "Please enter your current weight", Snackbar.LENGTH_SHORT).show();
-						snackBar("Please enter your current weight");
-					}
-				}else {
-					db.addWeight(new WeightTrackerContract(storedWeight, NoteEditorActivity.getTime()));
-				}
-				break;
+//			case R.id.save:
+//				DatabaseHandler db = new DatabaseHandler(getActivity());
+//				Log.d("SQL Insert: ", "Inserting ..");
+//				String storedWeight = currentWeight.getText().toString();
+//
+//				if (storedWeight.equals("")){
+//					try {
+//						throw new InvalidValueException(storedWeight);
+//					} catch (InvalidValueException e) {
+//						e.printStringError(storedWeight);
+//						Log.e("SQL BUG", e.toString());
+//						//Snackbar.make(rootView, "Please enter your current weight", Snackbar.LENGTH_SHORT).show();
+//						snackBar("Please enter your current weight");
+//					}
+//				}else {
+//					db.addWeight(new WeightTrackerContract(storedWeight, NoteEditorActivity.getTime()));
+//				}
+//				break;
 
 			case R.id.fab_action_1:
 				Log.d(TAG, "Action 1");

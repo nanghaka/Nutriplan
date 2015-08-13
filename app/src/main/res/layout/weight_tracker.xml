@@ -2,16 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/linear1"
-        android:id="@+id/save"
-        android:drawableTop="@drawable/ic_save_black_36dp"
-        android:text="@string/save"/>
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_above="@+id/linear1"-->
+        <!--android:id="@+id/save"-->
+        <!--android:drawableTop="@drawable/ic_save_black_36dp"-->
+        <!--android:text="@string/save"/>-->
 
 
    <!--<LinearLayout-->
@@ -42,16 +43,70 @@
 
 
 
-    <EditText
+    <!--<EditText-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:inputType="numberDecimal"-->
+        <!--android:ems="5"-->
+        <!--android:layout_below="@+id/save"-->
+        <!--android:hint="Enter current weight"-->
+        <!--android:id="@+id/currentWeightEdit" />-->
+
+    <ListView
+        android:id="@+id/lvToDoList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
+    <RelativeLayout
+        android:id="@+id/fab_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="5"
-        android:layout_below="@+id/save"
-        android:hint="Enter current weight"
-        android:id="@+id/currentWeightEdit" />
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:clipChildren="false">
 
-    <include layout="@layout/fab" />
+        <ImageButton
+            android:id="@+id/fab_action_3"
+            style="@style/FloatingActionButton.Mini"
+            android:src="@drawable/plus"
+            android:layout_above="@+id/fab_action_2"
+            android:layout_alignEnd="@+id/fab"
+            android:layout_alignRight="@id/fab"
+            android:contentDescription="@null" />
+
+        <ImageButton
+            android:id="@id/fab_action_2"
+            style="@style/FloatingActionButton.Mini"
+            android:src="@drawable/plus"
+            android:layout_above="@+id/fab_action_1"
+            android:layout_alignEnd="@id/fab"
+            android:layout_alignRight="@id/fab"
+            android:contentDescription="@null" />
+
+        <ImageButton
+            android:id="@id/fab_action_1"
+            style="@style/FloatingActionButton.Mini"
+            android:src="@drawable/plus"
+            android:layout_above="@id/fab"
+            android:layout_alignEnd="@id/fab"
+            android:layout_alignRight="@id/fab"
+            android:contentDescription="@null" />
+
+        <ImageButton
+            android:id="@id/fab"
+            style="@style/FloatingActionButton"
+            android:src="@drawable/plus"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:contentDescription="@null"
+            android:visibility="visible"
+            app:layout_anchor="@id/lvToDoList"
+            android:layout_marginTop="8dp" />
+
+    </RelativeLayout>
+
+    <!--<include layout="@layout/fab" />-->
 
 
 </RelativeLayout>
