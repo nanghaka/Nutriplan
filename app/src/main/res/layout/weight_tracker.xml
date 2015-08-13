@@ -60,5 +60,7 @@
         android:layout_toRightOf="@+id/enter"
         android:layout_toEndOf="@+id/enter" />
 
+    <include layout="@layout/fab" />
+
 
 </RelativeLayout>

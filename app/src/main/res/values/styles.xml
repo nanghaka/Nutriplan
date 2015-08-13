@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/orange</item>
         <item name="colorPrimaryDark">@color/moderate_orange</item>
         <item name="colorAccent">@color/accent_material_light</item>
+        <item name="android:colorControlHighlight">@color/sa_green_transparent</item>
     </style>
 
     <!-- Main activity theme. -->
@@ -16,6 +17,19 @@
     <style name="ActionBar.Solid.Soccer.NoTitle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="displayOptions">useLogo|showHome</item>
         <item name="logo">@mipmap/ic_launcher</item>
+    </style>
+
+    <style name="FloatingActionButton" parent="android:Widget.Material.Button">
+        <item name="android:background">@drawable/fab_background</item>
+        <item name="android:stateListAnimator">@anim/fab_state_list_animator</item>
+        <item name="android:layout_width">56dp</item>
+        <item name="android:layout_height">56dp</item>
+    </style>
+
+    <style name="FloatingActionButton.Mini">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_margin">8dp</item>
     </style>
 
 </resources>

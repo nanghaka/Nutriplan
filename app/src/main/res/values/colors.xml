@@ -19,4 +19,8 @@
     <color name="moderate_orange">#f57c00</color>
     <color name="accent_orange">#ffffcc80</color>
 
+    <color name="sa_green">#1E9618</color>
+    <color name="sa_green_transparent">#801E9618</color>
+    <color name="sa_green_dark">#146310</color>
+
 </resources>
