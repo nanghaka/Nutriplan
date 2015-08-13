@@ -27,12 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeightTracker extends Fragment implements  View.OnClickListener {
-	//Button save;
-	//EditText currentWeight;
 	View rootView;
 	ListView recyclerView;
     ArrayList<String> al = new ArrayList<String>();
-    //String[] nutriArray= new String[9];
     String[] nutriArray;
 	private static final String TAG = "Floating Action Button";
 	private static final String TRANSLATION_Y = "translationY";
@@ -49,9 +46,6 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
 	private float offset2;
 	private float offset3;
 
-    //DatabaseHandler db = new DatabaseHandler(getActivity());
-
-    //String[] weightArray;
 
 
     @Override
@@ -59,31 +53,16 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.weight_tracker, container, false);
 
-		//save = (Button) rootView.findViewById(R.id.save);
-		//currentWeight = (EditText) rootView.findViewById(R.id.currentWeightEdit);
-//		history = (Button) rootView.findViewById(R.id.history);
-//		graph= (Button) rootView.findViewById(R.id.graph);
+
 		fabAction1 = rootView.findViewById(R.id.fab_action_1);
 		fabAction2 = rootView.findViewById(R.id.fab_action_2);
 		fabAction3 = rootView.findViewById(R.id.fab_action_3);
 
 		recyclerView = (ListView) rootView.findViewById(R.id.lvToDoList);
-//		graph.setOnClickListener(this);
-//		history.setOnClickListener(this);
-	//	save.setOnClickListener(this);
+
 		fabAction1.setOnClickListener(this);
 		fabAction2.setOnClickListener(this);
 		fabAction3.setOnClickListener(this);
-
-//        nutriArray[0] = "fasfpongwe";
-//        nutriArray[1] = "fasfpongwe";
-//        nutriArray[2] = "fasfpongwe";
-//        nutriArray[3] = "fasfpongwe";
-//        nutriArray[4] = "fasfpongwe";
-//        nutriArray[5] = "fasfpongwe";
-//        nutriArray[6] = "fasfpongwe";
-//        nutriArray[7] = "fasfpongwe";
-//        nutriArray[8] = "fasfpongwe";
 
 		final ViewGroup fabContainer = (ViewGroup) rootView.findViewById(R.id.fab_container);
 		fab = (ImageButton) rootView.findViewById(R.id.fab);
@@ -119,10 +98,14 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
         final List<WeightTrackerContract> wtc = db.getAllWeights();
 
         for (WeightTrackerContract cn : wtc) {
-            String log = "Weights: :-)" + cn.get_weight();
+//            String log = "Weights: :-)" + cn.get_weight();
+//            // Writing Contacts to log
+//            Log.d("Weights: ", log);
+//            al.add(cn.get_weight());
+            String log = " Time: " + cn.get_weight_time()+"\n"+"Weights: " + cn.get_weight();
             // Writing Contacts to log
-            Log.d("Weights: ", log);
-            al.add(cn.get_weight());
+            Log.d(TAG, log);
+            al.add(log);
         }
 
         nutriArray = new String[al.size()];
@@ -145,14 +128,6 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()){
-//			case R.id.history:
-//				startActivity(new Intent(getActivity(), History.class));
-//				break;
-//
-//			case R.id.graph:
-//				startActivity(new Intent(getActivity(), LineChartActivity.class));
-//				break;
-
 //			case R.id.save:
 //				DatabaseHandler db = new DatabaseHandler(getActivity());
 //				Log.d("SQL Insert: ", "Inserting ..");
