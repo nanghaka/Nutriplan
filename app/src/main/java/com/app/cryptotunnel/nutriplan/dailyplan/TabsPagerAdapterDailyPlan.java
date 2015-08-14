@@ -17,8 +17,8 @@ public class TabsPagerAdapterDailyPlan extends FragmentPagerAdapter {
 			return new Mealplan();
 		case 1:
 			return new WeightTracker();
-		case 2:
-			return new Checker();
+//		case 2:
+//			return new Checker();
 
 		default:
 			return null;
@@ -27,7 +27,7 @@ public class TabsPagerAdapterDailyPlan extends FragmentPagerAdapter {
 
 	@Override
 	public int getCount() {
-		return 3;
+		return 2;
 	}
 
 }

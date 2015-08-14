@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.app.cryptotunnel.nutriplan.R;
 import com.app.cryptotunnel.nutriplan.SettingsActivity;
+import com.app.cryptotunnel.nutriplan.scanner.ScannerActivity;
 
 
 public class DailyPlan extends AppCompatActivity implements ActionBar.TabListener {
@@ -47,7 +48,7 @@ public class DailyPlan extends AppCompatActivity implements ActionBar.TabListene
 
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        String[] tabs = { "Meal Plan", "Weight Tracker","Checker"
+        String[] tabs = { "Meal Plan", "Weight Tracker"
         };
 
         for (String tab_name : tabs) {
@@ -59,7 +60,7 @@ public class DailyPlan extends AppCompatActivity implements ActionBar.TabListene
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_daily_plan, menu);
         return true;
     }
 
@@ -72,7 +73,11 @@ public class DailyPlan extends AppCompatActivity implements ActionBar.TabListene
         if (id == R.id.action_settings) {
             startActivity(new Intent(DailyPlan.this, SettingsActivity.class));
             return true;
+        }else if(id == R.id.checker){
+            startActivity(new Intent(DailyPlan.this, ScannerActivity.class));
         }
+
+
         return super.onOptionsItemSelected(item);
     }
 

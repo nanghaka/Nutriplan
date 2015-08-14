@@ -5,33 +5,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/words"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColor="#939393"
-        android:layout_centerVertical="true"
-        android:text="@string/clickthebutton" />
+    <!--<TextView-->
+        <!--android:id="@+id/words"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:textColor="#939393"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:text="@string/clickthebutton" />-->
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/click"
-        android:text="click"
-        android:layout_alignParentBottom="true"/>
+    <!--<Button-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/click"-->
+        <!--android:text="click"-->
+        <!--android:layout_alignParentBottom="true"/>-->
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_add_black_18dp"
-        android:layout_gravity="bottom|end"
-        app:elevation="6dp"
-        app:pressedTranslationZ="12dp"
-        android:layout_above="@+id/click"
-        android:layout_toRightOf="@+id/words"
-        android:layout_toEndOf="@+id/words"
-        android:layout_marginBottom="67dp" />
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fab"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@drawable/ic_add_black_18dp"-->
+        <!--android:layout_gravity="bottom|end"-->
+        <!--app:elevation="6dp"-->
+        <!--app:pressedTranslationZ="12dp"-->
+        <!--android:layout_above="@+id/click"-->
+        <!--android:layout_toRightOf="@+id/words"-->
+        <!--android:layout_toEndOf="@+id/words"-->
+        <!--android:layout_marginBottom="67dp" />-->
 
 </RelativeLayout>
