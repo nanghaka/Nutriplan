@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.app.cryptotunnel.nutriplan.R;
+import com.app.cryptotunnel.nutriplan.database.BbnContract;
 import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
 import com.app.cryptotunnel.nutriplan.database.MealPlanContract;
 import com.squareup.okhttp.OkHttpClient;
@@ -124,14 +125,20 @@ public class ApiIntentService extends IntentService {
 
             Log.d("FEEDBA", id+ " "+day + " "+breakfast+ " "+lunch+ " "+dinner);
 
-            storeInMealPlan(day, breakfast, lunch, dinner);
+            storeInMealPlanTable(day, breakfast, lunch, dinner);
         }
 
     }
 
-    private void storeInMealPlan(String day, String breakfast, String lunch, String dinner){
+    private void storeInMealPlanTable(String day, String breakfast, String lunch, String dinner){
         db = new DatabaseHandler(this);
         db.addMealPlan(new MealPlanContract(day, breakfast, lunch, dinner));
+    }
+
+    private void storeInBbnTable(String tips, String bc, String barcode, String url){
+        db = new DatabaseHandler(this);
+        db.addBbnData(new BbnContract(barcode,bc,tips,url));
+
     }
 
     private String connectToServer(String urlConnection) throws Exception{
@@ -144,8 +151,37 @@ public class ApiIntentService extends IntentService {
         return jsonData;
     }
 
-    private void getBbnFromJson(String BbnJsonString){
-        Log.d("GETBBNFROMJSON", "pending..pending..");
+    private void getBbnFromJson(String BbnJsonString)  throws JSONException {
+
+        // These are the names of the JSON objects that need to be extracted.
+        final String TAG_ID = "id";
+        final String TAG_TIPS = "tips";
+        final String TAG_BARCODE = "barcode";
+        final String TAG_TITLE = "title";
+        final String TAG_BC = "bc";
+        final String TAG_URL = "url";
+
+        JSONObject forecastJson = new JSONObject(BbnJsonString);
+        JSONArray nutriArray = forecastJson.getJSONArray(TAG_TITLE);//traverse down into the array
+        int jsonLength = nutriArray.length();//get length of the jsonArray
+
+        for(int i = 0; i < jsonLength; i++) {
+
+            // Get the JSON object representing the day
+            JSONObject c = nutriArray.getJSONObject(i);//point to a single row in the jsonArray
+            //extract individual items from the json object
+            String id = c.getString(TAG_ID);
+            String tips = c.getString(TAG_TIPS);
+            String barcode = c.getString(TAG_BARCODE);
+            String bc = c.getString(TAG_BC);
+            String url = c.getString(TAG_URL);
+
+            Log.d("FEEDBA", id+ " "+tips + " "+barcode+ " "+bc+ " "+url);
+
+            storeInBbnTable(tips, bc, barcode, url);
+        }
+
     }
+
 
 }

@@ -9,6 +9,7 @@ public class BbnContract {
     String barcode;
     String bc;
     String nutritips;
+    String url;
 
     public BbnContract() {
     }
@@ -24,6 +25,13 @@ public class BbnContract {
         this.barcode = barcode;
         this.bc = bc;
         this.nutritips = nutritips;
+    }
+
+    public BbnContract(String barcode, String bc, String nutritips, String url) {
+        this.barcode = barcode;
+        this.bc = bc;
+        this.nutritips = nutritips;
+        this.url = url;
     }
 
     public int get_id_bbn() {
@@ -56,5 +64,13 @@ public class BbnContract {
 
     public void setNutritips(String nutritips) {
         this.nutritips = nutritips;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

@@ -43,6 +43,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_NUTRITIPS = "nutritips";
     private static final String KEY_BARCODE= "barcode";
     private static final String KEY_BC = "bc";
+    private static final String KEY_URL = "url";
 
     // MealPlanContract table
     private static final String KEY_ID_MEALPLAN = "id_mealPlan";
@@ -72,7 +73,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         String CREATE_BBN_TABLE = "CREATE TABLE " + TABLE_BBN + "("
                 + KEY_ID_BBN + " INTEGER PRIMARY KEY," + KEY_BARCODE
-                + " TEXT,"+ KEY_BC + " TEXT," +  KEY_NUTRITIPS+ " TEXT" +")";
+                + " TEXT,"+ KEY_BC + " TEXT," +  KEY_NUTRITIPS+ " TEXT," +  KEY_URL+ " TEXT" +")";
 
         String CREATE_MEALPLAN_TABLE = "CREATE TABLE " + TABLE_MEAL_PLAN + "("
                 + KEY_ID_MEALPLAN + " INTEGER PRIMARY KEY," + KEY_DAY
@@ -138,6 +139,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_BARCODE, bbnContract.getBarcode()); // ADDING barcode TO THE DATABASE
         values.put(KEY_BC, bbnContract.getBc()); // ADDING birth_certificate_id
         values.put(KEY_NUTRITIPS, bbnContract.getNutritips());
+        values.put(KEY_URL, bbnContract.getUrl());
 
         // Inserting Row
         db.insert(TABLE_BBN, null, values);
@@ -230,6 +232,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 wtc.setBarcode(cursor.getString(1));
                 wtc.setBc(cursor.getString(2));
                 wtc.setNutritips(cursor.getString(3));
+                wtc.setUrl(cursor.getString(4));
                 bbnList.add(wtc);
 
             } while (cursor.moveToNext());
