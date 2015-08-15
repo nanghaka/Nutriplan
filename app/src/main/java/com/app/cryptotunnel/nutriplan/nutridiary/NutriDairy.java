@@ -20,11 +20,11 @@ import java.util.List;
 public class NutriDairy extends AppCompatActivity {
 
 
-    ListView listView;
-    ArrayList<String> al = new ArrayList<String>();
-    DatabaseHandler db = new DatabaseHandler(this);
+    private ListView listView;
+    private final ArrayList<String> al = new ArrayList<String>();
+    private final DatabaseHandler db = new DatabaseHandler(this);
 
-    String[] nutriArray;
+    private String[] nutriArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

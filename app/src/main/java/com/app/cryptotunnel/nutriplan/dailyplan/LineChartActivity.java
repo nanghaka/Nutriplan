@@ -53,10 +53,10 @@ public class LineChartActivity extends AppCompatActivity {
         private LineChartView chart;
         private LineChartData data;
         private int numberOfLines = 1;
-        private int maxNumberOfLines = 4;
-        private int numberOfPoints = 12;
+        private final int maxNumberOfLines = 4;
+        private final int numberOfPoints = 12;
 
-        float[][] randomNumbersTab = new float[maxNumberOfLines][numberOfPoints];
+        final float[][] randomNumbersTab = new float[maxNumberOfLines][numberOfPoints];
 
         private boolean hasAxes = true;
         private boolean hasAxesNames = true;
@@ -70,7 +70,7 @@ public class LineChartActivity extends AppCompatActivity {
         private boolean pointsHaveDifferentColor;
 
        // DatabaseHandler db = new DatabaseHandler(getActivity());
-        ArrayList<String> al = new ArrayList<String>();
+       final ArrayList<String> al = new ArrayList<String>();
         String[] nutriArray;
 
         public PlaceholderFragment() {

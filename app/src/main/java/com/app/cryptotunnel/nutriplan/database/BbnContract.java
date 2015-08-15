@@ -5,11 +5,11 @@ package com.app.cryptotunnel.nutriplan.database;
  */
 public class BbnContract {
 
-    int _id_bbn;
-    String barcode;
-    String bc;
-    String nutritips;
-    String url;
+    private int _id_bbn;
+    private String barcode;
+    private String bc;
+    private String nutritips;
+    private String url;
 
     public BbnContract() {
     }

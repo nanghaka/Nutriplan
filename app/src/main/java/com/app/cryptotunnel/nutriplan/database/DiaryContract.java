@@ -6,9 +6,9 @@ package com.app.cryptotunnel.nutriplan.database;
 public class DiaryContract {
 
     //private variables
-    int _id;
-    String _note;
-    String _time;
+    private int _id;
+    private String _note;
+    private String _time;
 
     // Empty constructor
     public DiaryContract(){

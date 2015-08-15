@@ -31,19 +31,23 @@ import org.json.JSONObject;
 public class Mealplan extends Fragment implements  View.OnClickListener{
 
 
-    ImageButton next, previous;
-    TextView dayoftheweek, breakfastFood, lunchFood, dinnerFood;
-    String days[] ={
+    private ImageButton next;
+    private ImageButton previous;
+    private TextView dayoftheweek;
+    private TextView breakfastFood;
+    private TextView lunchFood;
+    private TextView dinnerFood;
+    private final String[] days ={
       "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
     };
-    int counter = 0;
+    private int counter = 0;
     private ProgressDialog pDialog;
-    String[] breakfastArray;
-    String[] lunchArray;
-    String[] dinnerArray;
+    private String[] breakfastArray;
+    private String[] lunchArray;
+    private String[] dinnerArray;
     private int n ;
-    View rootView;
-    RetrieveFeedTask retrieveFeedTask;
+    private View rootView;
+    private RetrieveFeedTask retrieveFeedTask;
 
     @Override
     public void onResume() {
@@ -119,7 +123,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
     }
 
 
-    public class RetrieveFeedTask extends AsyncTask<String, Void, Integer> {
+    class RetrieveFeedTask extends AsyncTask<String, Void, Integer> {
 
         protected Integer doInBackground(String... urls) {
             try {
@@ -226,7 +230,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
         return breakfastArray.length;//return the array of data to the doInBackGround method
     }
 
-    public boolean isConnectedToInternet(){
+    private boolean isConnectedToInternet(){
         ConnectivityManager connectivity = (ConnectivityManager) getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivity != null)
         {
@@ -242,7 +246,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
         return false;
     }
 
-    public void snackBar(String message){
+    private void snackBar(String message){
         if (pDialog.isShowing()) {
             pDialog.dismiss();
         }
@@ -252,7 +256,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
         snackbar.show();
     }
 
-    public void startInternetConnection(){
+    private void startInternetConnection(){
 
         //getting users input from settings screen
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());

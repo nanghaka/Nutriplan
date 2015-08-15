@@ -27,10 +27,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeightTracker extends Fragment implements  View.OnClickListener {
-	View rootView;
-	ListView recyclerView;
-    ArrayList<String> al = new ArrayList<String>();
-    String[] nutriArray;
+	private View rootView;
+	private ListView recyclerView;
+    private final ArrayList<String> al = new ArrayList<String>();
+    private String[] nutriArray;
 	private static final String TAG = "Floating Action Button";
 	private static final String TRANSLATION_Y = "translationY";
 
@@ -166,7 +166,7 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
 	}
 
 
-	public void snackBar(String message){
+	private void snackBar(String message){
 		Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT);
 		View snackbarView = snackbar.getView();
 		snackbarView.setBackgroundColor(getResources().getColor(R.color.red));

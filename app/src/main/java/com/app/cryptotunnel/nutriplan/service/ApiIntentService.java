@@ -21,8 +21,8 @@ import org.json.JSONObject;
 
 public class ApiIntentService extends IntentService {
 
-    String Url;
-    DatabaseHandler db;
+    private String Url;
+    private DatabaseHandler db;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {

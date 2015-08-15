@@ -172,20 +172,20 @@ public class ScannerActivity extends AppCompatActivity implements MessageDialogF
        showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());
     }
 
-    public void showMessageDialog(String message) {
+    private void showMessageDialog(String message) {
         DialogFragment fragment = MessageDialogFragment.newInstance("Scan Results", message, this);
         fragment.show(getSupportFragmentManager(), "scan_results");
     }
 
-    public void closeMessageDialog() {
+    private void closeMessageDialog() {
         closeDialog("scan_results");
     }
 
-    public void closeFormatsDialog() {
+    private void closeFormatsDialog() {
         closeDialog("format_selector");
     }
 
-    public void closeDialog(String dialogName) {
+    private void closeDialog(String dialogName) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         DialogFragment fragment = (DialogFragment) fragmentManager.findFragmentByTag(dialogName);
         if(fragment != null) {
@@ -215,7 +215,7 @@ public class ScannerActivity extends AppCompatActivity implements MessageDialogF
         mScannerView.setAutoFocus(mAutoFocus);
     }
 
-    public void setupFormats() {
+    private void setupFormats() {
         List<BarcodeFormat> formats = new ArrayList<BarcodeFormat>();
         if(mSelectedIndices == null || mSelectedIndices.isEmpty()) {
             mSelectedIndices = new ArrayList<Integer>();
@@ -240,7 +240,7 @@ public class ScannerActivity extends AppCompatActivity implements MessageDialogF
         closeFormatsDialog();
     }
 
-    public void webCall(String webUrl){
+    private void webCall(String webUrl){
         Log.d("website", "started web browser dialog");
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webUrl));
         startActivity(browserIntent);

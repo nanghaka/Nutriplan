@@ -23,12 +23,13 @@ import java.util.Date;
 
 
 public class NoteEditorActivity extends AppCompatActivity {
-    EditText noteText;
-    Button save,cancel;
-    String[] nutriArray;
+    private EditText noteText;
+    private Button save;
+    private Button cancel;
+    private String[] nutriArray;
 
-    DatabaseHandler db = new DatabaseHandler(this);
-    ArrayList<String> al = new ArrayList<String>();
+    private final DatabaseHandler db = new DatabaseHandler(this);
+    private final ArrayList<String> al = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,7 @@ public class NoteEditorActivity extends AppCompatActivity {
 
     }
     @SuppressLint("SimpleDateFormat")
-    public static String getTime() {
+    private static String getTime() {
         String pattern = "yyyy-MM-dd HH:mm:ss ";
         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
         String key = formatter.format(new Date());

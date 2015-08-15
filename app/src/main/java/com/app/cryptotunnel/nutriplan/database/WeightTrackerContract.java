@@ -6,9 +6,9 @@ package com.app.cryptotunnel.nutriplan.database;
 public class WeightTrackerContract {
 
     //private variables
-    int _id;
-    String _weight;
-    String _weight_time;
+    private int _id;
+    private String _weight;
+    private String _weight_time;
 
     public WeightTrackerContract(int _id, String _weight, String _weight_time) {
         this._id = _id;

@@ -39,17 +39,16 @@ public class HealthTips extends AppCompatActivity {
 
 
     private static final String APP_SHARE_HASHTAG = "#Nutriplan app";
-    ImageButton next, previous;
     private TextView words;
     private ImageView food;
     private static int counter;
     private static int icount;
-    public String[] resultStrs;
+    private String[] resultStrs;
     private ProgressDialog pDialog;
 
-    ArrayList<String> al = new ArrayList<String>();
-    DatabaseHandler db = new DatabaseHandler(this);
-    String[] weightArray;
+    private final ArrayList<String> al = new ArrayList<String>();
+    private final DatabaseHandler db = new DatabaseHandler(this);
+    private String[] weightArray;
 
     private final int[] image = {
             R.drawable.food1,
@@ -75,8 +74,7 @@ public class HealthTips extends AppCompatActivity {
     };
     private final int m = image.length;
     private int n ;
-
-    View parentLayout;
+    private View parentLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,9 +94,8 @@ public class HealthTips extends AppCompatActivity {
         }
 
 
-
-        next = (ImageButton) findViewById(R.id.next);
-        previous = (ImageButton) findViewById(R.id.previous);
+        ImageButton next = (ImageButton) findViewById(R.id.next);
+        ImageButton previous = (ImageButton) findViewById(R.id.previous);
         words = (TextView) findViewById(R.id.words);
         food = (ImageView) findViewById(R.id.food);
 
@@ -128,7 +125,7 @@ public class HealthTips extends AppCompatActivity {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     e.printStackTrace();
                     Log.d("array", String.valueOf(e.toString()));
-                } catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     e.printStackTrace();
                     Log.d("array", String.valueOf(e.toString()));
                     snackBar("Check Internet Connection");
@@ -154,7 +151,7 @@ public class HealthTips extends AppCompatActivity {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     e.printStackTrace();
                     Log.d("array", String.valueOf(e.toString()));
-                } catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     e.printStackTrace();
                     Log.d("array", String.valueOf(e.toString()));
                     snackBar("Check Internet Connection");
@@ -242,7 +239,7 @@ public class HealthTips extends AppCompatActivity {
     }
 
 
-    public class RetrieveFeedTask extends AsyncTask<Void, Void, String[]> {
+    private class RetrieveFeedTask extends AsyncTask<Void, Void, String[]> {
 
         protected String[] doInBackground(Void... urls) {
             try {
@@ -337,7 +334,7 @@ public class HealthTips extends AppCompatActivity {
 
     }
 
-    public boolean isConnectedToInternet(){
+    private boolean isConnectedToInternet(){
         ConnectivityManager connectivity = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivity != null)
         {
@@ -353,7 +350,7 @@ public class HealthTips extends AppCompatActivity {
         return false;
     }
 
-    public void snackBar(String message){
+    private void snackBar(String message){
         Snackbar snackbar = Snackbar.make(parentLayout, message, Snackbar.LENGTH_SHORT);
         View snackbarView = snackbar.getView();
         snackbarView.setBackgroundColor(getResources().getColor(R.color.red));

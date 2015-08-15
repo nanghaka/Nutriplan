@@ -20,12 +20,21 @@ import com.app.cryptotunnel.nutriplan.customexception.InvalidValueException;
 
 public class Calories extends Fragment implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 
-    Button calculate,reset;
-    RadioGroup gender;
-    double w, h, a, calories, doubleTest;
-    EditText weight,height,age;
-    int numberSentByRadioButton = 0;
-    TextInputLayout textInputLayoutHeight,textInputLayoutWeight,textInputLayoutAge;
+    private Button calculate;
+    private Button reset;
+    private RadioGroup gender;
+    private double w;
+    private double h;
+    private double a;
+    private double calories;
+    double doubleTest;
+    private EditText weight;
+    private EditText height;
+    private EditText age;
+    private int numberSentByRadioButton = 0;
+    private TextInputLayout textInputLayoutHeight;
+    private TextInputLayout textInputLayoutWeight;
+    private TextInputLayout textInputLayoutAge;
 
 
     public View onCreateView(LayoutInflater inflater,
@@ -76,14 +85,14 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
     }
 
 
-    public void editTextError(){
+    private void editTextError(){
         Resources res = getResources();
         textInputLayoutHeight.setError(res.getString(R.string.height_required));
         textInputLayoutWeight.setError(res.getString(R.string.weight_required));
         textInputLayoutAge.setError(res.getString(R.string.age_required));
     }
 
-    public void changeStringToDouble() throws InvalidValueException {
+    private void changeStringToDouble() throws InvalidValueException {
         w = Double.parseDouble(String.valueOf(weight.getText()));
         h = Double.parseDouble(String.valueOf(height.getText()));
         a = Double.parseDouble(String.valueOf(age.getText()));
@@ -150,7 +159,7 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
 
     }
 
-    public void resultFromRadioButtons(int r){
+    private void resultFromRadioButtons(int r){
        numberSentByRadioButton = r;
     }
 }

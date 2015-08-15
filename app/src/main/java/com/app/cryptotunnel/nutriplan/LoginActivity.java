@@ -45,10 +45,10 @@ public class LoginActivity extends AppCompatActivity implements
     private static final String DIALOG_ERROR = "dialog_error";
 
 
-    CallbackManager callbackManager;
-    final String TAG = "logging in";
+    private CallbackManager callbackManager;
+    private final String TAG = "logging in";
 
-    Button DebugLoginButton;
+    private Button DebugLoginButton;
 
 
     @Override

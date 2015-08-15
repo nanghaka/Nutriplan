@@ -21,12 +21,13 @@ import com.app.cryptotunnel.nutriplan.customexception.InvalidValueException;
 
 public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 
-    RadioGroup energyLevel;
-    EditText weightEdit;
-    double proteinResult;
-    Button calculate, reset;
-    TextInputLayout textInputLayoutWeight;
-    int numberSentByRadioButton = 0;
+    private RadioGroup energyLevel;
+    private EditText weightEdit;
+    private double proteinResult;
+    private Button calculate;
+    private Button reset;
+    private TextInputLayout textInputLayoutWeight;
+    private int numberSentByRadioButton = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -76,7 +77,7 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
     }
 
 
-    public void editTextError() {
+    private void editTextError() {
         Resources res = getResources();
         textInputLayoutWeight.setError(res.getString(R.string.weight_required));
     }
@@ -148,7 +149,7 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
     }
 
 
-    public void changeStringToDouble() throws InvalidValueException {
+    private void changeStringToDouble() throws InvalidValueException {
         proteinResult = Double.parseDouble(String.valueOf(weightEdit.getText()));
 
         if (proteinResult <= 0){
@@ -158,7 +159,7 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
     }
 
 
-    public void resultFromRadioButtons(int r){
+    private void resultFromRadioButtons(int r){
         numberSentByRadioButton = r;
     }
 }

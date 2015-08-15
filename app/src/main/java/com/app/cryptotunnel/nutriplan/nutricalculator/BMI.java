@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.cryptotunnel.nutriplan.R;
@@ -20,10 +18,15 @@ import com.app.cryptotunnel.nutriplan.customexception.InvalidValueException;
 
 public class BMI extends Fragment {
 
-    Button calculate, reset;
-    double w,h,value;
-	EditText weight,height;
-	TextInputLayout textInputLayoutHeight,textInputLayoutWeight;
+    private Button calculate;
+    private Button reset;
+    private double w;
+    private double h;
+    private double value;
+	private EditText weight;
+    private EditText height;
+	private TextInputLayout textInputLayoutHeight;
+    private TextInputLayout textInputLayoutWeight;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
@@ -81,7 +84,7 @@ public class BMI extends Fragment {
 	}
 
 
-	public void editTextError(){
+	private void editTextError(){
 		Resources res = getResources();
 		textInputLayoutHeight.setError(res.getString(R.string.height_required));
 		textInputLayoutWeight.setError(res.getString(R.string.weight_required));

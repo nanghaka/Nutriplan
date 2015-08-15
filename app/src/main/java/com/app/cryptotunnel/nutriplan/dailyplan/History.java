@@ -19,12 +19,12 @@ import java.util.List;
 
 public class History extends AppCompatActivity {
 
-    String TAG = "History activity";
-    ListView listView;
-    ArrayList<String> al = new ArrayList<String>();
-    DatabaseHandler db = new DatabaseHandler(this);
+    private final String TAG = "History activity";
+    private ListView listView;
+    private final ArrayList<String> al = new ArrayList<String>();
+    private final DatabaseHandler db = new DatabaseHandler(this);
 
-    String[] weightArray;
+    private String[] weightArray;
 
 
     @Override

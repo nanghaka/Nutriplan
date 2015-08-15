@@ -17,7 +17,10 @@ import com.app.cryptotunnel.nutriplan.nutridiary.NutriDairy;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button mdailyplan, mnutricalc, mhealthtips, mmealdiary;
+    private Button mdailyplan;
+    private Button mnutricalc;
+    private Button mhealthtips;
+    private Button mmealdiary;
 
 
     @Override

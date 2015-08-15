@@ -5,8 +5,11 @@ package com.app.cryptotunnel.nutriplan.database;
  */
 public class MealPlanContract {
 
-    int _id_mealPlan;
-    String day, breakfast, lunch, dinner;
+    private int _id_mealPlan;
+    private String day;
+    private String breakfast;
+    private String lunch;
+    private String dinner;
 
     public MealPlanContract() {
     }

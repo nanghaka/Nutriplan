@@ -1,13 +1,11 @@
 package com.app.cryptotunnel.nutriplan.customexception;
 
-import java.io.PrintStream;
-
 /**
  * Created by codephillip on 8/5/15.
  */
 public class InvalidValueException extends Exception {
-    Double d2;
-    String s2;
+    private Double d2;
+    private String s2;
 
     public InvalidValueException(Double d1) {
         d2 = d1;

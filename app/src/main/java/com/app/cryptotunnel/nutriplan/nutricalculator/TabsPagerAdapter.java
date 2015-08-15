@@ -5,11 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.widget.RadioGroup;
 
-import com.app.cryptotunnel.nutriplan.nutricalculator.BMI;
-import com.app.cryptotunnel.nutriplan.nutricalculator.Calories;
-import com.app.cryptotunnel.nutriplan.nutricalculator.Proteins;
-
-public class TabsPagerAdapter extends FragmentPagerAdapter {
+class TabsPagerAdapter extends FragmentPagerAdapter {
 
 	public TabsPagerAdapter(FragmentManager fm) {
 		super(fm);
