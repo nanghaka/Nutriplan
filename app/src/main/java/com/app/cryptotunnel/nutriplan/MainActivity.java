@@ -17,11 +17,6 @@ import com.app.cryptotunnel.nutriplan.nutridiary.NutriDairy;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button mdailyplan;
-    private Button mnutricalc;
-    private Button mhealthtips;
-    private Button mmealdiary;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +34,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void viewConnections() {
-        mdailyplan = (Button) findViewById(R.id.dailyplan);
-        mnutricalc = (Button) findViewById(R.id.calc);
-        mhealthtips = (Button) findViewById(R.id.tips);
-        mmealdiary = (Button) findViewById(R.id.diary);
+        Button mdailyplan = (Button) findViewById(R.id.dailyplan);
+        Button mnutricalc = (Button) findViewById(R.id.calc);
+        Button mhealthtips = (Button) findViewById(R.id.tips);
+        Button mmealdiary = (Button) findViewById(R.id.diary);
 
         mdailyplan.setOnClickListener(this);
         mnutricalc.setOnClickListener(this);
