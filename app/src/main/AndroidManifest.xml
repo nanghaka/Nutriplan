@@ -121,6 +121,11 @@
             android:name=".service.ApiIntentService"
             android:exported="false" >
         </service>
+
+        <activity
+            android:name=".dailyplan.WeightInput"
+            android:label="@string/title_activity_weight_input" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/root_view"
+                tools:context="com.app.cryptotunnel.nutriplan.dailyplan.WeightInput"
+                android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/inner_relative_layout"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_action_person"
+                android:drawableLeft="@drawable/ic_action_person"
+                android:ems="10"
+                android:maxLength="5"
+                android:inputType="numberDecimal"
+                android:hint="@string/wt"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:text="@string/save"
+            android:layout_height="wrap_content"
+            android:id="@+id/calculate"
+            android:textColor="@color/white"
+            android:background="@color/accent_material_light"
+            android:layout_below="@+id/text_input_layout_weight"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:text="@string/reset"
+            android:layout_height="wrap_content"
+            android:id="@+id/reset"
+            android:background="@color/button_material_light"
+            android:layout_alignTop="@+id/calculate"
+            android:layout_alignRight="@+id/text_input_layout_weight"
+            android:layout_alignEnd="@+id/text_input_layout_weight" />
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
+

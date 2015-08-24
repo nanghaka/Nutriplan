@@ -73,6 +73,7 @@
     <string name="moderate">Moderate</string>
     <string name="simple">Simple</string>
     <string name="checker">Checker</string>
+    <string name="title_activity_weight_input">WeightInput</string>
 
     <!--end of scanner strings-->
 
