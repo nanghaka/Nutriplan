@@ -81,7 +81,7 @@ public class ApiIntentService extends IntentService {
         try {
             int k;
 
-            db.deleteAll();
+            db.deleteAll(new BbnContract(0));
             for (k=0; k<2 ; k++){
                if (k == 0){
                    getNutritionDataFromJson(connectToServer(Url));

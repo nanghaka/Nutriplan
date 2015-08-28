@@ -34,6 +34,10 @@ public class BbnContract {
         this.url = url;
     }
 
+    public BbnContract(int _id_bbn) {
+        this._id_bbn = _id_bbn;
+    }
+
     public int get_id_bbn() {
         return _id_bbn;
     }
