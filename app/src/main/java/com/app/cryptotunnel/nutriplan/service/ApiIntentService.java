@@ -81,10 +81,16 @@ public class ApiIntentService extends IntentService {
         }
 
         try {
-            int k;
             Log.d("DELETING_FROM_TABLE","started deleting$$$$$$$$$$$$$$$$$$$$");
             db.deleteAll(new BbnContract(0));
             db.deleteContact(new DiaryContract(0));
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.d("SQL_DELETE_BUG","failed to delete content from the tables# "+ e.toString());
+        }
+
+        try {
+            int k;
             for (k=0; k<2 ; k++){
                if (k == 0){
                    getNutritionDataFromJson(connectToServer(Url));
@@ -92,12 +98,10 @@ public class ApiIntentService extends IntentService {
                    getBbnFromJson(connectToServer("http://192.168.56.1/lynda-php/apibbn.php"));
                }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             Log.d("URL BUG", e.toString());
         }
-
     }
 
     private void getNutritionDataFromJson(String forecastJsonStr)
@@ -130,7 +134,6 @@ public class ApiIntentService extends IntentService {
 
             storeInMealPlanTable(day, breakfast, lunch, dinner);
         }
-
     }
 
     private void storeInMealPlanTable(String day, String breakfast, String lunch, String dinner){
@@ -183,7 +186,6 @@ public class ApiIntentService extends IntentService {
 
             storeInBbnTable(tips, bc, barcode, url);
         }
-
     }
 
 
