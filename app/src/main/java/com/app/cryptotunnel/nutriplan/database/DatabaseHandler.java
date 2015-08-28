@@ -285,12 +285,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 //    // Deleting single diaryContract
     public void deleteAll(BbnContract bbnContract) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_BBN, KEY_ID + " = ?",
+        db.delete(TABLE_BBN, KEY_ID_BBN + " >= ?",
                 new String[] { String.valueOf(bbnContract.get_id_bbn()) });
 //     //   db.delete(TABLE_DIARY, KEY_ID + " = ?");
         Log.d("SQL", "deleting content form meal_plan and bbn_table");
 //        db.execSQL("DELETE FROM "+ TABLE_MEAL_PLAN);
 //        db.execSQL("DELETE FROM "+ TABLE_BBN);
+        db.close();
+    }
+
+    // Deleting single contact
+    public void deleteContact(DiaryContract contact) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_DIARY, KEY_ID + " >= ?",
+                new String[] { String.valueOf(contact.getID()) });
+        //   db.delete(TABLE_CONTACTS, KEY_ID + " = ?");
+        Log.d("SQL", "deleting content form DiaryTable");
         db.close();
     }
 //

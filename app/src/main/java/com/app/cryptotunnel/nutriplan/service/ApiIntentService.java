@@ -9,6 +9,7 @@ import android.util.Log;
 import com.app.cryptotunnel.nutriplan.R;
 import com.app.cryptotunnel.nutriplan.database.BbnContract;
 import com.app.cryptotunnel.nutriplan.database.DatabaseHandler;
+import com.app.cryptotunnel.nutriplan.database.DiaryContract;
 import com.app.cryptotunnel.nutriplan.database.MealPlanContract;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -55,6 +56,7 @@ public class ApiIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        db = new DatabaseHandler(this);
 
         //getting users input from settings screen
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -80,8 +82,9 @@ public class ApiIntentService extends IntentService {
 
         try {
             int k;
-
+            Log.d("DELETING_FROM_TABLE","started deleting$$$$$$$$$$$$$$$$$$$$");
             db.deleteAll(new BbnContract(0));
+            db.deleteContact(new DiaryContract(0));
             for (k=0; k<2 ; k++){
                if (k == 0){
                    getNutritionDataFromJson(connectToServer(Url));
