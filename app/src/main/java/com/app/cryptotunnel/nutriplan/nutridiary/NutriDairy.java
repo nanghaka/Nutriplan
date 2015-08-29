@@ -20,11 +20,8 @@ import java.util.List;
 public class NutriDairy extends AppCompatActivity {
 
 
-    private ListView listView;
     private final ArrayList<String> al = new ArrayList<String>();
     private final DatabaseHandler db = new DatabaseHandler(this);
-
-    private String[] nutriArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +29,7 @@ public class NutriDairy extends AppCompatActivity {
         setContentView(R.layout.activity_list_view_android_example);
 
         // Get ListView object from xml
-        listView = (ListView) findViewById(R.id.list);
+        ListView listView = (ListView) findViewById(R.id.list);
 
 
 
@@ -45,7 +42,7 @@ public class NutriDairy extends AppCompatActivity {
             al.add(log);
         }
 
-        nutriArray = new String[al.size()];
+        String[] nutriArray = new String[al.size()];
         nutriArray = al.toArray(nutriArray);
 
         // Define a new Adapter

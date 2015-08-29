@@ -19,12 +19,8 @@ import java.util.List;
 
 public class History extends AppCompatActivity {
 
-    private final String TAG = "History activity";
-    private ListView listView;
     private final ArrayList<String> al = new ArrayList<String>();
     private final DatabaseHandler db = new DatabaseHandler(this);
-
-    private String[] weightArray;
 
 
     @Override
@@ -33,18 +29,19 @@ public class History extends AppCompatActivity {
         setContentView(R.layout.activity_list_view_android_example);
 
         // Get ListView object from xml
-        listView = (ListView) findViewById(R.id.list);
+        ListView listView = (ListView) findViewById(R.id.list);
 
         final List<WeightTrackerContract> wtc = db.getAllWeights();
 
         for (WeightTrackerContract cn : wtc) {
             String log = " Time: " + cn.get_weight_time()+"\n"+"Weights: " + cn.get_weight();
             // Writing Contacts to log
+            String TAG = "History activity";
             Log.d(TAG, log);
             al.add(log);
         }
 
-        weightArray = new String[al.size()];
+        String[] weightArray = new String[al.size()];
         weightArray = al.toArray(weightArray);
 
         // Define a new Adapter

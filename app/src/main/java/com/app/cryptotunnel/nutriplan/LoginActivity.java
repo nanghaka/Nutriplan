@@ -48,8 +48,6 @@ public class LoginActivity extends AppCompatActivity implements
     private CallbackManager callbackManager;
     private final String TAG = "logging in";
 
-    private Button DebugLoginButton;
-
 
     @Override
     protected void onStart() {
@@ -86,8 +84,8 @@ public class LoginActivity extends AppCompatActivity implements
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
 //        findViewById(R.id.login_button).setOnClickListener(this);
-        DebugLoginButton = (Button) findViewById(R.id.debuglogin);
-        DebugLoginButton.setOnClickListener(this);
+        Button debugLoginButton = (Button) findViewById(R.id.debuglogin);
+        debugLoginButton.setOnClickListener(this);
 
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
 

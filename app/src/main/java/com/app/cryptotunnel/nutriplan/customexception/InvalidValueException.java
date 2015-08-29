@@ -5,14 +5,13 @@ package com.app.cryptotunnel.nutriplan.customexception;
  */
 public class InvalidValueException extends Exception {
     private Double d2;
-    private String s2;
 
     public InvalidValueException(Double d1) {
         d2 = d1;
     }
 
     public InvalidValueException(String s1) {
-        s2 = s1;
+        String s2 = s1;
     }
 
     @Override

@@ -24,9 +24,6 @@ import java.util.Date;
 
 public class NoteEditorActivity extends AppCompatActivity {
     private EditText noteText;
-    private Button save;
-    private Button cancel;
-    private String[] nutriArray;
 
     private final DatabaseHandler db = new DatabaseHandler(this);
     private final ArrayList<String> al = new ArrayList<String>();
@@ -37,10 +34,10 @@ public class NoteEditorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_note_editor);
 
         noteText = (EditText) findViewById(R.id.noteText);
-        save = (Button) findViewById(R.id.save);
-        cancel = (Button) findViewById(R.id.cancel);
+        Button save = (Button) findViewById(R.id.save);
+        Button cancel = (Button) findViewById(R.id.cancel);
 
-        nutriArray = new String[al.size()];
+        String[] nutriArray = new String[al.size()];
         nutriArray = al.toArray(nutriArray);
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -48,12 +45,12 @@ public class NoteEditorActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("Insert: ", "Inserting ..");
                 db.addContact(new DiaryContract(noteText.getText().toString(), getTime()));
-                db.addBbnData(new BbnContract(5,"4859", "78859","drink plenty of water"));
-                db.addBbnData(new BbnContract(5,"8927", "12378","eat fruits daily"));
+                db.addBbnData(new BbnContract(5, "4859", "78859", "drink plenty of water"));
+                db.addBbnData(new BbnContract(5, "8927", "12378", "eat fruits daily"));
                 db.addMealPlan(new MealPlanContract("monday", "matooke", "rice", "posho"));
                 db.addMealPlan(new MealPlanContract("tuesday", "rice", "matooke", "posho"));
-              //  db.addMealPlan(new BbnContract(5, "8927", "12378", "eat fruits daily"));
-                Toast.makeText(getApplicationContext(),"Note has been saved", Toast.LENGTH_SHORT).show();
+                //  db.addMealPlan(new BbnContract(5, "8927", "12378", "eat fruits daily"));
+                Toast.makeText(getApplicationContext(), "Note has been saved", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -1,7 +1,6 @@
 package com.app.cryptotunnel.nutriplan.nutricalculator;
 
 import android.content.res.Resources;
-import android.nfc.TagLostException;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.cryptotunnel.nutriplan.R;
@@ -21,11 +19,7 @@ import com.app.cryptotunnel.nutriplan.customexception.InvalidValueException;
 
 public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 
-    private RadioGroup energyLevel;
     private EditText weightEdit;
-    private double proteinResult;
-    private Button calculate;
-    private Button reset;
     private TextInputLayout textInputLayoutWeight;
     private int numberSentByRadioButton = 0;
 
@@ -34,14 +28,14 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.proteins, container, false);
 
-        energyLevel = (RadioGroup) rootView.findViewById(R.id.energylevel);
+        RadioGroup energyLevel = (RadioGroup) rootView.findViewById(R.id.energylevel);
 
         weightEdit = (EditText) rootView.findViewById(R.id.weight);
 
         textInputLayoutWeight = (TextInputLayout) rootView.findViewById(R.id.text_input_layout_weight);
 
-        calculate = (Button) rootView.findViewById(R.id.calculate);
-        reset = (Button) rootView.findViewById(R.id.reset);
+        Button calculate = (Button) rootView.findViewById(R.id.calculate);
+        Button reset = (Button) rootView.findViewById(R.id.reset);
 
         textInputLayoutWeight.setErrorEnabled(true);
 
@@ -150,7 +144,7 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
 
 
     private void changeStringToDouble() throws InvalidValueException {
-        proteinResult = Double.parseDouble(String.valueOf(weightEdit.getText()));
+        double proteinResult = Double.parseDouble(String.valueOf(weightEdit.getText()));
 
         if (proteinResult <= 0){
            // Toast.makeText(getActivity(), "Clicked button "+ proteinResult, Toast.LENGTH_SHORT).show();

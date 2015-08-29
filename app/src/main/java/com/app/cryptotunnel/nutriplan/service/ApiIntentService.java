@@ -144,7 +144,6 @@ public class ApiIntentService extends IntentService {
     private void storeInBbnTable(String tips, String bc, String barcode, String url){
         db = new DatabaseHandler(this);
         db.addBbnData(new BbnContract(barcode,bc,tips,url));
-
     }
 
     private String connectToServer(String urlConnection) throws Exception{
@@ -187,6 +186,4 @@ public class ApiIntentService extends IntentService {
             storeInBbnTable(tips, bc, barcode, url);
         }
     }
-
-
 }

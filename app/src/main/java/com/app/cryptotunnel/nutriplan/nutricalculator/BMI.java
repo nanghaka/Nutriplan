@@ -18,8 +18,6 @@ import com.app.cryptotunnel.nutriplan.customexception.InvalidValueException;
 
 public class BMI extends Fragment {
 
-    private Button calculate;
-    private Button reset;
     private double w;
     private double h;
     private double value;
@@ -39,46 +37,46 @@ public class BMI extends Fragment {
 		textInputLayoutHeight = (TextInputLayout) rootView.findViewById(R.id.text_input_layout_height);
 		textInputLayoutWeight = (TextInputLayout) rootView.findViewById(R.id.text_input_layout_weight);
 
-		calculate = (Button) rootView.findViewById(R.id.calculate);
-		reset = (Button) rootView.findViewById(R.id.reset);
+        Button calculate = (Button) rootView.findViewById(R.id.calculate);
+        Button reset = (Button) rootView.findViewById(R.id.reset);
 
 		textInputLayoutHeight.setErrorEnabled(true);
 		textInputLayoutWeight.setErrorEnabled(true);
 
 
 		calculate.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				try {
-					w = Double.parseDouble(String.valueOf(weight.getText()));
-					h = Double.parseDouble(String.valueOf(height.getText()));
+            @Override
+            public void onClick(View v) {
+                try {
+                    w = Double.parseDouble(String.valueOf(weight.getText()));
+                    h = Double.parseDouble(String.valueOf(height.getText()));
 
-					if (w > 0 && h > 0) {
-						value = (w / (h * h));
-						Toast.makeText(getActivity(), "Clicked button " + value, Toast.LENGTH_SHORT).show();
-					} else {
-						throw new InvalidValueException(value);
-					}
+                    if (w > 0 && h > 0) {
+                        value = (w / (h * h));
+                        Toast.makeText(getActivity(), "Clicked button " + value, Toast.LENGTH_SHORT).show();
+                    } else {
+                        throw new InvalidValueException(value);
+                    }
 
-				} catch (NumberFormatException e) {
-					e.printStackTrace();
-					Log.e("ONCHECKCLICKED_BUG", e.toString());
-					editTextError();
-				} catch (InvalidValueException e) {
-					e.printStackTrace();
-					Log.e("ONCHECKCLICKED_BUG", e.toString());
-					editTextError();
-				}
-			}
-		});
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    Log.e("ONCHECKCLICKED_BUG", e.toString());
+                    editTextError();
+                } catch (InvalidValueException e) {
+                    e.printStackTrace();
+                    Log.e("ONCHECKCLICKED_BUG", e.toString());
+                    editTextError();
+                }
+            }
+        });
 
 		reset.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				weight.setText("");
-				height.setText("");
-			}
-		});
+            @Override
+            public void onClick(View view) {
+                weight.setText("");
+                height.setText("");
+            }
+        });
 
 		return rootView;
 	}

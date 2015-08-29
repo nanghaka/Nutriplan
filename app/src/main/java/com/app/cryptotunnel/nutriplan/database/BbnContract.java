@@ -21,11 +21,6 @@ public class BbnContract {
         this.nutritips = nutritips;
     }
 
-    public BbnContract(String barcode, String bc, String nutritips) {
-        this.barcode = barcode;
-        this.bc = bc;
-        this.nutritips = nutritips;
-    }
 
     public BbnContract(String barcode, String bc, String nutritips, String url) {
         this.barcode = barcode;

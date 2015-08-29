@@ -14,13 +14,6 @@ public class MealPlanContract {
     public MealPlanContract() {
     }
 
-    public MealPlanContract(int _id_mealPlan, String day, String breakfast, String lunch, String dinner) {
-        this._id_mealPlan = _id_mealPlan;
-        this.day = day;
-        this.breakfast = breakfast;
-        this.lunch = lunch;
-        this.dinner = dinner;
-    }
 
     public MealPlanContract(String day, String breakfast, String lunch, String dinner) {
         this.day = day;

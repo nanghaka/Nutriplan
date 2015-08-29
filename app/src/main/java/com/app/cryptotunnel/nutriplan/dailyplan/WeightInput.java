@@ -21,14 +21,9 @@ import java.util.Date;
 
 public class WeightInput extends AppCompatActivity {
 
-    private Button calculate;
-    private Button reset;
-    private double w;
-    private double h;
-    private double value;
     private EditText weight;
     private TextInputLayout textInputLayoutWeight;
-    DatabaseHandler db = new DatabaseHandler(this);
+    private final DatabaseHandler db = new DatabaseHandler(this);
     private View parentLayout;
 
     @Override
@@ -41,8 +36,8 @@ public class WeightInput extends AppCompatActivity {
 
         textInputLayoutWeight = (TextInputLayout) findViewById(R.id.text_input_layout_weight);
 
-        calculate = (Button) findViewById(R.id.calculate);
-        reset = (Button) findViewById(R.id.reset);
+        Button calculate = (Button) findViewById(R.id.calculate);
+        Button reset = (Button) findViewById(R.id.reset);
 
         textInputLayoutWeight.setErrorEnabled(true);
 
@@ -55,7 +50,7 @@ public class WeightInput extends AppCompatActivity {
                 Log.d("SQL Insert: ", "Inserting ..");
                 String storedWeight = weight.getText().toString();
 
-                if (storedWeight.equals("")){
+                if (storedWeight.equals("")) {
                     try {
                         throw new InvalidValueException(storedWeight);
                     } catch (InvalidValueException e) {
@@ -65,7 +60,7 @@ public class WeightInput extends AppCompatActivity {
                         //Snackbar.make(rootView, "Please enter your current weight", Snackbar.LENGTH_SHORT).show();
                         //snackBar("Please enter your current weight");
                     }
-                }else {
+                } else {
                     db.addWeight(new WeightTrackerContract(storedWeight, getTime()));
                     snackBar("Your weight has been saved");
                 }
@@ -115,11 +110,10 @@ public class WeightInput extends AppCompatActivity {
     }
 
     @SuppressLint("SimpleDateFormat")
-    public static String getTime() {
+    private static String getTime() {
         String pattern = "yyyy-MM-dd HH:mm:ss ";
         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-        String key = formatter.format(new Date());
-        return key;
+        return formatter.format(new Date());
     }
 
 }

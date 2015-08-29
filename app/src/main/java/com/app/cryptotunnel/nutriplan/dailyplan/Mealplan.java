@@ -31,8 +31,6 @@ import org.json.JSONObject;
 public class Mealplan extends Fragment implements  View.OnClickListener{
 
 
-    private ImageButton next;
-    private ImageButton previous;
     private TextView dayoftheweek;
     private TextView breakfastFood;
     private TextView lunchFood;
@@ -47,7 +45,6 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
     private String[] dinnerArray;
     private int n ;
     private View rootView;
-    private RetrieveFeedTask retrieveFeedTask;
 
     @Override
     public void onResume() {
@@ -66,8 +63,8 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
         breakfastFood = (TextView) rootView.findViewById(R.id.breakfastFood);
         lunchFood = (TextView) rootView.findViewById(R.id.lunchFood);
         dinnerFood = (TextView) rootView.findViewById(R.id.dinnerFood);
-        next = (ImageButton) rootView.findViewById(R.id.next);
-        previous = (ImageButton) rootView.findViewById(R.id.previous);
+        ImageButton next = (ImageButton) rootView.findViewById(R.id.next);
+        ImageButton previous = (ImageButton) rootView.findViewById(R.id.previous);
         next.setOnClickListener(this);
         previous.setOnClickListener(this);
 
@@ -123,7 +120,7 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
     }
 
 
-    class RetrieveFeedTask extends AsyncTask<String, Void, Integer> {
+    private class RetrieveFeedTask extends AsyncTask<String, Void, Integer> {
 
         protected Integer doInBackground(String... urls) {
             try {
@@ -268,10 +265,8 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
         Log.d("PREFERENCE_DATA" ,"list value " + "#" + genderSettings + "#" + syncpref+ "#" + physical_activity+ "#" + input);
 
         // Toast.makeText(getActivity(), "list value "+"#"+gender+"#"+ syncpref, Toast.LENGTH_SHORT).show();
-
-
         boolean connectionCheck = isConnectedToInternet();
-        retrieveFeedTask = new RetrieveFeedTask();
+        RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
 
         if (connectionCheck==true){
 

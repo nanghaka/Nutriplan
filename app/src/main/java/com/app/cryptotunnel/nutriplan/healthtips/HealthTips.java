@@ -48,7 +48,6 @@ public class HealthTips extends AppCompatActivity {
 
     private final ArrayList<String> al = new ArrayList<String>();
     private final DatabaseHandler db = new DatabaseHandler(this);
-    private String[] weightArray;
 
     private final int[] image = {
             R.drawable.food1,
@@ -171,7 +170,7 @@ public class HealthTips extends AppCompatActivity {
             al.add(log);
         }
 
-        weightArray = new String[al.size()];
+        String[] weightArray = new String[al.size()];
         weightArray = al.toArray(weightArray);
         Intent shareIntent = null;
 

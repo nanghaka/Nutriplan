@@ -28,9 +28,7 @@ import java.util.List;
 
 public class WeightTracker extends Fragment implements  View.OnClickListener {
     private View rootView;
-    private ListView recyclerView;
     private final ArrayList<String> al = new ArrayList<String>();
-    private String[] nutriArray;
     private static final String TAG = "Floating Action Button";
     private static final String TRANSLATION_Y = "translationY";
 
@@ -58,7 +56,7 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
         fabAction2 = rootView.findViewById(R.id.fab_action_2);
         fabAction3 = rootView.findViewById(R.id.fab_action_3);
 
-        recyclerView = (ListView) rootView.findViewById(R.id.lvToDoList);
+        ListView recyclerView = (ListView) rootView.findViewById(R.id.lvToDoList);
 
         fabAction1.setOnClickListener(this);
         fabAction2.setOnClickListener(this);
@@ -108,7 +106,7 @@ public class WeightTracker extends Fragment implements  View.OnClickListener {
             al.add(log);
         }
 
-        nutriArray = new String[al.size()];
+        String[] nutriArray = new String[al.size()];
         nutriArray = al.toArray(nutriArray);
         // Define a new Adapter
         // First parameter - Context

@@ -20,14 +20,9 @@ import com.app.cryptotunnel.nutriplan.customexception.InvalidValueException;
 
 public class Calories extends Fragment implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 
-    private Button calculate;
-    private Button reset;
-    private RadioGroup gender;
     private double w;
     private double h;
     private double a;
-    private double calories;
-    double doubleTest;
     private EditText weight;
     private EditText height;
     private EditText age;
@@ -41,7 +36,7 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.calories, container, false);
 
-        gender = (RadioGroup) rootView.findViewById(R.id.gender);
+        RadioGroup gender = (RadioGroup) rootView.findViewById(R.id.gender);
 
         weight = (EditText) rootView.findViewById(R.id.weight);
         height = (EditText) rootView.findViewById(R.id.height);
@@ -51,8 +46,8 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
         textInputLayoutWeight = (TextInputLayout) rootView.findViewById(R.id.text_input_layout_weight);
         textInputLayoutAge = (TextInputLayout) rootView.findViewById(R.id.text_input_layout_age);
 
-        calculate = (Button) rootView.findViewById(R.id.calculate);
-        reset = (Button) rootView.findViewById(R.id.reset);
+        Button calculate = (Button) rootView.findViewById(R.id.calculate);
+        Button reset = (Button) rootView.findViewById(R.id.reset);
 
         textInputLayoutHeight.setErrorEnabled(true);
         textInputLayoutWeight.setErrorEnabled(true);
@@ -114,6 +109,7 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
 
                 switch (numberSentByRadioButton) {
                     case 1:
+                        double calories;
                         try {
                             changeStringToDouble();
                             calories = ((10 * w) + (6.25 * h) - (5 * a) + 5);
