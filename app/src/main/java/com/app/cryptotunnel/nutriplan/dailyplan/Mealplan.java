@@ -275,8 +275,8 @@ public class Mealplan extends Fragment implements  View.OnClickListener{
                 retrieveFeedTask.execute("http://192.168.56.1/lynda-php/api1.php");
                // retrieveFeedTask.execute("http://192.168.56.1/lynda-php/jsontest4.php");
             } else if (genderSettings.equals("1") && physical_activity.equals("0")){
-                //retrieveFeedTask.execute("http://192.168.56.1/lynda-php/api2.php");
-                retrieveFeedTask.execute("http://codephillip.webatu.com/api2.php");
+                retrieveFeedTask.execute("http://192.168.56.1/lynda-php/api2.php");
+//                retrieveFeedTask.execute("http://codephillip.webatu.com/api2.php");
             }else if (genderSettings.equals("0") && physical_activity.equals("1")){
                 retrieveFeedTask.execute("http://192.168.56.1/lynda-php/api3.php");
             }else if (genderSettings.equals("0") && physical_activity.equals("0")){
