@@ -3,6 +3,7 @@ package com.app.cryptotunnel.nutriplan.nutricalculator;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -12,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.app.cryptotunnel.nutriplan.R;
 import com.app.cryptotunnel.nutriplan.customexception.InvalidValueException;
@@ -30,11 +30,12 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
     private TextInputLayout textInputLayoutHeight;
     private TextInputLayout textInputLayoutWeight;
     private TextInputLayout textInputLayoutAge;
+    View rootView;
 
 
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.calories, container, false);
+        rootView = inflater.inflate(R.layout.calories, container, false);
 
         RadioGroup gender = (RadioGroup) rootView.findViewById(R.id.gender);
 
@@ -113,7 +114,8 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
                         try {
                             changeStringToDouble();
                             calories = ((10 * w) + (6.25 * h) - (5 * a) + 5);
-                            Toast.makeText(getActivity(), "Clicked button "+ calories, Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getActivity(), "Clicked button "+ calories, Toast.LENGTH_SHORT).show();
+                            snackBar("you need "+calories +" calories");
 
                         }catch (NumberFormatException e){
                             e.printStackTrace();
@@ -130,7 +132,8 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
                         try {
                             changeStringToDouble();
                             calories = ((10 * w) + (6.25 * h) - (5 * a) - 161);
-                            Toast.makeText(getActivity(), "Clicked button "+ calories, Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getActivity(), "Clicked button "+ calories, Toast.LENGTH_SHORT).show();
+                            snackBar("you need "+calories +" calories");
 
                         }catch (NumberFormatException e){
                             e.printStackTrace();
@@ -157,6 +160,13 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
 
     private void resultFromRadioButtons(int r){
        numberSentByRadioButton = r;
+    }
+
+    private void snackBar(String message){
+        Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT);
+        View snackbarView = snackbar.getView();
+        snackbarView.setBackgroundColor(getResources().getColor(R.color.black));
+        snackbar.show();
     }
 }
 

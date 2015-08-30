@@ -3,6 +3,7 @@ package com.app.cryptotunnel.nutriplan.nutricalculator;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -22,11 +23,12 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
     private EditText weightEdit;
     private TextInputLayout textInputLayoutWeight;
     private int numberSentByRadioButton = 0;
+    View rootView;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.proteins, container, false);
+        rootView = inflater.inflate(R.layout.proteins, container, false);
 
         RadioGroup energyLevel = (RadioGroup) rootView.findViewById(R.id.energylevel);
 
@@ -155,6 +157,13 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
 
     private void resultFromRadioButtons(int r){
         numberSentByRadioButton = r;
+    }
+
+    private void snackBar(String message){
+        Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT);
+        View snackbarView = snackbar.getView();
+        snackbarView.setBackgroundColor(getResources().getColor(R.color.black));
+        snackbar.show();
     }
 }
 

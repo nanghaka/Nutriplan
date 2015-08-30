@@ -3,6 +3,7 @@ package com.app.cryptotunnel.nutriplan.nutricalculator;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.app.cryptotunnel.nutriplan.R;
 import com.app.cryptotunnel.nutriplan.customexception.InvalidValueException;
@@ -25,11 +25,12 @@ public class BMI extends Fragment {
     private EditText height;
 	private TextInputLayout textInputLayoutHeight;
     private TextInputLayout textInputLayoutWeight;
+    View rootView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.bmi, container, false);
+		rootView = inflater.inflate(R.layout.bmi, container, false);
 
 		weight = (EditText) rootView.findViewById(R.id.weight);
 		height = (EditText) rootView.findViewById(R.id.height);
@@ -53,7 +54,8 @@ public class BMI extends Fragment {
 
                     if (w > 0 && h > 0) {
                         value = (w / (h * h));
-                        Toast.makeText(getActivity(), "Clicked button " + value, Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getActivity(), "Clicked button " + value, Toast.LENGTH_SHORT).show();
+                        snackBar("your BMI is "+value);
                     } else {
                         throw new InvalidValueException(value);
                     }
@@ -87,4 +89,11 @@ public class BMI extends Fragment {
 		textInputLayoutHeight.setError(res.getString(R.string.height_required));
 		textInputLayoutWeight.setError(res.getString(R.string.weight_required));
 	}
+
+    private void snackBar(String message){
+        Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT);
+        View snackbarView = snackbar.getView();
+        snackbarView.setBackgroundColor(getResources().getColor(R.color.black));
+        snackbar.show();
+    }
 }
