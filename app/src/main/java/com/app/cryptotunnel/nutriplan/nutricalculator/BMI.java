@@ -55,7 +55,7 @@ public class BMI extends Fragment {
                     if (w > 0 && h > 0) {
                         value = (w / (h * h));
                        // Toast.makeText(getActivity(), "Clicked button " + value, Toast.LENGTH_SHORT).show();
-                        snackBar("your BMI is "+value);
+                        snackBar("your BMI is "+(value*10000));
                     } else {
                         throw new InvalidValueException(value);
                     }
