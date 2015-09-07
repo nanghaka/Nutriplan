@@ -1,5 +1,7 @@
 package com.app.cryptotunnel.nutriplan.nutricalculator;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -104,18 +106,19 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
 
     @Override
     public void onClick(View view) {
+        double calories;
 
         switch (view.getId()){
             case R.id.calculate:
 
                 switch (numberSentByRadioButton) {
                     case 1:
-                        double calories;
                         try {
                             changeStringToDouble();
                             calories = ((10 * w) + (6.25 * h) - (5 * a) + 5);
                            // Toast.makeText(getActivity(), "Clicked button "+ calories, Toast.LENGTH_SHORT).show();
-                            snackBar("you need "+calories +" calories");
+                           // snackBar("you need "+calories +" calories");
+                            showDialog("you need "+calories +" calories");
 
                         }catch (NumberFormatException e){
                             e.printStackTrace();
@@ -133,7 +136,8 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
                             changeStringToDouble();
                             calories = ((10 * w) + (6.25 * h) - (5 * a) - 161);
                            // Toast.makeText(getActivity(), "Clicked button "+ calories, Toast.LENGTH_SHORT).show();
-                            snackBar("you need "+calories +" calories");
+                            //snackBar("you need "+calories +" calories");
+                            showDialog("you need "+calories +" calories");
 
                         }catch (NumberFormatException e){
                             e.printStackTrace();
@@ -167,6 +171,39 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
         View snackbarView = snackbar.getView();
         snackbarView.setBackgroundColor(getResources().getColor(R.color.black));
         snackbar.show();
+    }
+
+    public void showDialog(String message){
+        // Creating alert Dialog with one Button
+
+        AlertDialog alertDialog = new AlertDialog.Builder(
+                getActivity()).create();
+
+        // Setting Dialog Title
+        alertDialog.setTitle("Results");
+
+        // Setting Dialog Message
+        alertDialog.setMessage(message);
+
+//                // Setting Icon to Dialog
+//                alertDialog.setIcon(R.drawable.);
+
+        // Setting OK Button
+        alertDialog.setButton("OK",
+                new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+//                        // Write your code here to execute after dialog
+//                        // closed
+//                        Toast.makeText(getApplicationContext(),
+//                                "You clicked on OK", Toast.LENGTH_SHORT)
+//                                .show();
+                    }
+                });
+
+        // Showing Alert Message
+        alertDialog.show();
     }
 }
 

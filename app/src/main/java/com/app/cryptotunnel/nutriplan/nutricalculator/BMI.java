@@ -1,5 +1,7 @@
 package com.app.cryptotunnel.nutriplan.nutricalculator;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -55,7 +57,8 @@ public class BMI extends Fragment {
                     if (w > 0 && h > 0) {
                         value = (w / (h * h));
                        // Toast.makeText(getActivity(), "Clicked button " + value, Toast.LENGTH_SHORT).show();
-                        snackBar("your BMI is "+(value*10000));
+                      //  snackBar("your BMI is "+(value*10000));
+                        showDialog("your BMI is "+(value*10000));
                     } else {
                         throw new InvalidValueException(value);
                     }
@@ -95,5 +98,38 @@ public class BMI extends Fragment {
         View snackbarView = snackbar.getView();
         snackbarView.setBackgroundColor(getResources().getColor(R.color.black));
         snackbar.show();
+    }
+
+    public void showDialog(String message){
+        // Creating alert Dialog with one Button
+
+        AlertDialog alertDialog = new AlertDialog.Builder(
+                getActivity()).create();
+
+        // Setting Dialog Title
+        alertDialog.setTitle("Results");
+
+        // Setting Dialog Message
+        alertDialog.setMessage(message);
+
+//                // Setting Icon to Dialog
+//                alertDialog.setIcon(R.drawable.);
+
+        // Setting OK Button
+        alertDialog.setButton("OK",
+                new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+//                        // Write your code here to execute after dialog
+//                        // closed
+//                        Toast.makeText(getApplicationContext(),
+//                                "You clicked on OK", Toast.LENGTH_SHORT)
+//                                .show();
+                    }
+                });
+
+        // Showing Alert Message
+        alertDialog.show();
     }
 }
