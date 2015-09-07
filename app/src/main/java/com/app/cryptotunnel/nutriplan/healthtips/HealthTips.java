@@ -7,7 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
@@ -41,8 +40,8 @@ public class HealthTips extends AppCompatActivity {
     private static final String APP_SHARE_HASHTAG = "#Nutriplan app";
     private TextView words;
     private ImageView food;
-    private static int counter;
-    private static int icount;
+    private int counter = 0;
+    private int icount;
     public String[] resultStrs;
     private ProgressDialog pDialog;
 
@@ -73,13 +72,14 @@ public class HealthTips extends AppCompatActivity {
     };
     private final int m = image.length;
     private int n ;
-    private View parentLayout;
+//    private View parentLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        parentLayout = findViewById(R.id.root_view);
         setContentView(R.layout.activity_health_tips);
-        parentLayout = findViewById(R.id.root_view);
+
 
 
 
@@ -89,7 +89,7 @@ public class HealthTips extends AppCompatActivity {
             RetrieveFeedTask retrieveFeedTask = new RetrieveFeedTask();
             retrieveFeedTask.execute();
         }else {
-            snackBar("Check Internet Connection");
+//            snackBar("Check Internet Connection");
         }
 
 
@@ -127,7 +127,7 @@ public class HealthTips extends AppCompatActivity {
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                     Log.d("array", String.valueOf(e.toString()));
-                    snackBar("Check Internet Connection");
+                    //snackBar("Check Internet Connection");
                 }
             }
         });
@@ -153,7 +153,7 @@ public class HealthTips extends AppCompatActivity {
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                     Log.d("array", String.valueOf(e.toString()));
-                    snackBar("Check Internet Connection");
+                   // snackBar("Check Internet Connection");
                 }
             }
         });
@@ -185,7 +185,7 @@ public class HealthTips extends AppCompatActivity {
         }catch (ArrayIndexOutOfBoundsException e){
             e.printStackTrace();
             Log.e("ARRAY_SHARE_BUT", e.toString());
-            snackBar("Check Internet Connection");
+            //snackBar("Check Internet Connection");
         }
 
 
@@ -193,6 +193,9 @@ public class HealthTips extends AppCompatActivity {
     }
 
     private void updatetext() {
+        for (String s : resultStrs) {//testing to see if all the data was stored into the array
+            Log.v("UPDATE_TEXT", "NutriData entry: " + s);
+        }
         words.setText(resultStrs[counter]);
     }
 
@@ -256,7 +259,7 @@ public class HealthTips extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.d("URL BUG", e.toString());
-                snackBar("Check Internet Connection");
+                //snackBar("Check Internet Connection");
                 return null;
             }
         }
@@ -274,22 +277,17 @@ public class HealthTips extends AppCompatActivity {
         protected void onPostExecute(final String[] feed) {
 
             if (pDialog.isShowing()){
+                n = feed.length;
+                updatetext();
                 Thread timer = new Thread(){
                     public void run(){
                         try {
-                            n = feed.length;
-                            updatetext();
                             sleep(1000);
                         }catch (InterruptedException e){
                             e.printStackTrace();
                             pDialog.dismiss();
                             //Toast.makeText(getApplicationContext(), "Connection was interrupted", Toast.LENGTH_SHORT).show();
-                            snackBar("Check Internet Connection");
-                        }catch (NullPointerException e){
-                            e.printStackTrace();
-                            pDialog.dismiss();
-                            snackBar("Check Internet Connection");
-//                            Toast.makeText(getApplicationContext(), "Connection was interrupted", Toast.LENGTH_SHORT).show();
+                           // snackBar("Check Internet Connection");
                         }finally {
                             pDialog.dismiss();
                         }
@@ -351,12 +349,12 @@ public class HealthTips extends AppCompatActivity {
         return false;
     }
 
-    private void snackBar(String message){
-        Snackbar snackbar = Snackbar.make(parentLayout, message, Snackbar.LENGTH_SHORT);
-        View snackbarView = snackbar.getView();
-        snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-        snackbar.show();
-    }
+//    private void snackBar(String message){
+//        Snackbar snackbar = Snackbar.make(parentLayout, message, Snackbar.LENGTH_SHORT);
+//        View snackbarView = snackbar.getView();
+//        snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+//        snackbar.show();
+//    }
 }
 
 
