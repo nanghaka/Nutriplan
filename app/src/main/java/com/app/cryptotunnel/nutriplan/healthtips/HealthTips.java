@@ -43,7 +43,7 @@ public class HealthTips extends AppCompatActivity {
     private ImageView food;
     private static int counter;
     private static int icount;
-    private String[] resultStrs;
+    public String[] resultStrs;
     private ProgressDialog pDialog;
 
     private final ArrayList<String> al = new ArrayList<String>();
@@ -242,8 +242,10 @@ public class HealthTips extends AppCompatActivity {
 
         protected String[] doInBackground(Void... urls) {
             try {
+                //final String  URL= "http://192.168.56.1/lynda-php/nutritips.php";
+                final String  URL= "http://codephillip.webatu.com/nutritips.php";
                 Request request = new Request.Builder()
-                        .url("http://192.168.56.1/lynda-php/nutritips.php")
+                        .url(URL)
                         .build();
                 OkHttpClient client = new OkHttpClient();
                 Response response = client.newCall(request).execute();
