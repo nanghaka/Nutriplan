@@ -163,7 +163,9 @@ public class Calories extends Fragment implements RadioGroup.OnCheckedChangeList
     }
 
     private void resultFromRadioButtons(int r){
-       numberSentByRadioButton = r;
+
+        Log.d("CASTING", "value after casting "+String.valueOf(r));
+        numberSentByRadioButton = r;
     }
 
     private void snackBar(String message){

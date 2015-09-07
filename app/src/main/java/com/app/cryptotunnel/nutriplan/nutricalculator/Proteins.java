@@ -24,8 +24,9 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
 
     private EditText weightEdit;
     private TextInputLayout textInputLayoutWeight;
-    private int numberSentByRadioButton = 1;
+    private int numberSentByRadioButton = 2;
     View rootView;
+    private double proteinResult;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -58,18 +59,21 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
         switch (checkedId){
 
             case R.id.simple:
-                Log.d("CHECKBOXCLICK", "you have checked box one"+1);
-                resultFromRadioButtons(1);
+              //  Log.d("CHECKBOXCLICK", "you have checked box one"+1);
+               // resultFromRadioButtons(1);
+                numberSentByRadioButton = 1;
                 break;
 
             case R.id.moderate:
-                Log.d("CHECKBOXCLICK", "you have checked box "+2);
-                resultFromRadioButtons(2);
+               // Log.d("CHECKBOXCLICK", "you have checked box "+2);
+               // resultFromRadioButtons(2);
+                numberSentByRadioButton = 2;
                 break;
 
             case R.id.active:
-                Log.d("CHECKBOXCLICK", "you have checked box one"+3);
-                resultFromRadioButtons(3);
+               // Log.d("CHECKBOXCLICK", "you have checked box one"+3);
+                //resultFromRadioButtons(3);
+                numberSentByRadioButton = 3;
                 break;
         }
     }
@@ -88,52 +92,57 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
                 switch (numberSentByRadioButton) {
                     case 1:
                         try {
-                            Log.d("CHECKBOX", "you have checked box one");
-                            changeStringToDouble();
+                           // changeStringToDouble();
+                            Log.d("CHECKBOX", "you have checked box one"+numberSentByRadioButton);
+                          //  changeStringToDouble();
                             //Toast.makeText(getActivity(), "Clicked button " , Toast.LENGTH_SHORT).show();
-                            showDialog("clicked button");
+                            showDialog("clicked button"+ numberSentByRadioButton);
                         } catch (NumberFormatException e) {
                             e.printStackTrace();
                             Log.e("ONCHECKCLICKED_BUG", e.toString());
                             editTextError();
-                        } catch (InvalidValueException e) {
-                            e.printStackTrace();
-                            Log.e("ONCHECKCLICKED_BUG", e.toString());
-                            editTextError();
                         }
+//                        catch (InvalidValueException e) {
+//                            e.printStackTrace();
+//                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+//                            editTextError();
+//                        }
 
                         break;
 
                     case 2:
                         try {
-                            Log.d("CHECKBOX", "you have checked box one");
-                            changeStringToDouble();
+                          //  changeStringToDouble();
+                            Log.d("CHECKBOX", "you have checked box one"+numberSentByRadioButton);
+                           // changeStringToDouble();
                             Toast.makeText(getActivity(), "Clicked button ", Toast.LENGTH_SHORT).show();
                         } catch (NumberFormatException e) {
                             e.printStackTrace();
                             Log.e("ONCHECKCLICKED_BUG", e.toString());
                             editTextError();
-                        } catch (InvalidValueException e) {
-                            e.printStackTrace();
-                            Log.e("ONCHECKCLICKED_BUG", e.toString());
-                            editTextError();
                         }
+//                        catch (InvalidValueException e) {
+//                            e.printStackTrace();
+//                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+//                            editTextError();
+//                        }
                         break;
 
                     case 3:
                         try {
-                            Log.d("CHECKBOX", "you have checked box one");
-                            changeStringToDouble();
+                            //changeStringToDouble();
+                            Log.d("CHECKBOX", "you have checked box one"+ numberSentByRadioButton);
                             Toast.makeText(getActivity(), "Clicked button ", Toast.LENGTH_SHORT).show();
                         } catch (NumberFormatException e) {
                             e.printStackTrace();
                             Log.e("ONCHECKCLICKED_BUG", e.toString());
                             editTextError();
-                        } catch (InvalidValueException e) {
-                            e.printStackTrace();
-                            Log.e("ONCHECKCLICKED_BUG", e.toString());
-                            editTextError();
                         }
+//                        } catch (InvalidValueException e) {
+//                            e.printStackTrace();
+//                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+//                            editTextError();
+//                        }
                         break;
                 }
             } else {
@@ -143,7 +152,7 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
 
 
     private void changeStringToDouble() throws InvalidValueException {
-        double proteinResult = Double.parseDouble(String.valueOf(weightEdit.getText()));
+        proteinResult = Double.parseDouble(String.valueOf(weightEdit.getText()));
 
         if (proteinResult <= 0){
            // Toast.makeText(getActivity(), "Clicked button "+ proteinResult, Toast.LENGTH_SHORT).show();
@@ -153,6 +162,7 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
 
 
     private void resultFromRadioButtons(int r){
+        Log.d("CASTING", "value after casting "+String.valueOf(r));
         numberSentByRadioButton = r;
     }
 
@@ -176,7 +186,7 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
         alertDialog.setMessage(message);
 
 //                // Setting Icon to Dialog
-//                alertDialog.setIcon(R.drawable.);
+                alertDialog.setIcon(R.drawable.ic_add_black_18dp);
 
         // Setting OK Button
         alertDialog.setButton("OK",
