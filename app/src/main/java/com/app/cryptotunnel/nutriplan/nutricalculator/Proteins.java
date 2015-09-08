@@ -24,7 +24,7 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
 
     private EditText weightEdit;
     private TextInputLayout textInputLayoutWeight;
-    private int numberSentByRadioButton = 2;
+    private int numberSentByRadioButton = 0;
     View rootView;
     private double proteinResult;
 
@@ -92,7 +92,7 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
                 switch (numberSentByRadioButton) {
                     case 1:
                         try {
-                           // changeStringToDouble();
+                            changeStringToDouble();
                             Log.d("CHECKBOX", "you have checked box one"+numberSentByRadioButton);
                           //  changeStringToDouble();
                             //Toast.makeText(getActivity(), "Clicked button " , Toast.LENGTH_SHORT).show();
@@ -102,47 +102,46 @@ public class Proteins extends Fragment implements RadioGroup.OnCheckedChangeList
                             Log.e("ONCHECKCLICKED_BUG", e.toString());
                             editTextError();
                         }
-//                        catch (InvalidValueException e) {
-//                            e.printStackTrace();
-//                            Log.e("ONCHECKCLICKED_BUG", e.toString());
-//                            editTextError();
-//                        }
+                        catch (InvalidValueException e) {
+                            e.printStackTrace();
+                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+                            editTextError();
+                        }
 
                         break;
 
                     case 2:
                         try {
-                          //  changeStringToDouble();
+                            changeStringToDouble();
                             Log.d("CHECKBOX", "you have checked box one"+numberSentByRadioButton);
                            // changeStringToDouble();
-                            Toast.makeText(getActivity(), "Clicked button ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Clicked button 2", Toast.LENGTH_SHORT).show();
                         } catch (NumberFormatException e) {
                             e.printStackTrace();
                             Log.e("ONCHECKCLICKED_BUG", e.toString());
                             editTextError();
                         }
-//                        catch (InvalidValueException e) {
-//                            e.printStackTrace();
-//                            Log.e("ONCHECKCLICKED_BUG", e.toString());
-//                            editTextError();
-//                        }
+                        catch (InvalidValueException e) {
+                            e.printStackTrace();
+                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+                            editTextError();
+                        }
                         break;
 
                     case 3:
                         try {
-                            //changeStringToDouble();
+                            changeStringToDouble();
                             Log.d("CHECKBOX", "you have checked box one"+ numberSentByRadioButton);
-                            Toast.makeText(getActivity(), "Clicked button ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Clicked button 3", Toast.LENGTH_SHORT).show();
                         } catch (NumberFormatException e) {
                             e.printStackTrace();
                             Log.e("ONCHECKCLICKED_BUG", e.toString());
                             editTextError();
+                        } catch (InvalidValueException e) {
+                            e.printStackTrace();
+                            Log.e("ONCHECKCLICKED_BUG", e.toString());
+                            editTextError();
                         }
-//                        } catch (InvalidValueException e) {
-//                            e.printStackTrace();
-//                            Log.e("ONCHECKCLICKED_BUG", e.toString());
-//                            editTextError();
-//                        }
                         break;
                 }
             } else {
